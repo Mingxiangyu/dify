@@ -1,14 +1,13 @@
 import threading
 from typing import Optional
 
-from flask import Flask, current_app
-
 from core.rag.data_post_processor.data_post_processor import DataPostProcessor
 from core.rag.datasource.keyword.keyword_factory import Keyword
 from core.rag.datasource.vdb.vector_factory import Vector
 from core.rag.rerank.constants.rerank_mode import RerankMode
 from core.rag.retrieval.retrival_methods import RetrievalMethod
 from extensions.ext_database import db
+from flask import Flask, current_app
 from models.dataset import Dataset
 
 default_retrieval_model = {
@@ -24,7 +23,7 @@ default_retrieval_model = {
 
 
 class RetrievalService:
-
+    # 文章检索
     @classmethod
     def retrieve(cls, retrival_method: str, dataset_id: str, query: str,
                  top_k: int, score_threshold: Optional[float] = .0,
@@ -33,12 +32,14 @@ class RetrievalService:
         dataset = db.session.query(Dataset).filter(
             Dataset.id == dataset_id
         ).first()
+        # 校验 dataset 的 document 数量，segment 数量等，如果为0，则就不必继续了
         if not dataset or dataset.available_document_count == 0 or dataset.available_segment_count == 0:
             return []
         all_documents = []
         threads = []
         exceptions = []
         # retrieval_model source with keyword
+        # keyword_search（关键字搜索）
         if retrival_method == 'keyword_search':
             keyword_thread = threading.Thread(target=RetrievalService.keyword_search, kwargs={
                 'flask_app': current_app._get_current_object(),
@@ -51,6 +52,7 @@ class RetrievalService:
             threads.append(keyword_thread)
             keyword_thread.start()
         # retrieval_model source with semantic
+        # semantic_search（语义搜索）
         if RetrievalMethod.is_support_semantic_search(retrival_method):
             embedding_thread = threading.Thread(target=RetrievalService.embedding_search, kwargs={
                 'flask_app': current_app._get_current_object(),
@@ -67,6 +69,7 @@ class RetrievalService:
             embedding_thread.start()
 
         # retrieval source with full text
+        # full_text_search（全文搜索）
         if RetrievalMethod.is_support_fulltext_search(retrival_method):
             full_text_index_thread = threading.Thread(target=RetrievalService.full_text_index_search, kwargs={
                 'flask_app': current_app._get_current_object(),

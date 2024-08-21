@@ -39,6 +39,7 @@ class HitTestingApi(Resource):
         if dataset is None:
             raise NotFound("Dataset not found.")
 
+        # 获取 dataset，并且校验 dataset 的权限，接口参数
         try:
             DatasetService.check_dataset_permission(dataset, current_user)
         except services.errors.account.NoPermissionError as e:
@@ -49,6 +50,7 @@ class HitTestingApi(Resource):
         parser.add_argument('retrieval_model', type=dict, required=False, location='json')
         args = parser.parse_args()
 
+        # 召回测试参数检查
         HitTestingService.hit_testing_args_check(args)
 
         try:

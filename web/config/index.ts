@@ -1,7 +1,7 @@
 /* eslint-disable import/no-mutable-exports */
-import { InputVarType } from '@/app/components/workflow/types'
-import { AgentStrategy } from '@/types/app'
-import { PromptRole } from '@/models/debug'
+import {InputVarType} from '@/app/components/workflow/types'
+import {AgentStrategy} from '@/types/app'
+import {PromptRole} from '@/models/debug'
 
 export let apiPrefix = ''
 export let publicApiPrefix = ''
@@ -23,8 +23,8 @@ else {
   // const domainParts = globalThis.location?.host?.split('.');
   // in production env, the host is dify.app . In other env, the host is [dev].dify.app
   // const env = domainParts.length === 2 ? 'ai' : domainParts?.[0];
-  apiPrefix = 'http://localhost:5001/console/api'
-  publicApiPrefix = 'http://localhost:5001/api' // avoid browser private mode api cross origin
+  apiPrefix = 'http://192.168.4.178:5001/console/api'
+  publicApiPrefix = 'http://192.168.4.178:5001/api' // avoid browser private mode api cross origin
 }
 
 export const API_PREFIX: string = apiPrefix
