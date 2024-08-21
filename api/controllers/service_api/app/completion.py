@@ -1,8 +1,5 @@
 import logging
 
-from flask_restful import Resource, reqparse
-from werkzeug.exceptions import InternalServerError, NotFound
-
 import services
 from controllers.service_api import api
 from controllers.service_api.app.error import (
@@ -14,7 +11,8 @@ from controllers.service_api.app.error import (
     ProviderNotInitializeError,
     ProviderQuotaExceededError,
 )
-from controllers.service_api.wraps import FetchUserArg, WhereisUserArg, validate_app_token
+from controllers.service_api.wraps import FetchUserArg, WhereisUserArg, \
+    validate_app_token
 from core.app.apps.base_app_queue_manager import AppQueueManager
 from core.app.entities.app_invoke_entities import InvokeFrom
 from core.errors.error import (
@@ -24,10 +22,12 @@ from core.errors.error import (
     QuotaExceededError,
 )
 from core.model_runtime.errors.invoke import InvokeError
+from flask_restful import Resource, reqparse
 from libs import helper
 from libs.helper import uuid_value
 from models.model import App, AppMode, EndUser
 from services.app_generate_service import AppGenerateService
+from werkzeug.exceptions import InternalServerError, NotFound
 
 
 class CompletionApi(Resource):
@@ -156,6 +156,7 @@ class ChatStopApi(Resource):
         return {'result': 'success'}, 200
 
 
+# 智能应用 发送消息
 api.add_resource(CompletionApi, '/completion-messages')
 api.add_resource(CompletionStopApi, '/completion-messages/<string:task_id>/stop')
 api.add_resource(ChatApi, '/chat-messages')

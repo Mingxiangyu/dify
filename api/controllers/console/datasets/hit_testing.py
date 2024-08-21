@@ -1,9 +1,5 @@
 import logging
 
-from flask_login import current_user
-from flask_restful import Resource, marshal, reqparse
-from werkzeug.exceptions import Forbidden, InternalServerError, NotFound
-
 import services
 from controllers.console import api
 from controllers.console.app.error import (
@@ -23,9 +19,12 @@ from core.errors.error import (
 )
 from core.model_runtime.errors.invoke import InvokeError
 from fields.hit_testing_fields import hit_testing_record_fields
+from flask_login import current_user
+from flask_restful import Resource, marshal, reqparse
 from libs.login import login_required
 from services.dataset_service import DatasetService
 from services.hit_testing_service import HitTestingService
+from werkzeug.exceptions import Forbidden, InternalServerError, NotFound
 
 
 class HitTestingApi(Resource):
@@ -83,4 +82,5 @@ class HitTestingApi(Resource):
             raise InternalServerError(str(e))
 
 
+# 召回测试
 api.add_resource(HitTestingApi, '/datasets/<uuid:dataset_id>/hit-testing')
