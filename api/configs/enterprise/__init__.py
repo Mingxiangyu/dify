@@ -15,5 +15,5 @@ class EnterpriseFeatureConfig(BaseSettings):
 
     CAN_REPLACE_LOGO: bool = Field(
         description='whether to allow replacing enterprise logo.',
-        default=False,
+        default=True,
     )

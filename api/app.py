@@ -26,7 +26,6 @@ from commands import register_commands
 from configs import dify_config
 
 # DO NOT REMOVE BELOW
-from events import event_handlers
 from extensions import (
     ext_celery,
     ext_code_based_extension,
@@ -45,7 +44,6 @@ from extensions.ext_login import login_manager
 from libs.passport import PassportService
 
 # TODO: Find a way to avoid importing models here
-from models import account, dataset, model, source, task, tool, tools, web
 from services.account_service import AccountService
 
 # DO NOT REMOVE ABOVE
@@ -309,4 +307,4 @@ def pool_stat():
 
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5001)
+    app.run(host="0.0.0.0", port=5001,debug=True)

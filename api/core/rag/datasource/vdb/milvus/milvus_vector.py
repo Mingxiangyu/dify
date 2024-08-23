@@ -65,6 +65,13 @@ class MilvusVector(BaseVector):
         return VectorType.MILVUS
 
     def create(self, texts: list[Document], embeddings: list[list[float]], **kwargs):
+        """
+        'metric_type': 'IP'：表示度量类型为内积（Inner Product）。
+        'index_type': "HNSW"：表示索引类型为HNSW（Hierarchical Navigable Small World graph），这是一种用于高效近似最近邻搜索的索引结构。
+        'params': {"M": 8, "efConstruction": 64}：这是HNSW索引的特定参数，其中：
+        "M": 8：表示每个节点的出度为8，影响索引的内存使用和搜索质量。
+        "efConstruction": 64：表示在构建索引时的近似度，较小的值会导致更快的构建速度但搜索质量可能较低，较大的值则相反。
+        """
         index_params = {
             'metric_type': 'IP',
             'index_type': "HNSW",
@@ -204,6 +211,7 @@ class MilvusVector(BaseVector):
     def create_collection(
             self, embeddings: list, metadatas: Optional[list[dict]] = None, index_params: Optional[dict] = None
     ):
+        # 实现分布式锁，用于控制对某个资源的并发访问
         lock_name = 'vector_indexing_lock_{}'.format(self._collection_name)
         with redis_client.lock(lock_name, timeout=20):
             collection_exist_cache_key = 'vector_indexing_{}'.format(self._collection_name)
@@ -223,6 +231,7 @@ class MilvusVector(BaseVector):
                 from pymilvus.orm.types import infer_dtype_bydata
 
                 # Determine embedding dim
+                # 确定嵌入尺寸
                 dim = len(embeddings[0])
                 fields = []
                 if metadatas:

@@ -57,7 +57,7 @@ class InvalidActionError(BaseHTTPException):
 
 class DocumentAlreadyFinishedError(BaseHTTPException):
     error_code = 'document_already_finished'
-    description = "The document has been processed. Please refresh the page or go to the document details."
+    description = "The DOCUMENT has been processed. Please refresh the page or go to the document details."
     code = 400
 
 

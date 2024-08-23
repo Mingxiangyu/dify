@@ -44,13 +44,16 @@ from services.vector_service import VectorService
 from tasks.clean_notion_document_task import clean_notion_document_task
 from tasks.deal_dataset_vector_index_task import deal_dataset_vector_index_task
 from tasks.delete_segment_from_index_task import delete_segment_from_index_task
-from tasks.disable_segment_from_index_task import disable_segment_from_index_task
+from tasks.disable_segment_from_index_task import \
+    disable_segment_from_index_task
 from tasks.document_indexing_task import document_indexing_task
 from tasks.document_indexing_update_task import document_indexing_update_task
-from tasks.duplicate_document_indexing_task import duplicate_document_indexing_task
+from tasks.duplicate_document_indexing_task import \
+    duplicate_document_indexing_task
 from tasks.recover_document_indexing_task import recover_document_indexing_task
 from tasks.retry_document_indexing_task import retry_document_indexing_task
-from tasks.sync_website_document_indexing_task import sync_website_document_indexing_task
+from tasks.sync_website_document_indexing_task import \
+    sync_website_document_indexing_task
 
 
 class DatasetService:
@@ -1400,7 +1403,7 @@ class SegmentService:
             keywords_list = []
             for segment_item in segments:
                 content = segment_item['content']
-                doc_id = str(uuid.uuid4())
+                doc_id = str(uuid.uuid4()) #随机生成段落向量id
                 segment_hash = helper.generate_text_hash(content)
                 tokens = 0
                 if dataset.indexing_technique == 'high_quality' and embedding_model:

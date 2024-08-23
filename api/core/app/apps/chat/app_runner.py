@@ -8,7 +8,8 @@ from core.app.entities.app_invoke_entities import (
     ChatAppGenerateEntity,
 )
 from core.app.entities.queue_entities import QueueAnnotationReplyEvent
-from core.callback_handler.index_tool_callback_handler import DatasetIndexToolCallbackHandler
+from core.callback_handler.index_tool_callback_handler import \
+    DatasetIndexToolCallbackHandler
 from core.memory.token_buffer_memory import TokenBufferMemory
 from core.model_manager import ModelInstance
 from core.moderation.base import ModerationException
@@ -52,6 +53,12 @@ class ChatAppRunner(AppRunner):
         # If the rest number of tokens is not enough, raise exception.
         # Include: prompt template, inputs, query(optional), files(optional)
         # Not Include: memory, external data, dataset context
+        """
+        预先计算提示消息的令牌数量，并通过模型上下文令牌大小限制和最大令牌大小限制返回剩余的令牌数量。
+        如果剩余的令牌数量不足，则引发异常。
+        包括：提示模板、输入、查询（可选）、文件（可选）
+        不包括：内存、外部数据、数据集上下文
+        """
         self.get_pre_calculate_rest_tokens(
             app_record=app_record,
             model_config=application_generate_entity.model_conf,

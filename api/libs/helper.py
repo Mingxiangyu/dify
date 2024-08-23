@@ -172,6 +172,9 @@ def get_remote_ip(request) -> str:
 
 
 def generate_text_hash(text: str) -> str:
+    """
+    生成文本hash值
+    """
     hash_text = str(text) + "None"
     return sha256(hash_text.encode()).hexdigest()
 

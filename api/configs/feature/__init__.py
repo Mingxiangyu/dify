@@ -1,6 +1,7 @@
 from typing import Optional
 
-from pydantic import AliasChoices, Field, NonNegativeInt, PositiveInt, computed_field
+from pydantic import AliasChoices, Field, NonNegativeInt, PositiveInt, \
+    computed_field
 from pydantic_settings import BaseSettings
 
 from configs.feature.hosted_service import HostedServiceConfig
@@ -210,7 +211,7 @@ class ModelLoadBalanceConfig(BaseSettings):
     Model load balance configs
     """
     MODEL_LB_ENABLED: bool = Field(
-        description='whether to enable model load balancing',
+        description='whether to enable model load balancing',# 是否启用模型负载平衡
         default=False,
     )
 
@@ -402,7 +403,7 @@ class DataSetConfig(BaseSettings):
     )
 
     DATASET_OPERATOR_ENABLED: bool = Field(
-        description='whether to enable dataset operator',
+        description='whether to enable dataset operator',#是否启用数据集运算符
         default=False,
     )
 
