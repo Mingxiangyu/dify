@@ -29,7 +29,7 @@ const translation = {
   rightDesc: '簡單構建視覺化、可運營、可改進的 AI 應用',
   tos: '使用協議',
   pp: '隱私政策',
-  tosDesc: '使用即代表你並同意我們的',
+  // tosDesc: '使用即代表你並同意我們的',
   goToInit: '如果您還沒有初始化賬戶，請前往初始化頁面',
   donthave: '還沒有邀請碼？',
   invalidInvitationCode: '無效的邀請碼',

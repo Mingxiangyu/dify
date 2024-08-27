@@ -29,7 +29,7 @@ const translation = {
   rightDesc: 'Mühelos optisch ansprechende, bedienbare und verbesserbare KI-Anwendungen erstellen.',
   tos: 'Nutzungsbedingungen',
   pp: 'Datenschutzbestimmungen',
-  tosDesc: 'Mit der Anmeldung stimmst du unseren',
+  // tosDesc: 'Mit der Anmeldung stimmst du unseren',
   goToInit: 'Wenn du das Konto noch nicht initialisiert hast, gehe bitte zur Initialisierungsseite',
   donthave: 'Hast du nicht?',
   invalidInvitationCode: 'Ungültiger Einladungscode',

@@ -29,7 +29,7 @@ const translation = {
   rightDesc: 'Dễ dàng xây dựng ứng dụng AI hấp dẫn, có thể vận hành và cải thiện được.',
   tos: 'Điều khoản dịch vụ',
   pp: 'Chính sách bảo mật',
-  tosDesc: 'Bằng cách đăng ký, bạn đồng ý với',
+  // tosDesc: 'Bằng cách đăng ký, bạn đồng ý với',
   goToInit: 'Nếu bạn chưa khởi tạo tài khoản, vui lòng chuyển đến trang khởi tạo',
   donthave: 'Chưa có tài khoản?',
   invalidInvitationCode: 'Mã mời không hợp lệ',

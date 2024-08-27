@@ -29,7 +29,7 @@ const translation = {
   rightDesc: '매력적이고 조작 가능하며 개선 가능한 AI 애플리케이션을 쉽게 구축하세요.',
   tos: '이용약관',
   pp: '개인정보 처리 방침',
-  tosDesc: '가입함으로써 다음 내용에 동의하게 됩니다.',
+  // tosDesc: '가입함으로써 다음 내용에 동의하게 됩니다.',
   goToInit: '계정이 초기화되지 않았다면 초기화 페이지로 이동하세요.',
   donthave: '계정이 없으신가요?',
   invalidInvitationCode: '유효하지 않은 초대 코드입니다.',

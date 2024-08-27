@@ -30,7 +30,7 @@ const translation = {
   rightDesc: 'Construye de manera sencilla aplicaciones de IA visualmente cautivadoras, operables y mejorables.',
   tos: 'Términos de servicio',
   pp: 'Política de privacidad',
-  tosDesc: 'Al registrarte, aceptas nuestros',
+  // tosDesc: 'Al registrarte, aceptas nuestros',
   goToInit: 'Si no has inicializado la cuenta, por favor ve a la página de inicialización',
   donthave: '¿No tienes?',
   invalidInvitationCode: 'Código de invitación inválido',

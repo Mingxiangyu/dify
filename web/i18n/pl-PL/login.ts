@@ -34,7 +34,7 @@ const translation = {
     'Łatwo buduj wizualnie atrakcyjne, działające i udoskonalane aplikacje AI.',
   tos: 'Warunki świadczenia usług',
   pp: 'Polityka prywatności',
-  tosDesc: 'Założeniem konta zgadzasz się z naszymi',
+  // tosDesc: 'Założeniem konta zgadzasz się z naszymi',
   goToInit: 'Jeśli nie zainicjowałeś konta, przejdź do strony inicjalizacji',
   donthave: 'Nie masz?',
   invalidInvitationCode: 'Niewłaściwy kod zaproszenia',

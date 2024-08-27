@@ -22,7 +22,8 @@ from libs.rsa import generate_key_pair
 from models.account import Tenant
 from models.dataset import Dataset, DatasetCollectionBinding, DocumentSegment
 from models.dataset import Document as DatasetDocument
-from models.model import Account, App, AppAnnotationSetting, AppMode, Conversation, MessageAnnotation
+from models.model import Account, App, AppAnnotationSetting, AppMode, \
+    Conversation, MessageAnnotation
 from models.provider import Provider, ProviderModel
 from services.account_service import RegisterService, TenantService
 
@@ -253,6 +254,7 @@ def migrate_annotation_vector_database():
 def migrate_knowledge_vector_database():
     """
     Migrate vector database datas to target vector database .
+    将矢量数据库数据迁移到目标矢量数据库
     """
     click.echo(click.style("Start migrate vector db.", fg="green"))
     create_count = 0

@@ -30,7 +30,7 @@ const translation = {
   rightDesc: 'Görsel olarak çekici, çalışılabilir ve iyileştirilebilir AI uygulamaları oluşturun.',
   tos: 'Hizmet Şartları',
   pp: 'Gizlilik Politikası',
-  tosDesc: 'Kaydolarak, Hizmet Şartlarımızı kabul etmiş olursunuz',
+  // tosDesc: 'Kaydolarak, Hizmet Şartlarımızı kabul etmiş olursunuz',
   goToInit: 'Hesabı başlatmadıysanız, lütfen başlatma sayfasına gidin',
   donthave: 'Sahip değil misiniz?',
   invalidInvitationCode: 'Geçersiz davet kodu',

@@ -35,7 +35,7 @@ const translation = {
     'Costruisci senza sforzo applicazioni AI visivamente accattivanti, operabili e migliorabili.',
   tos: 'Termini di servizio',
   pp: 'Informativa sulla privacy',
-  tosDesc: 'Iscrivendoti, accetti i nostri',
+  // tosDesc: 'Iscrivendoti, accetti i nostri',
   goToInit:
     'Se non hai inizializzato l\'account, vai alla pagina di inizializzazione',
   donthave: 'Non hai?',

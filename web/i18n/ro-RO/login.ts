@@ -30,7 +30,7 @@ const translation = {
   rightDesc: 'Construiește cu ușurință aplicații AI captivante din punct de vedere vizual, utilizabile și îmbunătățibile.',
   tos: 'Termeni și condiții',
   pp: 'Politica de confidențialitate',
-  tosDesc: 'Prin înregistrarea, ești de acord cu',
+  // tosDesc: 'Prin înregistrarea, ești de acord cu',
   goToInit: 'Dacă nu ai inițializat încă contul, te rugăm să mergi la pagina de inițializare',
   donthave: 'Nu ai?',
   invalidInvitationCode: 'Cod de invitație invalid',
