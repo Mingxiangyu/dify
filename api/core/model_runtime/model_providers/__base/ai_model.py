@@ -18,8 +18,10 @@ from core.model_runtime.entities.model_entities import (
     PriceInfo,
     PriceType,
 )
-from core.model_runtime.errors.invoke import InvokeAuthorizationError, InvokeError
-from core.model_runtime.model_providers.__base.tokenizers.gpt2_tokenzier import GPT2Tokenizer
+from core.model_runtime.errors.invoke import InvokeAuthorizationError, \
+    InvokeError
+from core.model_runtime.model_providers.__base.tokenizers.gpt2_tokenzier import \
+    GPT2Tokenizer
 from core.tools.utils.yaml_utils import load_yaml_file
 
 
@@ -80,6 +82,7 @@ class AIModel(ABC):
     def get_price(self, model: str, credentials: dict, price_type: PriceType, tokens: int) -> PriceInfo:
         """
         Get price for given model and tokens
+        获取给定模型和tokens的价格
 
         :param model: model name
         :param credentials: model credentials

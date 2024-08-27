@@ -7,7 +7,8 @@ from sqlalchemy.exc import IntegrityError
 
 from core.model_manager import ModelInstance
 from core.model_runtime.entities.model_entities import ModelPropertyKey
-from core.model_runtime.model_providers.__base.text_embedding_model import TextEmbeddingModel
+from core.model_runtime.model_providers.__base.text_embedding_model import \
+  TextEmbeddingModel
 from core.rag.datasource.entity.embedding import Embeddings
 from extensions.ext_database import db
 from extensions.ext_redis import redis_client
@@ -85,7 +86,9 @@ class CacheEmbedding(Embeddings):
 
     def embed_query(self, text: str) -> list[float]:
         """Embed query text."""
+        # 查询文本嵌入
         # use doc embedding cache or store if not exists
+        # 如果不存在，则使用文档嵌入缓存或存储
         hash = helper.generate_text_hash(text)
         embedding_cache_key = f'{self._model_instance.provider}_{self._model_instance.model}_{hash}'
         embedding = redis_client.get(embedding_cache_key)

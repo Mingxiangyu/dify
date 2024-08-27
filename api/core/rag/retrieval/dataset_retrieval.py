@@ -5,28 +5,38 @@ from typing import Optional, cast
 
 from flask import Flask, current_app
 
-from core.app.app_config.entities import DatasetEntity, DatasetRetrieveConfigEntity
-from core.app.entities.app_invoke_entities import InvokeFrom, ModelConfigWithCredentialsEntity
-from core.callback_handler.index_tool_callback_handler import DatasetIndexToolCallbackHandler
+from core.app.app_config.entities import DatasetEntity, \
+    DatasetRetrieveConfigEntity
+from core.app.entities.app_invoke_entities import InvokeFrom, \
+    ModelConfigWithCredentialsEntity
+from core.callback_handler.index_tool_callback_handler import \
+    DatasetIndexToolCallbackHandler
 from core.entities.agent_entities import PlanningStrategy
 from core.memory.token_buffer_memory import TokenBufferMemory
 from core.model_manager import ModelInstance, ModelManager
 from core.model_runtime.entities.message_entities import PromptMessageTool
 from core.model_runtime.entities.model_entities import ModelFeature, ModelType
-from core.model_runtime.model_providers.__base.large_language_model import LargeLanguageModel
+from core.model_runtime.model_providers.__base.large_language_model import \
+    LargeLanguageModel
 from core.ops.entities.trace_entity import TraceTaskName
 from core.ops.ops_trace_manager import TraceQueueManager, TraceTask
 from core.ops.utils import measure_time
 from core.rag.data_post_processor.data_post_processor import DataPostProcessor
-from core.rag.datasource.keyword.jieba.jieba_keyword_table_handler import JiebaKeywordTableHandler
+from core.rag.datasource.keyword.jieba.jieba_keyword_table_handler import \
+    JiebaKeywordTableHandler
 from core.rag.datasource.retrieval_service import RetrievalService
 from core.rag.models.document import Document
 from core.rag.retrieval.retrival_methods import RetrievalMethod
-from core.rag.retrieval.router.multi_dataset_function_call_router import FunctionCallMultiDatasetRouter
-from core.rag.retrieval.router.multi_dataset_react_route import ReactMultiDatasetRouter
-from core.tools.tool.dataset_retriever.dataset_multi_retriever_tool import DatasetMultiRetrieverTool
-from core.tools.tool.dataset_retriever.dataset_retriever_base_tool import DatasetRetrieverBaseTool
-from core.tools.tool.dataset_retriever.dataset_retriever_tool import DatasetRetrieverTool
+from core.rag.retrieval.router.multi_dataset_function_call_router import \
+    FunctionCallMultiDatasetRouter
+from core.rag.retrieval.router.multi_dataset_react_route import \
+    ReactMultiDatasetRouter
+from core.tools.tool.dataset_retriever.dataset_multi_retriever_tool import \
+    DatasetMultiRetrieverTool
+from core.tools.tool.dataset_retriever.dataset_retriever_base_tool import \
+    DatasetRetrieverBaseTool
+from core.tools.tool.dataset_retriever.dataset_retriever_tool import \
+    DatasetRetrieverTool
 from extensions.ext_database import db
 from models.dataset import Dataset, DatasetQuery, DocumentSegment
 from models.dataset import Document as DatasetDocument
@@ -60,6 +70,7 @@ class DatasetRetrieval:
     ) -> Optional[str]:
         """
         Retrieve dataset.
+        检索数据集。
         :param app_id: app_id
         :param user_id: user_id
         :param tenant_id: tenant id
@@ -118,13 +129,18 @@ class DatasetRetrieval:
                 continue
 
             # pass if dataset is not available
+            # 如果数据集不可用，跳过
             if (dataset and dataset.available_document_count == 0
                     and dataset.available_document_count == 0):
                 continue
 
             available_datasets.append(dataset)
+
+        # 获取匹配的文档
         all_documents = []
         user_from = 'account' if invoke_from in [InvokeFrom.EXPLORE, InvokeFrom.DEBUGGER] else 'end_user'
+
+        # 判断用户选择的是N选1召回，还是多路召回，调用不同的方法
         if retrieve_config.retrieve_strategy == DatasetRetrieveConfigEntity.RetrieveStrategy.SINGLE:
             all_documents = self.single_retrieve(
                 app_id, tenant_id, user_id, user_from, available_datasets, query,
@@ -415,10 +431,12 @@ class DatasetRetrieval:
                 return []
 
             # get retrieval model , if the model is not setting , using default
+            # 如果未设置检索模型，则使用默认值获取检索模型
             retrieval_model = dataset.retrieval_model if dataset.retrieval_model else default_retrieval_model
 
             if dataset.indexing_technique == "economy":
                 # use keyword table query
+                # 使用关键字表查询
                 documents = RetrievalService.retrieve(retrival_method='keyword_search',
                                                       dataset_id=dataset.id,
                                                       query=query,

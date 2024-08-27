@@ -189,10 +189,12 @@ class MilvusVector(BaseVector):
         # Set search parameters.
         results = self._client.search(collection_name=self._collection_name,
                                       data=[query_vector],
-                                      limit=kwargs.get('top_k', 4),
+                                      limit=kwargs.get('top_k', 4),#如果kwargs中没有top_k键，那么limit的值默认为4
+                                      # 返回的结果会包含Field.CONTENT_KEY.value和Field.METADATA_KEY.value
                                       output_fields=[Field.CONTENT_KEY.value, Field.METADATA_KEY.value],
                                       )
         # Organize results.
+        # 整理结果。
         docs = []
         for result in results[0]:
             metadata = result['entity'].get(Field.METADATA_KEY.value)

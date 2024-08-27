@@ -24,6 +24,7 @@ class AppGenerateService:
                  ):
         """
         App Content Generate
+        app应用内容生成
         :param app_model: app model
         :param user: user
         :param args: args

@@ -84,6 +84,7 @@ class ChatAppRunner(AppRunner):
         # organize all inputs and template to prompt messages
         # Include: prompt template, inputs, query(optional), files(optional)
         #          memory(optional)
+        # 组织所有输入和模板以提示消息包括：提示模板、输入、查询（可选）、文件（可选）内存（可选）
         prompt_messages, stop = self.organize_prompt_messages(
             app_record=app_record,
             model_config=application_generate_entity.model_conf,
@@ -152,6 +153,7 @@ class ChatAppRunner(AppRunner):
             )
 
         # get context from datasets
+        # 从数据集中获取上下文
         context = None
         if app_config.dataset and app_config.dataset.dataset_ids:
             hit_callback = DatasetIndexToolCallbackHandler(

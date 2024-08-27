@@ -129,6 +129,7 @@ class RetrievalService:
     def embedding_search(cls, flask_app: Flask, dataset_id: str, query: str,
                          top_k: int, score_threshold: Optional[float], reranking_model: Optional[dict],
                          all_documents: list, retrival_method: str, exceptions: list):
+        # 语义搜索
         with flask_app.app_context():
             try:
                 dataset = db.session.query(Dataset).filter(
