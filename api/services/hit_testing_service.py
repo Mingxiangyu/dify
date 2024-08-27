@@ -35,11 +35,11 @@ class HitTestingService:
         start = time.perf_counter()
 
         # get retrieval model , if the model is not setting , using default
-        # 获取 检索 模型(如果模型未设置)，使用 default
+        # 获取 检索 模型(如果模型未设置)，使用 默认设置
         if not retrieval_model:
             retrieval_model = dataset.retrieval_model if dataset.retrieval_model else default_retrieval_model
 
-        all_documents = RetrievalService.retrieve(retrival_method=retrieval_model.get('search_method', 'semantic_search'),
+        all_documents = RetrievalService.retrieve(retrival_method=retrieval_model.get('search_method', 'semantic_search'),# 从retrieval_model字典中获取的search_method键对应的值（默认为semantic_search）作为参数
                                                   dataset_id=dataset.id,
                                                   query=cls.escape_query_for_search(query),
                                                   top_k=retrieval_model.get('top_k', 2),

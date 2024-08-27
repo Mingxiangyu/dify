@@ -6,23 +6,23 @@ from werkzeug.exceptions import InternalServerError, NotFound
 import services
 from controllers.service_api import api
 from controllers.service_api.app.error import (
-  AppUnavailableError,
-  CompletionRequestError,
-  ConversationCompletedError,
-  NotChatAppError,
-  ProviderModelCurrentlyNotSupportError,
-  ProviderNotInitializeError,
-  ProviderQuotaExceededError,
+    AppUnavailableError,
+    CompletionRequestError,
+    ConversationCompletedError,
+    NotChatAppError,
+    ProviderModelCurrentlyNotSupportError,
+    ProviderNotInitializeError,
+    ProviderQuotaExceededError,
 )
 from controllers.service_api.wraps import FetchUserArg, WhereisUserArg, \
-  validate_app_token
+    validate_app_token
 from core.app.apps.base_app_queue_manager import AppQueueManager
 from core.app.entities.app_invoke_entities import InvokeFrom
 from core.errors.error import (
-  AppInvokeQuotaExceededError,
-  ModelCurrentlyNotSupportError,
-  ProviderTokenNotInitError,
-  QuotaExceededError,
+    AppInvokeQuotaExceededError,
+    ModelCurrentlyNotSupportError,
+    ProviderTokenNotInitError,
+    QuotaExceededError,
 )
 from core.model_runtime.errors.invoke import InvokeError
 from libs import helper
@@ -96,6 +96,7 @@ class CompletionStopApi(Resource):
 class ChatApi(Resource):
     @validate_app_token(fetch_user_arg=FetchUserArg(fetch_from=WhereisUserArg.JSON, required=True))
     def post(self, app_model: App, end_user: EndUser):
+        # app_mode 类型校验
         app_mode = AppMode.value_of(app_model.mode)
         if app_mode not in [AppMode.CHAT, AppMode.AGENT_CHAT, AppMode.ADVANCED_CHAT]:
             raise NotChatAppError()
@@ -114,6 +115,7 @@ class ChatApi(Resource):
         streaming = args['response_mode'] == 'streaming'
 
         try:
+            # 对话生成
             response = AppGenerateService.generate(
                 app_model=app_model,
                 user=end_user,

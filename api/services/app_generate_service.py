@@ -33,7 +33,9 @@ class AppGenerateService:
         :return:
         """
         max_active_request = AppGenerateService._get_max_active_requests(app_model)
+        # 费率限制
         rate_limit = RateLimit(app_model.id, max_active_request)
+        # 生成请求id
         request_id = RateLimit.gen_request_key()
         try:
             request_id = rate_limit.enter(request_id)

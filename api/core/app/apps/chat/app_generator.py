@@ -61,6 +61,7 @@ class ChatAppGenerator(MessageBasedAppGenerator):
         query = query.replace('\x00', '')
         inputs = args['inputs']
 
+        # 额外费用
         extras = {
             "auto_generate_conversation_name": args.get('auto_generate_name', True)
         }
@@ -151,6 +152,7 @@ class ChatAppGenerator(MessageBasedAppGenerator):
         )
 
         # new thread
+        # 构建新线程，调用 _generate_worker 生成数据
         worker_thread = threading.Thread(target=self._generate_worker, kwargs={
             'flask_app': current_app._get_current_object(),
             'application_generate_entity': application_generate_entity,
@@ -193,10 +195,12 @@ class ChatAppGenerator(MessageBasedAppGenerator):
         with flask_app.app_context():
             try:
                 # get conversation and message
+                # 获取对话和消息
                 conversation = self._get_conversation(conversation_id)
                 message = self._get_message(message_id)
 
                 # chatbot app
+                # 聊天机器人应用程序
                 runner = ChatAppRunner()
                 runner.run(
                     application_generate_entity=application_generate_entity,

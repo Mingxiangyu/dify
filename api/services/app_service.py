@@ -12,8 +12,10 @@ from core.agent.entities import AgentToolEntity
 from core.app.features.rate_limiting import RateLimit
 from core.errors.error import LLMBadRequestError, ProviderTokenNotInitError
 from core.model_manager import ModelManager
-from core.model_runtime.entities.model_entities import ModelPropertyKey, ModelType
-from core.model_runtime.model_providers.__base.large_language_model import LargeLanguageModel
+from core.model_runtime.entities.model_entities import ModelPropertyKey, \
+  ModelType
+from core.model_runtime.model_providers.__base.large_language_model import \
+  LargeLanguageModel
 from core.tools.tool_manager import ToolManager
 from core.tools.utils.configuration import ToolParameterConfigurationManager
 from events.app_event import app_was_created
@@ -22,7 +24,8 @@ from models.account import Account
 from models.model import App, AppMode, AppModelConfig
 from models.tools import ApiToolProvider
 from services.tag_service import TagService
-from tasks.remove_app_and_related_data_task import remove_app_and_related_data_task
+from tasks.remove_app_and_related_data_task import \
+  remove_app_and_related_data_task
 
 
 class AppService:
@@ -148,10 +151,12 @@ class AppService:
         Get App
         """
         # get original app model config
+        # 获取原始应用程序模型配置
         if app.mode == AppMode.AGENT_CHAT.value or app.is_agent:
             model_config: AppModelConfig = app.app_model_config
             agent_mode = model_config.agent_mode_dict
             # decrypt agent tool parameters if it's secret-input
+            # 如果是秘密输入，则解密代理工具参数
             for tool in agent_mode.get('tools') or []:
                 if not isinstance(tool, dict) or len(tool.keys()) <= 3:
                     continue
@@ -179,6 +184,7 @@ class AppService:
                         masked_parameter = {}
 
                     # override tool parameters
+                    # 重写工具参数
                     tool['tool_parameters'] = masked_parameter
                 except Exception as e:
                     pass

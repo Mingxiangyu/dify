@@ -52,6 +52,7 @@ class RetrievalService:
             })
             threads.append(keyword_thread)
             keyword_thread.start()
+
         # retrieval_model source with semantic
         # semantic_search（语义搜索）
         if RetrievalMethod.is_support_semantic_search(retrival_method):

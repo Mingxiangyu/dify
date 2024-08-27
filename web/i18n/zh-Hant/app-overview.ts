@@ -25,7 +25,7 @@ const translation = {
     callTimes: '呼叫次數',
     usedToken: '使用 Tokens',
     setAPIBtn: '設定模型提供商',
-    tryCloud: '或者嘗試使用 Dify 的雲版本並使用試用配額',
+    tryCloud: '或者嘗試使用 DOSMOS 的雲版本並使用試用配額',
   },
   overview: {
     title: '概覽',

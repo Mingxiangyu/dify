@@ -7,28 +7,32 @@ from sqlalchemy import and_
 
 from core.app.app_config.entities import EasyUIBasedAppModelConfigFrom
 from core.app.apps.base_app_generator import BaseAppGenerator
-from core.app.apps.base_app_queue_manager import AppQueueManager, GenerateTaskStoppedException
+from core.app.apps.base_app_queue_manager import AppQueueManager, \
+  GenerateTaskStoppedException
 from core.app.entities.app_invoke_entities import (
-    AdvancedChatAppGenerateEntity,
-    AgentChatAppGenerateEntity,
-    AppGenerateEntity,
-    ChatAppGenerateEntity,
-    CompletionAppGenerateEntity,
-    InvokeFrom,
+  AdvancedChatAppGenerateEntity,
+  AgentChatAppGenerateEntity,
+  AppGenerateEntity,
+  ChatAppGenerateEntity,
+  CompletionAppGenerateEntity,
+  InvokeFrom,
 )
 from core.app.entities.task_entities import (
-    ChatbotAppBlockingResponse,
-    ChatbotAppStreamResponse,
-    CompletionAppBlockingResponse,
-    CompletionAppStreamResponse,
+  ChatbotAppBlockingResponse,
+  ChatbotAppStreamResponse,
+  CompletionAppBlockingResponse,
+  CompletionAppStreamResponse,
 )
-from core.app.task_pipeline.easy_ui_based_generate_task_pipeline import EasyUIBasedGenerateTaskPipeline
+from core.app.task_pipeline.easy_ui_based_generate_task_pipeline import \
+  EasyUIBasedGenerateTaskPipeline
 from core.prompt.utils.prompt_template_parser import PromptTemplateParser
 from extensions.ext_database import db
 from models.account import Account
-from models.model import App, AppMode, AppModelConfig, Conversation, EndUser, Message, MessageFile
+from models.model import App, AppMode, AppModelConfig, Conversation, EndUser, \
+  Message, MessageFile
 from services.errors.app_model_config import AppModelConfigBrokenError
-from services.errors.conversation import ConversationCompletedError, ConversationNotExistsError
+from services.errors.conversation import ConversationCompletedError, \
+  ConversationNotExistsError
 
 logger = logging.getLogger(__name__)
 
@@ -83,13 +87,14 @@ class MessageBasedAppGenerator(BaseAppGenerator):
 
     def _get_conversation_by_user(self, app_model: App, conversation_id: str,
                                   user: Union[Account, EndUser]) -> Conversation:
+        # 根据用户获取对话
         conversation_filter = [
             Conversation.id == conversation_id,
             Conversation.app_id == app_model.id,
             Conversation.status == 'normal'
         ]
 
-        if isinstance(user, Account):
+        if isinstance(user, Account): #检查变量user是否是Account类型的一个实例
             conversation_filter.append(Conversation.from_account_id == user.id)
         else:
             conversation_filter.append(Conversation.from_end_user_id == user.id if user else None)
