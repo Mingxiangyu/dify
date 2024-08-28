@@ -7,8 +7,6 @@ from flask_restful import Resource, reqparse
 
 from configs import dify_config
 
-from . import api
-
 
 class VersionApi(Resource):
 
@@ -48,5 +46,5 @@ class VersionApi(Resource):
         result['can_auto_update'] = content['canAutoUpdate']
         return result
 
-
-api.add_resource(VersionApi, '/version')
+# 注释获取最新版本请求
+# api.add_resource(VersionApi, '/version')
