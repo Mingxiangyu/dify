@@ -6,23 +6,23 @@ from werkzeug.exceptions import InternalServerError, NotFound
 import services
 from controllers.service_api import api
 from controllers.service_api.app.error import (
-  AppUnavailableError,
-  CompletionRequestError,
-  ConversationCompletedError,
-  NotChatAppError,
-  ProviderModelCurrentlyNotSupportError,
-  ProviderNotInitializeError,
-  ProviderQuotaExceededError,
+    AppUnavailableError,
+    CompletionRequestError,
+    ConversationCompletedError,
+    NotChatAppError,
+    ProviderModelCurrentlyNotSupportError,
+    ProviderNotInitializeError,
+    ProviderQuotaExceededError,
 )
 from controllers.service_api.wraps import FetchUserArg, WhereisUserArg, \
-  validate_app_token
+    validate_app_token
 from core.app.apps.base_app_queue_manager import AppQueueManager
 from core.app.entities.app_invoke_entities import InvokeFrom
 from core.errors.error import (
-  AppInvokeQuotaExceededError,
-  ModelCurrentlyNotSupportError,
-  ProviderTokenNotInitError,
-  QuotaExceededError,
+    AppInvokeQuotaExceededError,
+    ModelCurrentlyNotSupportError,
+    ProviderTokenNotInitError,
+    QuotaExceededError,
 )
 from core.model_runtime.errors.invoke import InvokeError
 from libs import helper
