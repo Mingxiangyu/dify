@@ -1,7 +1,7 @@
 'use client'
-import type { FC } from 'react'
+import type {FC} from 'react'
 import classNames from '@/utils/classnames'
-import { useSelector } from '@/context/app-context'
+import {useSelector} from '@/context/app-context'
 
 type LogoSiteProps = {
   className?: string
@@ -22,6 +22,7 @@ const LogoSite: FC<LogoSiteProps> = ({
       src={src}
       className={classNames('block w-auto h-10', className)}
       alt='logo'
+      style={{ height: '3.5rem' }}
     />
   )
 }

@@ -1,5 +1,5 @@
 'use client'
-import React, { useEffect, useState } from 'react'
+import React, {useEffect, useState} from 'react'
 import Script from 'next/script'
 import Loading from '../components/base/loading'
 import Forms from './forms'
@@ -7,11 +7,11 @@ import Header from './_header'
 import style from './page.module.css'
 import UserSSOForm from './userSSOForm'
 import cn from '@/utils/classnames'
-import { IS_CE_EDITION } from '@/config'
+import {IS_CE_EDITION} from '@/config'
 
-import type { SystemFeatures } from '@/types/feature'
-import { defaultSystemFeatures } from '@/types/feature'
-import { getSystemFeatures } from '@/service/common'
+import type {SystemFeatures} from '@/types/feature'
+import {defaultSystemFeatures} from '@/types/feature'
+import {getSystemFeatures} from '@/service/common'
 
 const SignIn = () => {
   const [loading, setLoading] = useState<boolean>(true)
@@ -74,9 +74,6 @@ gtag('config', 'AW-11217955271"');
           {!loading && !systemFeatures.sso_enforced_for_signin && (
             <>
               <Forms />
-              <div className='px-8 py-6 text-sm font-normal text-gray-500'>
-                © {new Date().getFullYear()} DOSMOS, Inc. All rights reserved.
-              </div>
             </>
           )}
 

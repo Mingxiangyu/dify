@@ -1,5 +1,5 @@
 const translation = {
-  pageTitle: '嗨，近来可好 👋',
+  pageTitle: '智能体构建与应用子系统',
   welcome: '欢迎来到 DOSMOS, 登录以继续',
   email: '邮箱',
   emailPlaceholder: '输入邮箱地址',
