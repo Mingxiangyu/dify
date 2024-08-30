@@ -267,7 +267,7 @@ const NormalForm = () => {
             </>
           }
           {/*  agree to our Terms and Privacy Policy. */}
-          <div className="w-hull text-center block mt-2 text-xs text-gray-600">
+          {/* <div className="w-hull text-center block mt-2 text-xs text-gray-600">
             {t('login.tosDesc')}
             &nbsp;
             <Link
@@ -290,7 +290,7 @@ const NormalForm = () => {
               className='text-primary-600'
               href='/install'
             >{t('login.setAdminAccount')}</Link>
-          </div>}
+          </div>} */}
 
         </div>
       </div>

@@ -1,14 +1,14 @@
-import type {Viewport} from 'next'
+import type { Viewport } from 'next'
 import I18nServer from './components/i18n-server'
 import BrowerInitor from './components/browser-initor'
 import SentryInitor from './components/sentry-initor'
 import Topbar from './components/base/topbar'
-import {getLocaleOnServer} from '@/i18n/server'
+import { getLocaleOnServer } from '@/i18n/server'
 import './styles/globals.css'
 import './styles/markdown.scss'
 
 export const metadata = {
-  title: 'DOSMOS',
+  title: '智能体构建与应用',
 }
 
 export const viewport: Viewport = {
@@ -27,7 +27,7 @@ const LocaleLayout = ({
   const locale = getLocaleOnServer()
 
   return (
-    <html lang={locale ?? 'en'} className="h-full" data-theme="light">
+    <html lang={locale ?? 'zh'} className="h-full" data-theme="light">
       <head>
         <meta name="theme-color" content="#FFFFFF" />
         <meta name="mobile-web-app-capable" content="yes" />
