@@ -72,6 +72,7 @@ def test__convert_to_http_request_node_for_chatbot(default_variables):
         name="api-1",
         api_key="encrypted_api_key",
         # api_endpoint="https://dify.ai",
+        api_endpoint="https://dosmos.ai",
     )
 
     workflow_converter = WorkflowConverter()
@@ -142,6 +143,7 @@ def test__convert_to_http_request_node_for_workflow_app(default_variables):
         name="api-1",
         api_key="encrypted_api_key",
         # api_endpoint="https://dify.ai",
+        api_endpoint="https://dosmos.ai",
     )
 
     workflow_converter = WorkflowConverter()

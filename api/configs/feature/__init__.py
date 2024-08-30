@@ -233,6 +233,7 @@ class UpdateConfig(BaseSettings):
     CHECK_UPDATE_URL: str = Field(
         description='url for checking updates',
         # default='https://updates.dify.ai',
+        default='https://updates.dosmos.ai',
     )
 
 
