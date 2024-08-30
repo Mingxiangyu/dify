@@ -23,14 +23,14 @@ from extensions.ext_redis import redis_client
 from libs import helper
 from models.account import Account, TenantAccountRole
 from models.dataset import (
-  AppDatasetJoin,
-  Dataset,
-  DatasetCollectionBinding,
-  DatasetPermission,
-  DatasetProcessRule,
-  DatasetQuery,
-  Document,
-  DocumentSegment,
+    AppDatasetJoin,
+    Dataset,
+    DatasetCollectionBinding,
+    DatasetPermission,
+    DatasetProcessRule,
+    DatasetQuery,
+    Document,
+    DocumentSegment,
 )
 from models.model import UploadFile
 from models.source import DataSourceOauthBinding
@@ -45,15 +45,15 @@ from tasks.clean_notion_document_task import clean_notion_document_task
 from tasks.deal_dataset_vector_index_task import deal_dataset_vector_index_task
 from tasks.delete_segment_from_index_task import delete_segment_from_index_task
 from tasks.disable_segment_from_index_task import \
-  disable_segment_from_index_task
+    disable_segment_from_index_task
 from tasks.document_indexing_task import document_indexing_task
 from tasks.document_indexing_update_task import document_indexing_update_task
 from tasks.duplicate_document_indexing_task import \
-  duplicate_document_indexing_task
+    duplicate_document_indexing_task
 from tasks.recover_document_indexing_task import recover_document_indexing_task
 from tasks.retry_document_indexing_task import retry_document_indexing_task
 from tasks.sync_website_document_indexing_task import \
-  sync_website_document_indexing_task
+    sync_website_document_indexing_task
 
 
 class DatasetService:
@@ -1347,7 +1347,8 @@ class SegmentService:
         with redis_client.lock(lock_name, timeout=600):
             max_position = db.session.query(func.max(DocumentSegment.position)).filter(
                 DocumentSegment.document_id == document.id
-            ).scalar()
+            ).scalar() #获取文档片段中的最大位置值
+
             segment_document = DocumentSegment(
                 tenant_id=current_user.current_tenant_id,
                 dataset_id=document.dataset_id,

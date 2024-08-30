@@ -12,7 +12,6 @@ from core.app.segments import SecretVariable, Variable, factory
 from core.helper import encrypter
 from extensions.ext_database import db
 from libs import helper
-
 from .account import Account
 from .types import StringUUID
 
@@ -319,6 +318,7 @@ class WorkflowRunStatus(Enum):
 class WorkflowRun(db.Model):
     """
     Workflow Run
+    工作流运行
 
     Attributes:
 

@@ -12,26 +12,26 @@ from werkzeug.exceptions import Forbidden, NotFound
 import services
 from controllers.console import api
 from controllers.console.app.error import (
-  ProviderModelCurrentlyNotSupportError,
-  ProviderNotInitializeError,
-  ProviderQuotaExceededError,
+    ProviderModelCurrentlyNotSupportError,
+    ProviderNotInitializeError,
+    ProviderQuotaExceededError,
 )
 from controllers.console.datasets.error import (
-  ArchivedDocumentImmutableError,
-  DocumentAlreadyFinishedError,
-  DocumentIndexingError,
-  IndexingEstimateError,
-  InvalidActionError,
-  InvalidMetadataError,
+    ArchivedDocumentImmutableError,
+    DocumentAlreadyFinishedError,
+    DocumentIndexingError,
+    IndexingEstimateError,
+    InvalidActionError,
+    InvalidMetadataError,
 )
 from controllers.console.setup import setup_required
 from controllers.console.wraps import account_initialization_required, \
-  cloud_edition_billing_resource_check
+    cloud_edition_billing_resource_check
 from core.errors.error import (
-  LLMBadRequestError,
-  ModelCurrentlyNotSupportError,
-  ProviderTokenNotInitError,
-  QuotaExceededError,
+    LLMBadRequestError,
+    ModelCurrentlyNotSupportError,
+    ProviderTokenNotInitError,
+    QuotaExceededError,
 )
 from core.indexing_runner import IndexingRunner
 from core.model_manager import ModelManager
@@ -41,19 +41,19 @@ from core.rag.extractor.entity.extract_setting import ExtractSetting
 from extensions.ext_database import db
 from extensions.ext_redis import redis_client
 from fields.document_fields import (
-  dataset_and_document_fields,
-  document_fields,
-  document_status_fields,
-  document_with_segments_fields,
+    dataset_and_document_fields,
+    document_fields,
+    document_status_fields,
+    document_with_segments_fields,
 )
 from libs.login import login_required
 from models.dataset import Dataset, DatasetProcessRule, Document, \
-  DocumentSegment
+    DocumentSegment
 from models.model import UploadFile
 from services.dataset_service import DatasetService, DocumentService
 from tasks.add_document_to_index_task import add_document_to_index_task
 from tasks.remove_document_from_index_task import \
-  remove_document_from_index_task
+    remove_document_from_index_task
 
 
 class DocumentResource(Resource):
@@ -142,6 +142,10 @@ class DatasetDocumentListApi(Resource):
     @login_required
     @account_initialization_required
     def get(self, dataset_id):
+        """
+        Get documents of a dataset.
+        获取知识库的文档。
+        """
         dataset_id = str(dataset_id)
         page = request.args.get('page', default=1, type=int)
         limit = request.args.get('limit', default=20, type=int)
@@ -157,13 +161,16 @@ class DatasetDocumentListApi(Resource):
             raise NotFound('Dataset not found.')
 
         try:
+            # 检查权限
             DatasetService.check_dataset_permission(dataset, current_user)
         except services.errors.account.NoPermissionError as e:
             raise Forbidden(str(e))
 
+        # 构建查询条件
         query = Document.query.filter_by(
             dataset_id=str(dataset_id), tenant_id=current_user.current_tenant_id)
 
+        # 如果有搜索关键字，则进行模糊匹配
         if search:
             search = f'%{search}%'
             query = query.filter(Document.name.like(search))
@@ -197,7 +204,7 @@ class DatasetDocumentListApi(Resource):
             )
 
         paginated_documents = query.paginate(
-            page=page, per_page=limit, max_per_page=100, error_out=False)
+            page=page, per_page=limit, max_per_page=100, error_out=false) #用于对查询结果进行分页处理。
         documents = paginated_documents.items
         if fetch:
             for document in documents:

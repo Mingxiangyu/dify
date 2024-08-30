@@ -10,7 +10,8 @@ from werkzeug.exceptions import Forbidden, NotFound
 import services
 from controllers.console import api
 from controllers.console.app.error import ProviderNotInitializeError
-from controllers.console.datasets.error import InvalidActionError, NoFileUploadedError, TooManyFilesError
+from controllers.console.datasets.error import InvalidActionError, \
+    NoFileUploadedError, TooManyFilesError
 from controllers.console.setup import setup_required
 from controllers.console.wraps import (
     account_initialization_required,
@@ -25,9 +26,12 @@ from extensions.ext_redis import redis_client
 from fields.segment_fields import segment_fields
 from libs.login import login_required
 from models.dataset import DocumentSegment
-from services.dataset_service import DatasetService, DocumentService, SegmentService
-from tasks.batch_create_segment_to_index_task import batch_create_segment_to_index_task
-from tasks.disable_segment_from_index_task import disable_segment_from_index_task
+from services.dataset_service import DatasetService, DocumentService, \
+    SegmentService
+from tasks.batch_create_segment_to_index_task import \
+    batch_create_segment_to_index_task
+from tasks.disable_segment_from_index_task import \
+    disable_segment_from_index_task
 from tasks.enable_segment_to_index_task import enable_segment_to_index_task
 
 
@@ -214,17 +218,21 @@ class DatasetDocumentSegmentAddApi(Resource):
     @cloud_edition_billing_knowledge_limit_check('add_segment')
     def post(self, dataset_id, document_id):
         # check dataset
+        # 检查知识库
         dataset_id = str(dataset_id)
         dataset = DatasetService.get_dataset(dataset_id)
         if not dataset:
             raise NotFound('Dataset not found.')
+
         # check document
+        # 检查文档
         document_id = str(document_id)
         document = DocumentService.get_document(dataset_id, document_id)
         if not document:
             raise NotFound('Document not found.')
         if not current_user.is_editor:
             raise Forbidden()
+
         # check embedding model setting
         if dataset.indexing_technique == 'high_quality':
             try:
@@ -245,13 +253,16 @@ class DatasetDocumentSegmentAddApi(Resource):
             DatasetService.check_dataset_permission(dataset, current_user)
         except services.errors.account.NoPermissionError as e:
             raise Forbidden(str(e))
+
         # validate args
         parser = reqparse.RequestParser()
         parser.add_argument('content', type=str, required=True, nullable=False, location='json')
         parser.add_argument('answer', type=str, required=False, nullable=True, location='json')
         parser.add_argument('keywords', type=list, required=False, nullable=True, location='json')
         args = parser.parse_args()
+        # 校验content是否为空
         SegmentService.segment_create_args_validate(args, document)
+
         segment = SegmentService.create_segment(args, document, dataset)
         return {
             'data': marshal(segment, segment_fields),

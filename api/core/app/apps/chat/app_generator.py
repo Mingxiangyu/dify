@@ -9,23 +9,23 @@ from flask import Flask, current_app
 from pydantic import ValidationError
 
 from core.app.app_config.easy_ui_based_app.model_config.converter import \
-    ModelConfigConverter
+  ModelConfigConverter
 from core.app.app_config.features.file_upload.manager import \
-    FileUploadConfigManager
+  FileUploadConfigManager
 from core.app.apps.base_app_queue_manager import AppQueueManager, \
-    GenerateTaskStoppedException, PublishFrom
+  GenerateTaskStoppedException, PublishFrom
 from core.app.apps.chat.app_config_manager import ChatAppConfigManager
 from core.app.apps.chat.app_runner import ChatAppRunner
 from core.app.apps.chat.generate_response_converter import \
-    ChatAppGenerateResponseConverter
+  ChatAppGenerateResponseConverter
 from core.app.apps.message_based_app_generator import MessageBasedAppGenerator
 from core.app.apps.message_based_app_queue_manager import \
-    MessageBasedAppQueueManager
+  MessageBasedAppQueueManager
 from core.app.entities.app_invoke_entities import ChatAppGenerateEntity, \
-    InvokeFrom
+  InvokeFrom
 from core.file.message_file_parser import MessageFileParser
 from core.model_runtime.errors.invoke import InvokeAuthorizationError, \
-    InvokeError
+  InvokeError
 from core.ops.ops_trace_manager import TraceQueueManager
 from extensions.ext_database import db
 from models.account import Account
