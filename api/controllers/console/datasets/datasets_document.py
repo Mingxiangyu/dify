@@ -204,7 +204,7 @@ class DatasetDocumentListApi(Resource):
             )
 
         paginated_documents = query.paginate(
-            page=page, per_page=limit, max_per_page=100, error_out=false) #用于对查询结果进行分页处理。
+            page=page, per_page=limit, max_per_page=100, error_out=False) #用于对查询结果进行分页处理。
         documents = paginated_documents.items
         if fetch:
             for document in documents:
