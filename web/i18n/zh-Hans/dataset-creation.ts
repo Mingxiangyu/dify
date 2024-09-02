@@ -21,8 +21,8 @@ const translation = {
     pagePreview: '页面预览',
     dataSourceType: {
       file: '导入已有文本',
-      notion: '同步自 Notion 内容',
-      web: '同步自 Web 站点',
+      // notion: '同步自 Notion 内容',
+      // web: '同步自 Web 站点',
     },
     uploader: {
       title: '上传文本文件',
@@ -62,7 +62,7 @@ const translation = {
       run: '运行',
       firecrawlTitle: '使用 🔥Firecrawl 提取网页内容',
       firecrawlDoc: 'Firecrawl 文档',
-      firecrawlDocLink: 'https://docs.dify.ai/v/zh-hans/guides/knowledge-base/sync-from-website',
+      firecrawlDocLink: 'https://docs.daosmos.ai/v/zh-hans/guides/knowledge-base/sync-from-website',
       options: '选项',
       crawlSubPage: '爬取子页面',
       limit: '限制数量',

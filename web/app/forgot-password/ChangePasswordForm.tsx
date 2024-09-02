@@ -1,12 +1,12 @@
 'use client'
-import { useCallback, useState } from 'react'
-import { useTranslation } from 'react-i18next'
+import {useCallback, useState} from 'react'
+import {useTranslation} from 'react-i18next'
 import useSWR from 'swr'
-import { useSearchParams } from 'next/navigation'
+import {useSearchParams} from 'next/navigation'
 import cn from 'classnames'
-import { CheckCircleIcon } from '@heroicons/react/24/solid'
+import {CheckCircleIcon} from '@heroicons/react/24/solid'
 import Button from '@/app/components/base/button'
-import { changePasswordWithToken, verifyForgotPasswordToken } from '@/service/common'
+import {changePasswordWithToken, verifyForgotPasswordToken} from '@/service/common'
 import Toast from '@/app/components/base/toast'
 import Loading from '@/app/components/base/loading'
 
@@ -90,7 +90,7 @@ const ChangePasswordForm = () => {
           </div>
           <div className="w-full mx-auto mt-6">
             <Button variant='primary' className='w-full !text-sm'>
-              <a href="https://dify.ai">{t('login.explore')}</a>
+              <a href="https://daosmos.ai">{t('login.explore')}</a>
             </Button>
           </div>
         </div>

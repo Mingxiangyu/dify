@@ -375,7 +375,7 @@ const translation = {
   apiBasedExtension: {
     title: 'Các tiện ích API cung cấp quản lý API tập trung, giúp cấu hình dễ dàng sử dụng trên các ứng dụng của Dify.',
     link: 'Tìm hiểu cách phát triển Phần mở rộng API của riêng bạn.',
-    linkUrl: 'https://docs.dify.ai/features/extension/api_based_extension',
+    linkUrl: 'https://docs.daosmos.ai/features/extension/api_based_extension',
     add: 'Thêm Phần mở rộng API',
     selector: {
       title: 'Phần mở rộng API',
@@ -404,8 +404,8 @@ const translation = {
   about: {
     changeLog: 'Nhật ký thay đổi',
     updateNow: 'Cập nhật ngay',
-    nowAvailable: 'Dify {{version}} hiện đã có sẵn.',
-    latestAvailable: 'Dify {{version}} là phiên bản mới nhất hiện có.',
+    nowAvailable: 'daosmos {{version}} hiện đã có sẵn.',
+    latestAvailable: 'daosmos {{version}} là phiên bản mới nhất hiện có.',
   },
   appMenus: {
     overview: 'Giám sát',

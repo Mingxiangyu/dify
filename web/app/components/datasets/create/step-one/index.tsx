@@ -1,6 +1,6 @@
 'use client'
-import React, { useMemo, useState } from 'react'
-import { useTranslation } from 'react-i18next'
+import React, {useMemo, useState} from 'react'
+import {useTranslation} from 'react-i18next'
 import FilePreview from '../file-preview'
 import FileUploader from '../file-uploader'
 import NotionPagePreview from '../notion-page-preview'
@@ -9,13 +9,13 @@ import Website from '../website'
 import WebsitePreview from '../website/preview'
 import s from './index.module.css'
 import cn from '@/utils/classnames'
-import type { CrawlOptions, CrawlResultItem, FileItem } from '@/models/datasets'
-import type { NotionPage } from '@/models/common'
-import { DataSourceType } from '@/models/datasets'
+import type {CrawlOptions, CrawlResultItem, FileItem} from '@/models/datasets'
+import {DataSourceType} from '@/models/datasets'
+import type {NotionPage} from '@/models/common'
 import Button from '@/app/components/base/button'
-import { NotionPageSelector } from '@/app/components/base/notion-page-selector'
-import { useDatasetDetailContext } from '@/context/dataset-detail'
-import { useProviderContext } from '@/context/provider-context'
+import {NotionPageSelector} from '@/app/components/base/notion-page-selector'
+import {useDatasetDetailContext} from '@/context/dataset-detail'
+import {useProviderContext} from '@/context/provider-context'
 import VectorSpaceFull from '@/app/components/billing/vector-space-full'
 
 type IStepOneProps = {
@@ -130,57 +130,57 @@ const StepOne = ({
           )
         }
         <div className={s.form}>
-          {
-            shouldShowDataSourceTypeList && (
-              <div className='flex items-center mb-8 flex-wrap gap-y-4'>
-                <div
-                  className={cn(
-                    s.dataSourceItem,
-                    dataSourceType === DataSourceType.FILE && s.active,
-                    dataSourceTypeDisable && dataSourceType !== DataSourceType.FILE && s.disabled,
-                  )}
-                  onClick={() => {
-                    if (dataSourceTypeDisable)
-                      return
-                    changeType(DataSourceType.FILE)
-                    hideFilePreview()
-                    hideNotionPagePreview()
-                  }}
-                >
-                  <span className={cn(s.datasetIcon)} />
-                  {t('datasetCreation.stepOne.dataSourceType.file')}
-                </div>
-                <div
-                  className={cn(
-                    s.dataSourceItem,
-                    dataSourceType === DataSourceType.NOTION && s.active,
-                    dataSourceTypeDisable && dataSourceType !== DataSourceType.NOTION && s.disabled,
-                  )}
-                  onClick={() => {
-                    if (dataSourceTypeDisable)
-                      return
-                    changeType(DataSourceType.NOTION)
-                    hideFilePreview()
-                    hideNotionPagePreview()
-                  }}
-                >
-                  <span className={cn(s.datasetIcon, s.notion)} />
-                  {t('datasetCreation.stepOne.dataSourceType.notion')}
-                </div>
-                <div
-                  className={cn(
-                    s.dataSourceItem,
-                    dataSourceType === DataSourceType.WEB && s.active,
-                    dataSourceTypeDisable && dataSourceType !== DataSourceType.WEB && s.disabled,
-                  )}
-                  onClick={() => changeType(DataSourceType.WEB)}
-                >
-                  <span className={cn(s.datasetIcon, s.web)} />
-                  {t('datasetCreation.stepOne.dataSourceType.web')}
-                </div>
-              </div>
-            )
-          }
+          {/*{*/}
+          {/*  shouldShowDataSourceTypeList && (*/}
+          {/*    <div className='flex items-center mb-8 flex-wrap gap-y-4'>*/}
+          {/*      <div*/}
+          {/*        className={cn(*/}
+          {/*          s.dataSourceItem,*/}
+          {/*          dataSourceType === DataSourceType.FILE && s.active,*/}
+          {/*          dataSourceTypeDisable && dataSourceType !== DataSourceType.FILE && s.disabled,*/}
+          {/*        )}*/}
+          {/*        onClick={() => {*/}
+          {/*          if (dataSourceTypeDisable)*/}
+          {/*            return*/}
+          {/*          changeType(DataSourceType.FILE)*/}
+          {/*          hideFilePreview()*/}
+          {/*          hideNotionPagePreview()*/}
+          {/*        }}*/}
+          {/*      >*/}
+          {/*        <span className={cn(s.datasetIcon)} />*/}
+          {/*        {t('datasetCreation.stepOne.dataSourceType.file')}*/}
+          {/*      </div>*/}
+          {/*      <div*/}
+          {/*        className={cn(*/}
+          {/*          s.dataSourceItem,*/}
+          {/*          dataSourceType === DataSourceType.NOTION && s.active,*/}
+          {/*          dataSourceTypeDisable && dataSourceType !== DataSourceType.NOTION && s.disabled,*/}
+          {/*        )}*/}
+          {/*        onClick={() => {*/}
+          {/*          if (dataSourceTypeDisable)*/}
+          {/*            return*/}
+          {/*          changeType(DataSourceType.NOTION)*/}
+          {/*          hideFilePreview()*/}
+          {/*          hideNotionPagePreview()*/}
+          {/*        }}*/}
+          {/*      >*/}
+          {/*        <span className={cn(s.datasetIcon, s.notion)} />*/}
+          {/*        {t('datasetCreation.stepOne.dataSourceType.notion')}*/}
+          {/*      </div>*/}
+          {/*      <div*/}
+          {/*        className={cn(*/}
+          {/*          s.dataSourceItem,*/}
+          {/*          dataSourceType === DataSourceType.WEB && s.active,*/}
+          {/*          dataSourceTypeDisable && dataSourceType !== DataSourceType.WEB && s.disabled,*/}
+          {/*        )}*/}
+          {/*        onClick={() => changeType(DataSourceType.WEB)}*/}
+          {/*      >*/}
+          {/*        <span className={cn(s.datasetIcon, s.web)} />*/}
+          {/*        {t('datasetCreation.stepOne.dataSourceType.web')}*/}
+          {/*      </div>*/}
+          {/*    </div>*/}
+          {/*  )*/}
+          {/*}*/}
           {dataSourceType === DataSourceType.FILE && (
             <>
               <FileUploader

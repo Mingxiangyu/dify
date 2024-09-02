@@ -1,20 +1,18 @@
 'use client'
-import type { FC } from 'react'
+import type {FC} from 'react'
 import React from 'react'
-import { useTranslation } from 'react-i18next'
-import {
-  RiHammerFill,
-} from '@remixicon/react'
-import { Heart02 } from '@/app/components/base/icons/src/vender/solid/education'
-import { BookOpen01 } from '@/app/components/base/icons/src/vender/line/education'
-import { ArrowUpRight } from '@/app/components/base/icons/src/vender/line/arrows'
+import {useTranslation} from 'react-i18next'
+import {RiHammerFill,} from '@remixicon/react'
+import {Heart02} from '@/app/components/base/icons/src/vender/solid/education'
+import {BookOpen01} from '@/app/components/base/icons/src/vender/line/education'
+import {ArrowUpRight} from '@/app/components/base/icons/src/vender/line/arrows'
 
 const Contribute: FC = () => {
   const { t } = useTranslation()
 
   return (
     <a
-      href='https://github.com/langgenius/dify/blob/main/api/core/tools/README.md'
+      href='https://github.com/langgenius/daosmos/blob/main/api/core/tools/README.md'
       target='_blank'
       rel='noopener noreferrer'
       className="group flex col-span-1 bg-white bg-cover bg-no-repeat bg-[url('~@/app/components/tools/provider/grid_bg.svg')] border-2 border-solid border-transparent rounded-xl shadow-sm min-h-[160px] flex-col transition-all duration-200 ease-in-out cursor-pointer hover:shadow-lg"

@@ -1,7 +1,7 @@
 from typing import Optional
 
 from pydantic import AliasChoices, Field, NonNegativeInt, PositiveInt, \
-    computed_field
+  computed_field
 from pydantic_settings import BaseSettings
 
 from configs.feature.hosted_service import HostedServiceConfig
@@ -233,7 +233,7 @@ class UpdateConfig(BaseSettings):
     CHECK_UPDATE_URL: str = Field(
         description='url for checking updates',
         # default='https://updates.dify.ai',
-        default='https://updates.dosmos.ai',
+        default='https://updates.daosmos.ai',
     )
 
 

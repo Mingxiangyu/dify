@@ -1,14 +1,14 @@
 'use client'
 
-import { useEffect, useRef } from 'react'
+import {useEffect, useRef} from 'react'
 import useSWRInfinite from 'swr/infinite'
-import { debounce } from 'lodash-es'
-import { useTranslation } from 'react-i18next'
+import {debounce} from 'lodash-es'
+import {useTranslation} from 'react-i18next'
 import NewDatasetCard from './NewDatasetCard'
 import DatasetCard from './DatasetCard'
-import type { DataSetListResponse } from '@/models/datasets'
-import { fetchDatasets } from '@/service/datasets'
-import { useAppContext } from '@/context/app-context'
+import type {DataSetListResponse} from '@/models/datasets'
+import {fetchDatasets} from '@/service/datasets'
+import {useAppContext} from '@/context/app-context'
 
 const getKey = (
   pageIndex: number,
@@ -57,7 +57,7 @@ const Datasets = ({
 
   useEffect(() => {
     loadingStateRef.current = isLoading
-    document.title = `${t('dataset.knowledge')} - Dify`
+    document.title = `${t('dataset.knowledge')} - DAOSMOS`
   }, [isLoading])
 
   useEffect(() => {

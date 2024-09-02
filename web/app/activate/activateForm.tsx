@@ -1,22 +1,23 @@
 'use client'
-import { useCallback, useState } from 'react'
-import { useContext } from 'use-context-selector'
-import { useTranslation } from 'react-i18next'
+import {useCallback, useState} from 'react'
+import {useContext} from 'use-context-selector'
+import {useTranslation} from 'react-i18next'
 import useSWR from 'swr'
-import { useSearchParams } from 'next/navigation'
+import {useSearchParams} from 'next/navigation'
 import Link from 'next/link'
-import { CheckCircleIcon } from '@heroicons/react/24/solid'
+import {CheckCircleIcon} from '@heroicons/react/24/solid'
 import style from './style.module.css'
 import cn from '@/utils/classnames'
 import Button from '@/app/components/base/button'
 
-import { SimpleSelect } from '@/app/components/base/select'
-import { timezones } from '@/utils/timezone'
-import { LanguagesSupported, languages } from '@/i18n/language'
-import { activateMember, invitationCheck } from '@/service/common'
+import {SimpleSelect} from '@/app/components/base/select'
+import {timezones} from '@/utils/timezone'
+import {languages, LanguagesSupported} from '@/i18n/language'
+import {activateMember, invitationCheck} from '@/service/common'
 import Toast from '@/app/components/base/toast'
 import Loading from '@/app/components/base/loading'
 import I18n from '@/context/i18n'
+
 const validPassword = /^(?=.*[a-zA-Z])(?=.*\d).{8,}$/
 
 const ActivateForm = () => {
@@ -110,7 +111,7 @@ const ActivateForm = () => {
           </div>
           <div className="w-full mx-auto mt-6">
             <Button variant='primary' className='w-full !text-sm'>
-              <a href="https://dify.ai">{t('login.explore')}</a>
+              <a href="https://daosmos.ai">{t('login.explore')}</a>
             </Button>
           </div>
         </div>

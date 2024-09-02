@@ -1,11 +1,14 @@
-import type { AnnotationReplyConfig, ChatPromptConfig, CompletionPromptConfig, DatasetConfigs, PromptMode } from '@/models/debug'
-import type { CollectionType } from '@/app/components/tools/types'
-import type { LanguagesSupported } from '@/i18n/language'
-import type { Tag } from '@/app/components/base/tag-management/constant'
 import type {
-  RerankingModeEnum,
-  WeightedScoreEnum,
-} from '@/models/datasets'
+  AnnotationReplyConfig,
+  ChatPromptConfig,
+  CompletionPromptConfig,
+  DatasetConfigs,
+  PromptMode
+} from '@/models/debug'
+import type {CollectionType} from '@/app/components/tools/types'
+import type {LanguagesSupported} from '@/i18n/language'
+import type {Tag} from '@/app/components/base/tag-management/constant'
+import type {RerankingModeEnum, WeightedScoreEnum,} from '@/models/datasets'
 
 export enum Theme {
   light = 'light',
@@ -253,7 +256,7 @@ export type Language = typeof LanguagesSupported[number]
  * Web Application Configuration
  */
 export type SiteConfig = {
-  /** Application URL Identifier: `http://dify.app/{access_token}` */
+  /** Application URL Identifier: `http://daosmos.app/{access_token}` */
   access_token: string
   /** Public Title */
   title: string

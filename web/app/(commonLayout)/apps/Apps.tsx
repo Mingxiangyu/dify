@@ -1,28 +1,23 @@
 'use client'
 
-import { useCallback, useEffect, useRef, useState } from 'react'
-import { useRouter } from 'next/navigation'
+import {useCallback, useEffect, useRef, useState} from 'react'
+import {useRouter} from 'next/navigation'
 import useSWRInfinite from 'swr/infinite'
-import { useTranslation } from 'react-i18next'
-import { useDebounceFn } from 'ahooks'
-import {
-  RiApps2Line,
-  RiExchange2Line,
-  RiMessage3Line,
-  RiRobot3Line,
-} from '@remixicon/react'
+import {useTranslation} from 'react-i18next'
+import {useDebounceFn} from 'ahooks'
+import {RiApps2Line, RiExchange2Line, RiMessage3Line, RiRobot3Line,} from '@remixicon/react'
 import AppCard from './AppCard'
 import NewAppCard from './NewAppCard'
 import useAppsQueryState from './hooks/useAppsQueryState'
-import type { AppListResponse } from '@/models/app'
-import { fetchAppList } from '@/service/apps'
-import { useAppContext } from '@/context/app-context'
-import { NEED_REFRESH_APP_LIST_KEY } from '@/config'
-import { CheckModal } from '@/hooks/use-pay'
+import type {AppListResponse} from '@/models/app'
+import {fetchAppList} from '@/service/apps'
+import {useAppContext} from '@/context/app-context'
+import {NEED_REFRESH_APP_LIST_KEY} from '@/config'
+import {CheckModal} from '@/hooks/use-pay'
 import TabSliderNew from '@/app/components/base/tab-slider-new'
-import { useTabSearchParams } from '@/hooks/use-tab-searchparams'
+import {useTabSearchParams} from '@/hooks/use-tab-searchparams'
 import SearchInput from '@/app/components/base/search-input'
-import { useStore as useTagStore } from '@/app/components/base/tag-management/store'
+import {useStore as useTagStore} from '@/app/components/base/tag-management/store'
 import TagManagementModal from '@/app/components/base/tag-management'
 import TagFilter from '@/app/components/base/tag-management/filter'
 
@@ -82,7 +77,7 @@ const Apps = () => {
   ]
 
   useEffect(() => {
-    document.title = `${t('common.menus.apps')} -  Dify`
+    document.title = `${t('common.menus.apps')} -  DAOSMOS`
     if (localStorage.getItem(NEED_REFRESH_APP_LIST_KEY) === '1') {
       localStorage.removeItem(NEED_REFRESH_APP_LIST_KEY)
       mutate()

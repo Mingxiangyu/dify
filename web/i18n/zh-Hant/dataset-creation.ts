@@ -16,8 +16,8 @@ const translation = {
     pagePreview: '頁面預覽',
     dataSourceType: {
       file: '匯入已有文字',
-      notion: '同步自 Notion 內容',
-      web: '同步自 Web 站點',
+      // notion: '同步自 Notion 內容',
+      // web: '同步自 Web 站點',
     },
     uploader: {
       title: '上傳文字檔案',

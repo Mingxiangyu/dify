@@ -1,8 +1,8 @@
 'use client'
-import type { FC } from 'react'
-import { useUnmount } from 'ahooks'
-import React, { useCallback, useEffect, useState } from 'react'
-import { usePathname, useRouter } from 'next/navigation'
+import type {FC} from 'react'
+import React, {useCallback, useEffect, useState} from 'react'
+import {useUnmount} from 'ahooks'
+import {usePathname, useRouter} from 'next/navigation'
 import {
   RiDashboard2Fill,
   RiDashboard2Line,
@@ -13,17 +13,17 @@ import {
   RiTerminalWindowFill,
   RiTerminalWindowLine,
 } from '@remixicon/react'
-import { useTranslation } from 'react-i18next'
-import { useShallow } from 'zustand/react/shallow'
+import {useTranslation} from 'react-i18next'
+import {useShallow} from 'zustand/react/shallow'
 import s from './style.module.css'
 import cn from '@/utils/classnames'
-import { useStore } from '@/app/components/app/store'
+import {useStore} from '@/app/components/app/store'
 import AppSideBar from '@/app/components/app-sidebar'
-import type { NavIcon } from '@/app/components/app-sidebar/navLink'
-import { fetchAppDetail } from '@/service/apps'
-import { useAppContext } from '@/context/app-context'
+import type {NavIcon} from '@/app/components/app-sidebar/navLink'
+import {fetchAppDetail} from '@/service/apps'
+import {useAppContext} from '@/context/app-context'
 import Loading from '@/app/components/base/loading'
-import useBreakpoints, { MediaType } from '@/hooks/use-breakpoints'
+import useBreakpoints, {MediaType} from '@/hooks/use-breakpoints'
 
 export type IAppDetailLayoutProps = {
   children: React.ReactNode
@@ -93,7 +93,7 @@ const AppDetailLayout: FC<IAppDetailLayoutProps> = (props) => {
 
   useEffect(() => {
     if (appDetail) {
-      document.title = `${(appDetail.name || 'App')} - Dify`
+      document.title = `${(appDetail.name || 'App')} - DAOSMOS`
       const localeMode = localStorage.getItem('app-detail-collapse-or-expand') || 'expand'
       const mode = isMobile ? 'collapse' : 'expand'
       setAppSiderbarExpand(isMobile ? mode : localeMode)

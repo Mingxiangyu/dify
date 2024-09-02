@@ -5,15 +5,15 @@ from unittest.mock import MagicMock
 import pytest
 
 from core.app.app_config.entities import (
-    AdvancedChatMessageEntity,
-    AdvancedChatPromptTemplateEntity,
-    AdvancedCompletionPromptTemplateEntity,
-    DatasetEntity,
-    DatasetRetrieveConfigEntity,
-    ExternalDataVariableEntity,
-    ModelConfigEntity,
-    PromptTemplateEntity,
-    VariableEntity,
+  AdvancedChatMessageEntity,
+  AdvancedChatPromptTemplateEntity,
+  AdvancedCompletionPromptTemplateEntity,
+  DatasetEntity,
+  DatasetRetrieveConfigEntity,
+  ExternalDataVariableEntity,
+  ModelConfigEntity,
+  PromptTemplateEntity,
+  VariableEntity,
 )
 from core.helper import encrypter
 from core.model_runtime.entities.llm_entities import LLMMode
@@ -72,7 +72,7 @@ def test__convert_to_http_request_node_for_chatbot(default_variables):
         name="api-1",
         api_key="encrypted_api_key",
         # api_endpoint="https://dify.ai",
-        api_endpoint="https://dosmos.ai",
+        api_endpoint="https://daosmos.ai",
     )
 
     workflow_converter = WorkflowConverter()
@@ -143,7 +143,7 @@ def test__convert_to_http_request_node_for_workflow_app(default_variables):
         name="api-1",
         api_key="encrypted_api_key",
         # api_endpoint="https://dify.ai",
-        api_endpoint="https://dosmos.ai",
+        api_endpoint="https://daosmos.ai",
     )
 
     workflow_converter = WorkflowConverter()
