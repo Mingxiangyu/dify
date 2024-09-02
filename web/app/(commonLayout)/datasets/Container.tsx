@@ -1,10 +1,10 @@
 'use client'
 
 // Libraries
-import { useEffect, useMemo, useRef, useState } from 'react'
-import { useRouter } from 'next/navigation'
-import { useTranslation } from 'react-i18next'
-import { useDebounceFn } from 'ahooks'
+import {useEffect, useMemo, useRef, useState} from 'react'
+import {useRouter} from 'next/navigation'
+import {useTranslation} from 'react-i18next'
+import {useDebounceFn} from 'ahooks'
 import useSWR from 'swr'
 
 // Components
@@ -18,12 +18,12 @@ import TagManagementModal from '@/app/components/base/tag-management'
 import TagFilter from '@/app/components/base/tag-management/filter'
 
 // Services
-import { fetchDatasetApiBaseUrl } from '@/service/datasets'
+import {fetchDatasetApiBaseUrl} from '@/service/datasets'
 
 // Hooks
-import { useTabSearchParams } from '@/hooks/use-tab-searchparams'
-import { useStore as useTagStore } from '@/app/components/base/tag-management/store'
-import { useAppContext } from '@/context/app-context'
+import {useTabSearchParams} from '@/hooks/use-tab-searchparams'
+import {useStore as useTagStore} from '@/app/components/base/tag-management/store'
+import {useAppContext} from '@/context/app-context'
 
 const Container = () => {
   const { t } = useTranslation()
@@ -34,7 +34,8 @@ const Container = () => {
   const options = useMemo(() => {
     return [
       { value: 'dataset', text: t('dataset.datasets') },
-      ...(currentWorkspace.role === 'dataset_operator' ? [] : [{ value: 'api', text: t('dataset.datasetsApi') }]),
+      // 注释不显示知识库api按钮
+      // ...(currentWorkspace.role === 'dataset_operator' ? [] : [{ value: 'api', text: t('dataset.datasetsApi') }]),
     ]
   }, [currentWorkspace.role, t])
 
