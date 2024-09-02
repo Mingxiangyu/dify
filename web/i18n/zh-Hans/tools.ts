@@ -1,5 +1,5 @@
 const translation = {
-  title: '工具',
+  title: '工具/插件库',
   createCustomTool: '创建自定义工具',
   customToolTip: '了解更多关于 DOSMOS 自定义工具的信息',
   type: {
@@ -146,7 +146,7 @@ const translation = {
   toolRemoved: '工具已被移除',
   notAuthorized: '工具未授权',
   howToGet: '如何获取',
-  openInStudio: '在工作室中打开',
+  openInStudio: '在智能体构建与编排中打开',
   toolNameUsageTip: '工具调用名称，用于 Agent 推理和提示词',
 }
 
