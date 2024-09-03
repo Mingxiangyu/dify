@@ -3,7 +3,7 @@ const translation = {
   types: {
     all: '全部',
     chatbot: '聊天助手',
-    agent: 'Agent',
+    agent: '智能体',
     workflow: '工作流',
     completion: '文本生成',
   },
@@ -86,7 +86,7 @@ const translation = {
   typeSelector: {
     all: '所有类型',
     chatbot: '聊天助手',
-    agent: 'Agent',
+    agent: '智能体',
     workflow: '工作流',
     completion: '文本生成',
   },

@@ -1,16 +1,17 @@
-import { useTranslation } from 'react-i18next'
-import React, { useState } from 'react'
-import { RiArrowDownSLine } from '@remixicon/react'
+import {useTranslation} from 'react-i18next'
+import React, {useState} from 'react'
+import {RiArrowDownSLine} from '@remixicon/react'
 import cn from '@/utils/classnames'
 import {
   PortalToFollowElem,
   PortalToFollowElemContent,
   PortalToFollowElemTrigger,
 } from '@/app/components/base/portal-to-follow-elem'
-import { Check, DotsGrid } from '@/app/components/base/icons/src/vender/line/general'
-import { XCircle } from '@/app/components/base/icons/src/vender/solid/general'
-import { ChatBot, CuteRobote } from '@/app/components/base/icons/src/vender/solid/communication'
-import { Route } from '@/app/components/base/icons/src/vender/solid/mapsAndTravel'
+import {Check, DotsGrid} from '@/app/components/base/icons/src/vender/line/general'
+import {XCircle} from '@/app/components/base/icons/src/vender/solid/general'
+import {ChatBot, CuteRobote} from '@/app/components/base/icons/src/vender/solid/communication'
+import {Route} from '@/app/components/base/icons/src/vender/solid/mapsAndTravel'
+
 export type AppSelectorProps = {
   value: string
   onChange: (value: string) => void
@@ -48,6 +49,20 @@ const AppTypeSelector = ({ value, onChange }: AppSelectorProps) => {
                 </div>
               </>
             )}
+            {value === 'agent' && (
+              <>
+                <div className='w-4 h-4 p-[1px]'>
+                  <CuteRobote className='w-3.5 h-3.5 text-indigo-600' />
+                </div>
+                <div className=''>{t('app.typeSelector.agent')}</div>
+                <div className='w-4 h-4 p-[1px]' onClick={(e) => {
+                  e.stopPropagation()
+                  onChange('')
+                }}>
+                  <XCircle className='w-3.5 h-3.5 text-gray-400 cursor-pointer  hover:text-gray-600' />
+                </div>
+              </>
+            )}
             {value === 'chatbot' && (
               <>
                 <div className='w-4 h-4 p-[1px]'>
@@ -62,12 +77,12 @@ const AppTypeSelector = ({ value, onChange }: AppSelectorProps) => {
                 </div>
               </>
             )}
-            {value === 'agent' && (
+            {value === 'completion' && (
               <>
                 <div className='w-4 h-4 p-[1px]'>
-                  <CuteRobote className='w-3.5 h-3.5 text-indigo-600' />
+                  <Route className='w-3.5 h-3.5 text-[#F79009]' />
                 </div>
-                <div className=''>{t('app.typeSelector.agent')}</div>
+                <div className=''>{t('app.typeSelector.completion')}</div>
                 <div className='w-4 h-4 p-[1px]' onClick={(e) => {
                   e.stopPropagation()
                   onChange('')
@@ -95,6 +110,14 @@ const AppTypeSelector = ({ value, onChange }: AppSelectorProps) => {
         <PortalToFollowElemContent className='z-[1002]'>
           <div className='relative p-1 w-[180px] bg-white rounded-lg shadow-xl'>
             <div className='flex items-center pl-3 py-[6px] pr-2 rounded-lg cursor-pointer hover:bg-gray-50' onClick={() => {
+              onChange('agent')
+              setOpen(false)
+            }}>
+              <CuteRobote className='mr-2 w-4 h-4 text-indigo-600' />
+              <div className='grow text-gray-700 text-[13px] font-medium leading-[18px]'>{t('app.typeSelector.agent')}</div>
+              {value === 'agent' && <Check className='w-4 h-4 text-primary-600' />}
+            </div>
+            <div className='flex items-center pl-3 py-[6px] pr-2 rounded-lg cursor-pointer hover:bg-gray-50' onClick={() => {
               onChange('chatbot')
               setOpen(false)
             }}>
@@ -103,12 +126,12 @@ const AppTypeSelector = ({ value, onChange }: AppSelectorProps) => {
               {value === 'chatbot' && <Check className='w-4 h-4 text-primary-600' />}
             </div>
             <div className='flex items-center pl-3 py-[6px] pr-2 rounded-lg cursor-pointer hover:bg-gray-50' onClick={() => {
-              onChange('agent')
+              onChange('completion')
               setOpen(false)
             }}>
-              <CuteRobote className='mr-2 w-4 h-4 text-indigo-600' />
-              <div className='grow text-gray-700 text-[13px] font-medium leading-[18px]'>{t('app.typeSelector.agent')}</div>
-              {value === 'agent' && <Check className='w-4 h-4 text-primary-600' />}
+              <Route className='mr-2 w-4 h-4 text-[#F79009]' />
+              <div className='grow text-gray-700 text-[13px] font-medium leading-[18px]'>{t('app.typeSelector.completion')}</div>
+              {value === 'completion' && <Check className='w-4 h-4 text-primary-600' />}
             </div>
             <div className='flex items-center pl-3 py-[6px] pr-2 rounded-lg cursor-pointer hover:bg-gray-50' onClick={() => {
               onChange('workflow')
