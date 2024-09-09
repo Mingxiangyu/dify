@@ -669,6 +669,7 @@ class DocumentService:
         # check document limit
         features = FeatureService.get_features(current_user.current_tenant_id)
 
+        # 是否启用文档限额限制
         if features.billing.enabled:
             if 'original_document_id' not in document_data or not document_data['original_document_id']:
                 count = 0
@@ -801,6 +802,10 @@ class DocumentService:
                         data_source_info, created_from, position,
                         account, file_name, batch
                     )
+                    # 为保证外部应用id和dify一致，所以主动设置文档id
+                    if document_data.get("outer_document_id"):
+                        document.id =document_data.get("outer_document_id")
+
                     db.session.add(document)
                     db.session.flush()
                     document_ids.append(document.id)
