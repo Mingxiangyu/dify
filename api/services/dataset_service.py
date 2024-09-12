@@ -805,7 +805,9 @@ class DocumentService:
                     # 为保证外部应用id和dify一致，所以主动设置文档id
                     if document_data.get("outer_document_id"):
                         document.id =document_data.get("outer_document_id")
-                        # print(f"外部系统id为："+document_data.get("outer_document_id"))
+                        print(f"外部系统id为："+document_data.get("outer_document_id"))
+                    else:
+                        print("不存在外部系统id，使用默认id")
 
                     db.session.add(document)
                     db.session.flush()

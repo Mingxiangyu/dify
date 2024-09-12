@@ -8,31 +8,31 @@ from sqlalchemy import and_
 from core.app.app_config.entities import EasyUIBasedAppModelConfigFrom
 from core.app.apps.base_app_generator import BaseAppGenerator
 from core.app.apps.base_app_queue_manager import AppQueueManager, \
-    GenerateTaskStoppedException
+  GenerateTaskStoppedException
 from core.app.entities.app_invoke_entities import (
-    AdvancedChatAppGenerateEntity,
-    AgentChatAppGenerateEntity,
-    AppGenerateEntity,
-    ChatAppGenerateEntity,
-    CompletionAppGenerateEntity,
-    InvokeFrom,
+  AdvancedChatAppGenerateEntity,
+  AgentChatAppGenerateEntity,
+  AppGenerateEntity,
+  ChatAppGenerateEntity,
+  CompletionAppGenerateEntity,
+  InvokeFrom,
 )
 from core.app.entities.task_entities import (
-    ChatbotAppBlockingResponse,
-    ChatbotAppStreamResponse,
-    CompletionAppBlockingResponse,
-    CompletionAppStreamResponse,
+  ChatbotAppBlockingResponse,
+  ChatbotAppStreamResponse,
+  CompletionAppBlockingResponse,
+  CompletionAppStreamResponse,
 )
 from core.app.task_pipeline.easy_ui_based_generate_task_pipeline import \
-    EasyUIBasedGenerateTaskPipeline
+  EasyUIBasedGenerateTaskPipeline
 from core.prompt.utils.prompt_template_parser import PromptTemplateParser
 from extensions.ext_database import db
 from models.account import Account
 from models.model import App, AppMode, AppModelConfig, Conversation, EndUser, \
-    Message, MessageFile
+  Message, MessageFile
 from services.errors.app_model_config import AppModelConfigBrokenError
 from services.errors.conversation import ConversationCompletedError, \
-    ConversationNotExistsError
+  ConversationNotExistsError
 
 logger = logging.getLogger(__name__)
 

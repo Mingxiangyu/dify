@@ -6,37 +6,37 @@ from typing import Optional, cast
 from flask import Flask, current_app
 
 from core.app.app_config.entities import DatasetEntity, \
-    DatasetRetrieveConfigEntity
+  DatasetRetrieveConfigEntity
 from core.app.entities.app_invoke_entities import InvokeFrom, \
-    ModelConfigWithCredentialsEntity
+  ModelConfigWithCredentialsEntity
 from core.callback_handler.index_tool_callback_handler import \
-    DatasetIndexToolCallbackHandler
+  DatasetIndexToolCallbackHandler
 from core.entities.agent_entities import PlanningStrategy
 from core.memory.token_buffer_memory import TokenBufferMemory
 from core.model_manager import ModelInstance, ModelManager
 from core.model_runtime.entities.message_entities import PromptMessageTool
 from core.model_runtime.entities.model_entities import ModelFeature, ModelType
 from core.model_runtime.model_providers.__base.large_language_model import \
-    LargeLanguageModel
+  LargeLanguageModel
 from core.ops.entities.trace_entity import TraceTaskName
 from core.ops.ops_trace_manager import TraceQueueManager, TraceTask
 from core.ops.utils import measure_time
 from core.rag.data_post_processor.data_post_processor import DataPostProcessor
 from core.rag.datasource.keyword.jieba.jieba_keyword_table_handler import \
-    JiebaKeywordTableHandler
+  JiebaKeywordTableHandler
 from core.rag.datasource.retrieval_service import RetrievalService
 from core.rag.models.document import Document
 from core.rag.retrieval.retrival_methods import RetrievalMethod
 from core.rag.retrieval.router.multi_dataset_function_call_router import \
-    FunctionCallMultiDatasetRouter
+  FunctionCallMultiDatasetRouter
 from core.rag.retrieval.router.multi_dataset_react_route import \
-    ReactMultiDatasetRouter
+  ReactMultiDatasetRouter
 from core.tools.tool.dataset_retriever.dataset_multi_retriever_tool import \
-    DatasetMultiRetrieverTool
+  DatasetMultiRetrieverTool
 from core.tools.tool.dataset_retriever.dataset_retriever_base_tool import \
-    DatasetRetrieverBaseTool
+  DatasetRetrieverBaseTool
 from core.tools.tool.dataset_retriever.dataset_retriever_tool import \
-    DatasetRetrieverTool
+  DatasetRetrieverTool
 from extensions.ext_database import db
 from models.dataset import Dataset, DatasetQuery, DocumentSegment
 from models.dataset import Document as DatasetDocument
