@@ -6,21 +6,23 @@ from typing import Optional, cast
 import requests
 from flask import current_app
 
-from core.entities.model_entities import ModelStatus, ProviderModelWithStatusEntity
+from core.entities.model_entities import ModelStatus, \
+  ProviderModelWithStatusEntity
 from core.model_runtime.entities.model_entities import ModelType, ParameterRule
 from core.model_runtime.model_providers import model_provider_factory
-from core.model_runtime.model_providers.__base.large_language_model import LargeLanguageModel
+from core.model_runtime.model_providers.__base.large_language_model import \
+  LargeLanguageModel
 from core.provider_manager import ProviderManager
 from models.provider import ProviderType
 from services.entities.model_provider_entities import (
-    CustomConfigurationResponse,
-    CustomConfigurationStatus,
-    DefaultModelResponse,
-    ModelWithProviderEntityResponse,
-    ProviderResponse,
-    ProviderWithModelsResponse,
-    SimpleProviderEntityResponse,
-    SystemConfigurationResponse,
+  CustomConfigurationResponse,
+  CustomConfigurationStatus,
+  DefaultModelResponse,
+  ModelWithProviderEntityResponse,
+  ProviderResponse,
+  ProviderWithModelsResponse,
+  SimpleProviderEntityResponse,
+  SystemConfigurationResponse,
 )
 
 logger = logging.getLogger(__name__)
@@ -90,10 +92,10 @@ class ModelProviderService:
         :param provider:
         :return:
         """
-        # Get all provider configurations of the current workspace
+        #获取当前工作区的所有提供程序配置
         provider_configurations = self.provider_manager.get_configurations(tenant_id)
 
-        # Get provider available models
+        # 获取供应商提供的型号
         return [ModelWithProviderEntityResponse(model) for model in provider_configurations.get_models(
             provider=provider
         )]

@@ -14,7 +14,8 @@ from controllers.service_api.dataset.error import (
     NoFileUploadedError,
     TooManyFilesError,
 )
-from controllers.service_api.wraps import DatasetApiResource, cloud_edition_billing_resource_check
+from controllers.service_api.wraps import DatasetApiResource, \
+    cloud_edition_billing_resource_check
 from core.errors.error import ProviderTokenNotInitError
 from extensions.ext_database import db
 from fields.document_fields import document_fields, document_status_fields
@@ -43,6 +44,7 @@ class DocumentAddByTextApi(DatasetApiResource):
                             location='json')
         parser.add_argument('retrieval_model', type=dict, required=False, nullable=False,
                             location='json')
+        parser.add_argument('outer_document_id', type=str, required=False, nullable=False,location='json')
         args = parser.parse_args()
         dataset_id = str(dataset_id)
         tenant_id = str(tenant_id)

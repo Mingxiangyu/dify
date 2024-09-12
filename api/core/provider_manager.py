@@ -5,38 +5,41 @@ from typing import Optional
 
 from sqlalchemy.exc import IntegrityError
 
-from core.entities.model_entities import DefaultModelEntity, DefaultModelProviderEntity
-from core.entities.provider_configuration import ProviderConfiguration, ProviderConfigurations, ProviderModelBundle
+from core.entities.model_entities import DefaultModelEntity, \
+  DefaultModelProviderEntity
+from core.entities.provider_configuration import ProviderConfiguration, \
+  ProviderConfigurations, ProviderModelBundle
 from core.entities.provider_entities import (
-    CustomConfiguration,
-    CustomModelConfiguration,
-    CustomProviderConfiguration,
-    ModelLoadBalancingConfiguration,
-    ModelSettings,
-    QuotaConfiguration,
-    SystemConfiguration,
+  CustomConfiguration,
+  CustomModelConfiguration,
+  CustomProviderConfiguration,
+  ModelLoadBalancingConfiguration,
+  ModelSettings,
+  QuotaConfiguration,
+  SystemConfiguration,
 )
 from core.helper import encrypter
-from core.helper.model_provider_cache import ProviderCredentialsCache, ProviderCredentialsCacheType
+from core.helper.model_provider_cache import ProviderCredentialsCache, \
+  ProviderCredentialsCacheType
 from core.model_runtime.entities.model_entities import ModelType
 from core.model_runtime.entities.provider_entities import (
-    CredentialFormSchema,
-    FormType,
-    ProviderEntity,
+  CredentialFormSchema,
+  FormType,
+  ProviderEntity,
 )
 from core.model_runtime.model_providers import model_provider_factory
 from extensions import ext_hosting_provider
 from extensions.ext_database import db
 from extensions.ext_redis import redis_client
 from models.provider import (
-    LoadBalancingModelConfig,
-    Provider,
-    ProviderModel,
-    ProviderModelSetting,
-    ProviderQuotaType,
-    ProviderType,
-    TenantDefaultModel,
-    TenantPreferredModelProvider,
+  LoadBalancingModelConfig,
+  Provider,
+  ProviderModel,
+  ProviderModelSetting,
+  ProviderQuotaType,
+  ProviderType,
+  TenantDefaultModel,
+  TenantPreferredModelProvider,
 )
 from services.feature_service import FeatureService
 
@@ -83,19 +86,42 @@ class ProviderManager:
         - Get provider instance
         - Switch selection priority
 
+        获取模型提供程序配置。为每个提供程序构造ProviderConfiguration对象，包括：
+        1。供应商的基本信息
+        2。主机配置信息，包括：
+            （1。是否启用（支持）宿主类型，如果启用，则存在以下信息
+            （2。托管类型提供程序配置列表（包括配额类型、配额限制、当前剩余配额等）
+            （3。当前使用的主机类型（是否有配额）付费配额>提供商免费配额>主机试用配额
+            （4。托管提供商的统一凭据
+        3。自定义配置信息，包括：
+            （1。是否启用（支持）自定义类型，如果启用，则存在以下信息
+            （2。自定义提供程序配置（包括凭据）
+            （3。自定义提供程序模型配置列表（包括凭据）
+        4。托管自定义首选提供程序类型。
+        提供方法：
+        -获取当前配置（包括凭据）-获取主机配置的可用性和状态：活动可用、配额超出配额不足、不受支持的主机
+        -获取自定义配置可用性自定义提供程序可用条件：
+            （1。可用的自定义提供商凭据
+            （2。至少一个可用的自定义模型凭据
+        -验证、更新和删除自定义提供程序配置
+        -验证、升级和删除自定义提供方模型配置
+        -获取可用模型列表（可选提供程序筛选、模型类型筛选）将自定义提供程序模型附加到列表
+        -获取提供程序实例
+        -切换选择优先级
+
         :param tenant_id:
         :return:
         """
-        # Get all provider records of the workspace
+        # 获取工作区的所有提供者记录
         provider_name_to_provider_records_dict = self._get_all_providers(tenant_id)
 
-        # Initialize trial provider records if not exist
+        #初始化试用提供者记录（如果不存在）
         provider_name_to_provider_records_dict = self._init_trial_provider_records(
             tenant_id,
             provider_name_to_provider_records_dict
         )
 
-        # Get all provider model records of the workspace
+        # 获取工作区的所有提供者模型记录
         provider_name_to_provider_model_records_dict = self._get_all_provider_models(tenant_id)
 
         # Get all provider entities
