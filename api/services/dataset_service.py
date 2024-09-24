@@ -23,14 +23,14 @@ from extensions.ext_redis import redis_client
 from libs import helper
 from models.account import Account, TenantAccountRole
 from models.dataset import (
-    AppDatasetJoin,
-    Dataset,
-    DatasetCollectionBinding,
-    DatasetPermission,
-    DatasetProcessRule,
-    DatasetQuery,
-    Document,
-    DocumentSegment,
+  AppDatasetJoin,
+  Dataset,
+  DatasetCollectionBinding,
+  DatasetPermission,
+  DatasetProcessRule,
+  DatasetQuery,
+  Document,
+  DocumentSegment,
 )
 from models.model import UploadFile
 from models.source import DataSourceOauthBinding
@@ -45,15 +45,15 @@ from tasks.clean_notion_document_task import clean_notion_document_task
 from tasks.deal_dataset_vector_index_task import deal_dataset_vector_index_task
 from tasks.delete_segment_from_index_task import delete_segment_from_index_task
 from tasks.disable_segment_from_index_task import \
-    disable_segment_from_index_task
+  disable_segment_from_index_task
 from tasks.document_indexing_task import document_indexing_task
 from tasks.document_indexing_update_task import document_indexing_update_task
 from tasks.duplicate_document_indexing_task import \
-    duplicate_document_indexing_task
+  duplicate_document_indexing_task
 from tasks.recover_document_indexing_task import recover_document_indexing_task
 from tasks.retry_document_indexing_task import retry_document_indexing_task
 from tasks.sync_website_document_indexing_task import \
-    sync_website_document_indexing_task
+  sync_website_document_indexing_task
 
 
 class DatasetService:
@@ -807,6 +807,7 @@ class DocumentService:
                         document.id =document_data.get("outer_document_id")
                         print(f"外部系统id为："+document_data.get("outer_document_id"))
                     else:
+                        # print(document_data)
                         print("不存在外部系统id，使用默认id")
 
                     db.session.add(document)

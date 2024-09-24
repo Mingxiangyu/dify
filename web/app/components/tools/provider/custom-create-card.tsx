@@ -2,9 +2,7 @@
 import { useMemo, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useContext } from 'use-context-selector'
-import {
-  RiAddLine,
-} from '@remixicon/react'
+import { RiAddLine } from '@remixicon/react'
 import type { CustomCollectionBackend } from '../types'
 import I18n from '@/context/i18n'
 import { getLanguage } from '@/i18n/language'
@@ -27,7 +25,7 @@ const Contribute = ({ onRefreshData }: Props) => {
 
   const linkUrl = useMemo(() => {
     if (language.startsWith('zh_'))
-      return 'https://docs.dify.ai/v/zh-hans/guides/gong-ju/quick-tool-integration'
+      return 'https://docs.daosmos.ai/v/zh-hans/guides/gong-ju/quick-tool-integration'
     return 'https://docs.dify.ai/tutorials/quick-tool-integration'
   }, [language])
 

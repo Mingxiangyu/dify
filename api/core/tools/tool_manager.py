@@ -319,16 +319,19 @@ class ToolManager:
 
     @classmethod
     def list_builtin_providers(cls) -> Generator[BuiltinToolProviderController, None, None]:
-        # use cache first
+        # 先尝试使用缓存的提供者列表
         if cls._builtin_providers_loaded:
             yield from list(cls._builtin_providers.values())
             return
 
+        # 如果未加载提供者列表，则获取锁以确保并发安全
         with cls._builtin_provider_lock:
+            # 再次检查提供者列表是否已加载，以减少锁的使用
             if cls._builtin_providers_loaded:
                 yield from list(cls._builtin_providers.values())
                 return
 
+            # 如果列表未加载，则调用私有方法加载并返回提供者列表
             yield from cls._list_builtin_providers()
 
     @classmethod
@@ -400,12 +403,12 @@ class ToolManager:
 
         filters = []
         if not typ:
+            # 将'builtin'、'api'、'workflow'添加到过滤器列表中
             filters.extend(['builtin', 'api', 'workflow'])
         else:
             filters.append(typ)
 
         if 'builtin' in filters:
-
             # get builtin providers
             builtin_providers = cls.list_builtin_providers()
 
@@ -429,7 +432,6 @@ class ToolManager:
                 result_providers[provider.identity.name] = user_provider
 
         # get db api providers
-
         if 'api' in filters:
             db_api_providers: list[ApiToolProvider] = db.session.query(ApiToolProvider). \
                 filter(ApiToolProvider.tenant_id == tenant_id).all()

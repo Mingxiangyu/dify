@@ -29,17 +29,21 @@ class RecommendedAppService:
         mode = dify_config.HOSTED_FETCH_APP_TEMPLATES_MODE
         if mode == 'remote':
             try:
+                # 获取远端推荐模板列表
                 result = cls._fetch_recommended_apps_from_dify_official(language)
             except Exception as e:
                 logger.warning(f'fetch recommended apps from dify official failed: {e}, switch to built-in.')
                 result = cls._fetch_recommended_apps_from_builtin(language)
         elif mode == 'db':
+            # 获取数据库中推荐模板列表
             result = cls._fetch_recommended_apps_from_db(language)
         elif mode == 'builtin':
             result = cls._fetch_recommended_apps_from_builtin(language)
         else:
             raise ValueError(f'invalid fetch recommended apps mode: {mode}')
 
+        # 若result中没有推荐的应用程序且语言设置不是'en-US'
+        # 则从内置的'en-US'语言环境中获取推荐应用程序
         if not result.get('recommended_apps') and language != 'en-US':
             result = cls._fetch_recommended_apps_from_builtin('en-US')
 
