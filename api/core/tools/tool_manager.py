@@ -12,31 +12,31 @@ from core.app.entities.app_invoke_entities import InvokeFrom
 from core.helper.module_import_helper import load_single_subclass_from_source
 from core.model_runtime.utils.encoders import jsonable_encoder
 from core.tools.entities.api_entities import UserToolProvider, \
-    UserToolProviderTypeLiteral
+  UserToolProviderTypeLiteral
 from core.tools.entities.common_entities import I18nObject
 from core.tools.entities.tool_entities import (
-    ApiProviderAuthType,
-    ToolInvokeFrom,
-    ToolParameter,
+  ApiProviderAuthType,
+  ToolInvokeFrom,
+  ToolParameter,
 )
 from core.tools.errors import ToolProviderNotFoundError
 from core.tools.provider.api_tool_provider import ApiToolProviderController
 from core.tools.provider.builtin._positions import BuiltinToolProviderSort
 from core.tools.provider.builtin_tool_provider import \
-    BuiltinToolProviderController
+  BuiltinToolProviderController
 from core.tools.tool.api_tool import ApiTool
 from core.tools.tool.builtin_tool import BuiltinTool
 from core.tools.tool.tool import Tool
 from core.tools.tool_label_manager import ToolLabelManager
 from core.tools.utils.configuration import (
-    ToolConfigurationManager,
-    ToolParameterConfigurationManager,
+  ToolConfigurationManager,
+  ToolParameterConfigurationManager,
 )
 from core.tools.utils.tool_parameter_converter import ToolParameterConverter
 from core.workflow.nodes.tool.entities import ToolEntity
 from extensions.ext_database import db
 from models.tools import ApiToolProvider, BuiltinToolProvider, \
-    WorkflowToolProvider
+  WorkflowToolProvider
 from services.tools.tools_transform_service import ToolTransformService
 
 logger = logging.getLogger(__name__)

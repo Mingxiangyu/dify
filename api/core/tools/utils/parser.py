@@ -10,8 +10,10 @@ from yaml import YAMLError, safe_load
 
 from core.tools.entities.common_entities import I18nObject
 from core.tools.entities.tool_bundle import ApiToolBundle
-from core.tools.entities.tool_entities import ApiProviderSchemaType, ToolParameter
-from core.tools.errors import ToolApiSchemaError, ToolNotSupportedError, ToolProviderNotFoundError
+from core.tools.entities.tool_entities import ApiProviderSchemaType, \
+  ToolParameter
+from core.tools.errors import ToolApiSchemaError, ToolNotSupportedError, \
+  ToolProviderNotFoundError
 
 
 class ApiBasedToolSchemaParser:
@@ -309,6 +311,7 @@ class ApiBasedToolSchemaParser:
 
         if loaded_content is None:
             try:
+                # 安全地加载配置内容，避免恶意代码执行
                 loaded_content = safe_load(content)
             except YAMLError as e:
                 yaml_error = e

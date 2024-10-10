@@ -41,7 +41,9 @@ class Extensible:
         position_map = {}
 
         # get the path of the current class
+        # 获取当前类所在的路径
         current_path = os.path.abspath(cls.__module__.replace(".", os.path.sep) + '.py')
+        # 获取当前类所在目录的路径
         current_dir_path = os.path.dirname(current_path)
 
         # traverse subdirectories
@@ -61,6 +63,7 @@ class Extensible:
                 if '__builtin__' in file_names:
                     builtin = True
 
+                    # 尝试构建路径以查找特殊文件
                     builtin_file_path = os.path.join(subdir_path, '__builtin__')
                     if os.path.exists(builtin_file_path):
                         with open(builtin_file_path, encoding='utf-8') as f:

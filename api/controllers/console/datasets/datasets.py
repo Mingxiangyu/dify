@@ -10,7 +10,7 @@ from controllers.console import api
 from controllers.console.apikey import api_key_fields, api_key_list
 from controllers.console.app.error import ProviderNotInitializeError
 from controllers.console.datasets.error import DatasetInUseError, \
-    DatasetNameDuplicateError, IndexingEstimateError
+  DatasetNameDuplicateError, IndexingEstimateError
 from controllers.console.setup import setup_required
 from controllers.console.wraps import account_initialization_required
 from core.errors.error import LLMBadRequestError, ProviderTokenNotInitError
@@ -23,13 +23,13 @@ from core.rag.retrieval.retrival_methods import RetrievalMethod
 from extensions.ext_database import db
 from fields.app_fields import related_app_list
 from fields.dataset_fields import dataset_detail_fields, \
-    dataset_query_detail_fields
+  dataset_query_detail_fields
 from fields.document_fields import document_status_fields
 from libs.login import login_required
 from models.dataset import Dataset, Document, DocumentSegment
 from models.model import ApiToken, UploadFile
 from services.dataset_service import DatasetPermissionService, DatasetService, \
-    DocumentService
+  DocumentService
 
 
 def _validate_name(name):

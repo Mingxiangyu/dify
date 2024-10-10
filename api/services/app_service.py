@@ -13,9 +13,9 @@ from core.app.features.rate_limiting import RateLimit
 from core.errors.error import LLMBadRequestError, ProviderTokenNotInitError
 from core.model_manager import ModelManager
 from core.model_runtime.entities.model_entities import ModelPropertyKey, \
-  ModelType
+    ModelType
 from core.model_runtime.model_providers.__base.large_language_model import \
-  LargeLanguageModel
+    LargeLanguageModel
 from core.tools.tool_manager import ToolManager
 from core.tools.utils.configuration import ToolParameterConfigurationManager
 from events.app_event import app_was_created
@@ -25,7 +25,7 @@ from models.model import App, AppMode, AppModelConfig
 from models.tools import ApiToolProvider
 from services.tag_service import TagService
 from tasks.remove_app_and_related_data_task import \
-  remove_app_and_related_data_task
+    remove_app_and_related_data_task
 
 
 class AppService:
@@ -144,6 +144,7 @@ class AppService:
 
         db.session.commit()
 
+        # 相关数据
         app_was_created.send(app, account=account)
 
         return app
@@ -299,6 +300,7 @@ class AppService:
         db.session.commit()
 
         # Trigger asynchronous deletion of app and related data
+        # 触发应用程序和相关数据的异步删除
         remove_app_and_related_data_task.delay(
             tenant_id=app.tenant_id,
             app_id=app.id

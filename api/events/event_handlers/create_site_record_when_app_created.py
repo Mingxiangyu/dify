@@ -6,6 +6,7 @@ from models.model import Site
 @app_was_created.connect
 def handle(sender, **kwargs):
     """Create site record when an app is created."""
+    # 创建应用程序时创建站点记录
     app = sender
     account = kwargs.get("account")
     site = Site(
