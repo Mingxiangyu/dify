@@ -221,7 +221,7 @@ class BillingConfig(BaseSettings):
     Platform Billing Configurations
     """
     BILLING_ENABLED: bool = Field(
-        description='whether to enable billing',
+        description='whether to enable billing', #是否启用计费
         default=False,
     )
 

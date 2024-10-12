@@ -6,40 +6,40 @@ from typing import Optional
 from sqlalchemy.exc import IntegrityError
 
 from core.entities.model_entities import DefaultModelEntity, \
-  DefaultModelProviderEntity
+    DefaultModelProviderEntity
 from core.entities.provider_configuration import ProviderConfiguration, \
-  ProviderConfigurations, ProviderModelBundle
+    ProviderConfigurations, ProviderModelBundle
 from core.entities.provider_entities import (
-  CustomConfiguration,
-  CustomModelConfiguration,
-  CustomProviderConfiguration,
-  ModelLoadBalancingConfiguration,
-  ModelSettings,
-  QuotaConfiguration,
-  SystemConfiguration,
+    CustomConfiguration,
+    CustomModelConfiguration,
+    CustomProviderConfiguration,
+    ModelLoadBalancingConfiguration,
+    ModelSettings,
+    QuotaConfiguration,
+    SystemConfiguration,
 )
 from core.helper import encrypter
 from core.helper.model_provider_cache import ProviderCredentialsCache, \
-  ProviderCredentialsCacheType
+    ProviderCredentialsCacheType
 from core.model_runtime.entities.model_entities import ModelType
 from core.model_runtime.entities.provider_entities import (
-  CredentialFormSchema,
-  FormType,
-  ProviderEntity,
+    CredentialFormSchema,
+    FormType,
+    ProviderEntity,
 )
 from core.model_runtime.model_providers import model_provider_factory
 from extensions import ext_hosting_provider
 from extensions.ext_database import db
 from extensions.ext_redis import redis_client
 from models.provider import (
-  LoadBalancingModelConfig,
-  Provider,
-  ProviderModel,
-  ProviderModelSetting,
-  ProviderQuotaType,
-  ProviderType,
-  TenantDefaultModel,
-  TenantPreferredModelProvider,
+    LoadBalancingModelConfig,
+    Provider,
+    ProviderModel,
+    ProviderModelSetting,
+    ProviderQuotaType,
+    ProviderType,
+    TenantDefaultModel,
+    TenantPreferredModelProvider,
 )
 from services.feature_service import FeatureService
 

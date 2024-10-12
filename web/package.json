@@ -9,6 +9,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "cp -r .next/static .next/standalone/.next/static && cp -r public .next/standalone/public && cross-env PORT=$npm_config_port HOSTNAME=$npm_config_host node .next/standalone/server.js",
+    "startwin": "next start",
     "lint": "next lint",
     "fix": "next lint --fix",
     "eslint-fix": "eslint --fix",

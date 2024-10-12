@@ -144,6 +144,8 @@ class AppService:
 
         db.session.commit()
 
+        # 在发送信号之前，检查是否有接收者
+        print("Connected receivers:", app_was_created.receivers)
         # 相关数据
         app_was_created.send(app, account=account)
 

@@ -689,7 +689,7 @@ class DocumentService:
 
                 DocumentService.check_documents_upload_quota(count, features)
 
-        # if dataset is empty, update dataset data_source_type
+        # 如果数据集为空，则更新数据集data_source_type
         if not dataset.data_source_type:
             dataset.data_source_type = document_data["data_source"]["type"]
 

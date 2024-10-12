@@ -5,6 +5,8 @@ from models.model import Site
 
 @app_was_created.connect
 def handle(sender, **kwargs):
+    # 接收端都添加日志
+    print("Signal received!")
     """Create site record when an app is created."""
     # 创建应用程序时创建站点记录
     app = sender

@@ -9,7 +9,6 @@ from werkzeug.datastructures import FileStorage
 from werkzeug.exceptions import NotFound
 
 from configs import dify_config
-from core.file.upload_file_parser import UploadFileParser
 from core.rag.extractor.extract_processor import ExtractProcessor
 from extensions.ext_database import db
 from extensions.ext_storage import storage
@@ -148,9 +147,9 @@ class FileService:
 
     @staticmethod
     def get_image_preview(file_id: str, timestamp: str, nonce: str, sign: str) -> tuple[Generator, str]:
-        result = UploadFileParser.verify_image_file_signature(file_id, timestamp, nonce, sign)
-        if not result:
-            raise NotFound("File not found or signature is invalid")
+        # result = UploadFileParser.verify_image_file_signature(file_id, timestamp, nonce, sign)
+        # if not result:
+        #     raise NotFound("File not found or signature is invalid")
 
         upload_file = db.session.query(UploadFile) \
             .filter(UploadFile.id == file_id) \
