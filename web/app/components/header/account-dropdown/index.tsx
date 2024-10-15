@@ -133,7 +133,7 @@ export default function AppSelector({ isMobile }: IAppSelecotr) {
                     {/*  <Link*/}
                     {/*    className={classNames(itemClassName, 'group justify-between')}*/}
                     {/*    href={*/}
-                    {/*      locale !== LanguagesSupported[1] ? 'https://docs.dify.ai/' : `https://docs.dify.ai/v/${locale.toLowerCase()}/`*/}
+                    {/*      locale !== LanguagesSupported[1] ? 'https://daosmos.agent.ai/' : `https://daosmos.agent.ai/v/${locale.toLowerCase()}/`*/}
                     {/*    }*/}
                     {/*    target='_blank' rel='noopener noreferrer'>*/}
                     {/*    <div>{t('common.userProfile.helpCenter')}</div>*/}

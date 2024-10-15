@@ -1,33 +1,33 @@
 'use client'
-import { useState } from 'react'
-import { useMount } from 'ahooks'
-import { useContext } from 'use-context-selector'
-import { BookOpenIcon } from '@heroicons/react/24/outline'
-import { useTranslation } from 'react-i18next'
-import { useSWRConfig } from 'swr'
-import { unstable_serialize } from 'swr/infinite'
+import {useState} from 'react'
+import {useMount} from 'ahooks'
+import {useContext} from 'use-context-selector'
+import {BookOpenIcon} from '@heroicons/react/24/outline'
+import {useTranslation} from 'react-i18next'
+import {useSWRConfig} from 'swr'
+import {unstable_serialize} from 'swr/infinite'
 import PermissionSelector from '../permission-selector'
 import IndexMethodRadio from '../index-method-radio'
 import cn from '@/utils/classnames'
 import RetrievalMethodConfig from '@/app/components/datasets/common/retrieval-method-config'
 import EconomicalRetrievalMethodConfig from '@/app/components/datasets/common/economical-retrieval-method-config'
-import { ToastContext } from '@/app/components/base/toast'
+import {ToastContext} from '@/app/components/base/toast'
 import Button from '@/app/components/base/button'
-import { updateDatasetSetting } from '@/service/datasets'
-import type { DataSetListResponse } from '@/models/datasets'
+import {updateDatasetSetting} from '@/service/datasets'
+import type {DataSetListResponse} from '@/models/datasets'
 import DatasetDetailContext from '@/context/dataset-detail'
-import { type RetrievalConfig } from '@/types/app'
-import { useAppContext } from '@/context/app-context'
-import { ensureRerankModelSelected, isReRankModelSelected } from '@/app/components/datasets/common/check-rerank-model'
+import {type RetrievalConfig} from '@/types/app'
+import {useAppContext} from '@/context/app-context'
+import {ensureRerankModelSelected, isReRankModelSelected} from '@/app/components/datasets/common/check-rerank-model'
 import ModelSelector from '@/app/components/header/account-setting/model-provider-page/model-selector'
 import {
   useModelList,
   useModelListAndDefaultModelAndCurrentProviderAndModel,
 } from '@/app/components/header/account-setting/model-provider-page/hooks'
-import type { DefaultModel } from '@/app/components/header/account-setting/model-provider-page/declarations'
-import { ModelTypeEnum } from '@/app/components/header/account-setting/model-provider-page/declarations'
-import { fetchMembers } from '@/service/common'
-import type { Member } from '@/models/common'
+import type {DefaultModel} from '@/app/components/header/account-setting/model-provider-page/declarations'
+import {ModelTypeEnum} from '@/app/components/header/account-setting/model-provider-page/declarations'
+import {fetchMembers} from '@/service/common'
+import type {Member} from '@/models/common'
 
 const rowClass = `
   flex justify-between py-4 flex-wrap gap-y-2
@@ -182,7 +182,7 @@ const Form = () => {
             value={description}
             onChange={e => setDescription(e.target.value)}
           />
-          <a className='flex items-center h-[18px] px-3 text-xs text-gray-500' href="https://docs.dify.ai/features/datasets#how-to-write-a-good-dataset-description" target='_blank' rel='noopener noreferrer'>
+          <a className='flex items-center h-[18px] px-3 text-xs text-gray-500' href="https://daosmos.agent.ai/features/datasets#how-to-write-a-good-dataset-description" target='_blank' rel='noopener noreferrer'>
             <BookOpenIcon className='w-3 h-[18px] mr-1' />
             {t('datasetSettings.form.descWrite')}
           </a>
@@ -243,7 +243,7 @@ const Form = () => {
           <div>
             <div>{t('datasetSettings.form.retrievalSetting.title')}</div>
             <div className='leading-[18px] text-xs font-normal text-gray-500'>
-              <a target='_blank' rel='noopener noreferrer' href='https://docs.dify.ai/guides/knowledge-base/create-knowledge-and-upload-documents#id-6-retrieval-settings' className='text-[#155eef]'>{t('datasetSettings.form.retrievalSetting.learnMore')}</a>
+              <a target='_blank' rel='noopener noreferrer' href='https://daosmos.agent.ai/guides/knowledge-base/create-knowledge-and-upload-documents#id-6-retrieval-settings' className='text-[#155eef]'>{t('datasetSettings.form.retrievalSetting.learnMore')}</a>
               {t('datasetSettings.form.retrievalSetting.description')}
             </div>
           </div>

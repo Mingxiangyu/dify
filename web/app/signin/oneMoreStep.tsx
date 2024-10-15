@@ -1,17 +1,17 @@
 'use client'
-import React, { useEffect, useReducer } from 'react'
-import { useTranslation } from 'react-i18next'
+import React, {useEffect, useReducer} from 'react'
+import {useTranslation} from 'react-i18next'
 import Link from 'next/link'
 import useSWR from 'swr'
-import { useRouter } from 'next/navigation'
+import {useRouter} from 'next/navigation'
 // import { useContext } from 'use-context-selector'
 import Button from '@/app/components/base/button'
 import Tooltip from '@/app/components/base/tooltip/index'
 
-import { SimpleSelect } from '@/app/components/base/select'
-import { timezones } from '@/utils/timezone'
-import { LanguagesSupported, languages } from '@/i18n/language'
-import { oneMoreStep } from '@/service/common'
+import {SimpleSelect} from '@/app/components/base/select'
+import {timezones} from '@/utils/timezone'
+import {languages, LanguagesSupported} from '@/i18n/language'
+import {oneMoreStep} from '@/service/common'
 import Toast from '@/app/components/base/toast'
 // import I18n from '@/context/i18n'
 
@@ -161,7 +161,7 @@ const OneMoreStep = () => {
             <Link
               className='text-primary-600'
               target='_blank' rel='noopener noreferrer'
-              href={'https://docs.dify.ai/user-agreement/open-source'}
+              href={'https://daosmos.agent.ai/user-agreement/open-source'}
             >{t('login.license.link')}</Link>
           </div>
         </div>

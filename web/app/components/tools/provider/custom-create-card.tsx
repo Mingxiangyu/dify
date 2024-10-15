@@ -1,17 +1,17 @@
 'use client'
-import { useMemo, useState } from 'react'
-import { useTranslation } from 'react-i18next'
-import { useContext } from 'use-context-selector'
-import { RiAddLine } from '@remixicon/react'
-import type { CustomCollectionBackend } from '../types'
+import {useMemo, useState} from 'react'
+import {useTranslation} from 'react-i18next'
+import {useContext} from 'use-context-selector'
+import {RiAddLine} from '@remixicon/react'
+import type {CustomCollectionBackend} from '../types'
 import I18n from '@/context/i18n'
-import { getLanguage } from '@/i18n/language'
-import { BookOpen01 } from '@/app/components/base/icons/src/vender/line/education'
-import { ArrowUpRight } from '@/app/components/base/icons/src/vender/line/arrows'
+import {getLanguage} from '@/i18n/language'
+import {BookOpen01} from '@/app/components/base/icons/src/vender/line/education'
+import {ArrowUpRight} from '@/app/components/base/icons/src/vender/line/arrows'
 import EditCustomToolModal from '@/app/components/tools/edit-custom-collection-modal'
-import { createCustomCollection } from '@/service/tools'
+import {createCustomCollection} from '@/service/tools'
 import Toast from '@/app/components/base/toast'
-import { useAppContext } from '@/context/app-context'
+import {useAppContext} from '@/context/app-context'
 
 type Props = {
   onRefreshData: () => void
@@ -26,7 +26,7 @@ const Contribute = ({ onRefreshData }: Props) => {
   const linkUrl = useMemo(() => {
     if (language.startsWith('zh_'))
       return 'https://docs.daosmos.ai/v/zh-hans/guides/gong-ju/quick-tool-integration'
-    return 'https://docs.dify.ai/tutorials/quick-tool-integration'
+    return 'https://daosmos.agent.ai/tutorials/quick-tool-integration'
   }, [language])
 
   const [isShowEditCollectionToolModal, setIsShowEditCustomCollectionModal] = useState(false)

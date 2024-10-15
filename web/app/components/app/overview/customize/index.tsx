@@ -1,15 +1,15 @@
 'use client'
-import type { FC } from 'react'
+import type {FC} from 'react'
 import React from 'react'
-import { ArrowTopRightOnSquareIcon } from '@heroicons/react/24/outline'
-import { useTranslation } from 'react-i18next'
-import { useContext } from 'use-context-selector'
-import type { AppMode } from '@/types/app'
+import {ArrowTopRightOnSquareIcon} from '@heroicons/react/24/outline'
+import {useTranslation} from 'react-i18next'
+import {useContext} from 'use-context-selector'
+import type {AppMode} from '@/types/app'
 import I18n from '@/context/i18n'
 import Button from '@/app/components/base/button'
 import Modal from '@/app/components/base/modal'
 import Tag from '@/app/components/base/tag'
-import { LanguagesSupported } from '@/i18n/language'
+import {LanguagesSupported} from '@/i18n/language'
 
 type IShareLinkProps = {
   isShow: boolean
@@ -101,7 +101,7 @@ const CustomizeModal: FC<IShareLinkProps> = ({
         className='mt-2'
         onClick={() =>
           window.open(
-            `https://docs.dify.ai/${locale !== LanguagesSupported[1]
+            `https://daosmos.agent.ai/${locale !== LanguagesSupported[1]
               ? 'user-guide/launching-dify-apps/developing-with-apis'
               : `v/${locale.toLowerCase()}/guides/application-publishing/developing-with-apis`
             }`,

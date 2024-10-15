@@ -1,17 +1,17 @@
 'use client'
 
-import type { MouseEventHandler } from 'react'
-import { useState } from 'react'
-import { RiCloseLine } from '@remixicon/react'
-import { BookOpenIcon } from '@heroicons/react/24/outline'
-import { useContext } from 'use-context-selector'
-import { useTranslation } from 'react-i18next'
+import type {MouseEventHandler} from 'react'
+import {useState} from 'react'
+import {RiCloseLine} from '@remixicon/react'
+import {BookOpenIcon} from '@heroicons/react/24/outline'
+import {useContext} from 'use-context-selector'
+import {useTranslation} from 'react-i18next'
 import cn from '@/utils/classnames'
 import Button from '@/app/components/base/button'
 import Modal from '@/app/components/base/modal'
-import { ToastContext } from '@/app/components/base/toast'
-import type { DataSet } from '@/models/datasets'
-import { updateDatasetSetting } from '@/service/datasets'
+import {ToastContext} from '@/app/components/base/toast'
+import type {DataSet} from '@/models/datasets'
+import {updateDatasetSetting} from '@/service/datasets'
 
 type RenameDatasetModalProps = {
   show: boolean
@@ -87,7 +87,7 @@ const RenameDatasetModal = ({ show, dataset, onSuccess, onClose }: RenameDataset
               className='block px-3 py-2 w-full h-[88px] rounded-lg bg-gray-100 text-sm outline-none appearance-none resize-none'
               placeholder={t('datasetSettings.form.descPlaceholder') || ''}
             />
-            <a className='mt-2 flex items-center h-[18px] px-3 text-xs text-gray-500 hover:text-primary-600' href="https://docs.dify.ai/features/datasets#how-to-write-a-good-dataset-description" target='_blank' rel='noopener noreferrer'>
+            <a className='mt-2 flex items-center h-[18px] px-3 text-xs text-gray-500 hover:text-primary-600' href="https://daosmos.agent.ai/features/datasets#how-to-write-a-good-dataset-description" target='_blank' rel='noopener noreferrer'>
               <BookOpenIcon className='w-3 h-[18px] mr-1' />
               {t('datasetSettings.form.descWrite')}
             </a>

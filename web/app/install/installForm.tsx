@@ -1,20 +1,20 @@
 'use client'
-import React, { useEffect } from 'react'
-import { useTranslation } from 'react-i18next'
+import React, {useEffect} from 'react'
+import {useTranslation} from 'react-i18next'
 
 import Link from 'next/link'
-import { useRouter } from 'next/navigation'
+import {useRouter} from 'next/navigation'
 
-import type { SubmitHandler } from 'react-hook-form'
-import { useForm } from 'react-hook-form'
-import { z } from 'zod'
-import { zodResolver } from '@hookform/resolvers/zod'
+import type {SubmitHandler} from 'react-hook-form'
+import {useForm} from 'react-hook-form'
+import {z} from 'zod'
+import {zodResolver} from '@hookform/resolvers/zod'
 import Loading from '../components/base/loading'
 import classNames from '@/utils/classnames'
 import Button from '@/app/components/base/button'
 
-import { fetchInitValidateStatus, fetchSetupStatus, setup } from '@/service/common'
-import type { InitValidateStatusResponse, SetupStatusResponse } from '@/models/common'
+import {fetchInitValidateStatus, fetchSetupStatus, setup} from '@/service/common'
+import type {InitValidateStatusResponse, SetupStatusResponse} from '@/models/common'
 
 const validPassword = /^(?=.*[a-zA-Z])(?=.*\d).{8,}$/
 
@@ -159,7 +159,7 @@ const InstallForm = () => {
               <Link
                 className='text-primary-600'
                 target='_blank' rel='noopener noreferrer'
-                href={'https://docs.dify.ai/user-agreement/open-source'}
+                href={'https://daosmos.agent.ai/user-agreement/open-source'}
               >{t('login.license.link')}</Link>
             </div>
           </div>

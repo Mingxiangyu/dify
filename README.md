@@ -12,7 +12,7 @@ Dify 是一个开源的 LLM 应用开发平台。其直观的界面结合了 AI 
 
 
 **2. 全面的模型支持**: 
-  与数百种专有/开源 LLMs 以及数十种推理提供商和自托管解决方案无缝集成，涵盖 GPT、Mistral、Llama3 以及任何与 OpenAI API 兼容的模型。完整的支持模型提供商列表可在[此处](https://docs.dify.ai/getting-started/readme/model-providers)找到。
+  与数百种专有/开源 LLMs 以及数十种推理提供商和自托管解决方案无缝集成，涵盖 GPT、Mistral、Llama3 以及任何与 OpenAI API 兼容的模型。完整的支持模型提供商列表可在[此处](https://daosmos.agent.ai/getting-started/readme/model-providers)找到。
 
 ![providers-v5](https://github.com/langgenius/dify/assets/13230914/5a17bdbe-097a-4100-8363-40255b70f6e3)
 
@@ -103,7 +103,7 @@ Dify 是一个开源的 LLM 应用开发平台。其直观的界面结合了 AI 
 ## 使用 Dify
 - **自托管 Dify 社区版</br>**
 使用这个[入门指南](#quick-start)快速在您的环境中运行 Dify。
-使用我们的[文档](https://docs.dify.ai)进行进一步的参考和更深入的说明。
+使用我们的[文档](https://daosmos.agent.ai)进行进一步的参考和更深入的说明。
 
 - **面向企业/组织的 Dify</br>**
 我们提供额外的面向企业的功能。[给我们发送电子邮件](mailto:business@dify.ai?subject=[GitHub]Business%20License%20Inquiry)讨论企业需求。 </br>
@@ -138,7 +138,7 @@ docker compose up -d
 
 ### 自定义配置
 
-如果您需要自定义配置，请参考 [.env.example](docker/.env.example) 文件中的注释，并更新 `.env` 文件中对应的值。此外，您可能需要根据您的具体部署环境和需求对 `docker-compose.yaml` 文件本身进行调整，例如更改镜像版本、端口映射或卷挂载。完成任何更改后，请重新运行 `docker-compose up -d`。您可以在[此处](https://docs.dify.ai/getting-started/install-self-hosted/environments)找到可用环境变量的完整列表。
+如果您需要自定义配置，请参考 [.env.example](docker/.env.example) 文件中的注释，并更新 `.env` 文件中对应的值。此外，您可能需要根据您的具体部署环境和需求对 `docker-compose.yaml` 文件本身进行调整，例如更改镜像版本、端口映射或卷挂载。完成任何更改后，请重新运行 `docker-compose up -d`。您可以在[此处](https://daosmos.agent.ai/getting-started/install-self-hosted/environments)找到可用环境变量的完整列表。
 
 #### 使用 Helm Chart 部署
 

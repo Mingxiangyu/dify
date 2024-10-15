@@ -1,6 +1,6 @@
-import { useMemo } from 'react'
-import { useGetLanguage } from '@/context/i18n'
-import { BlockEnum } from '@/app/components/workflow/types'
+import {useMemo} from 'react'
+import {useGetLanguage} from '@/context/i18n'
+import {BlockEnum} from '@/app/components/workflow/types'
 
 export const useNodeHelpLink = (nodeType: BlockEnum) => {
   const language = useGetLanguage()
@@ -8,7 +8,7 @@ export const useNodeHelpLink = (nodeType: BlockEnum) => {
     if (language === 'zh_Hans')
       return 'https://docs.daosmos.ai/v/zh-hans/guides/workflow/node/'
 
-    return 'https://docs.dify.ai/guides/workflow/node/'
+    return 'https://daosmos.agent.ai/guides/workflow/node/'
   }, [language])
   const linkMap = useMemo(() => {
     if (language === 'zh_Hans') {

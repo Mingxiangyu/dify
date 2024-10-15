@@ -1,30 +1,30 @@
 'use client'
 
-import type { FC } from 'react'
-import { memo, useMemo } from 'react'
-import { useTranslation } from 'react-i18next'
-import { RiAlertFill, RiQuestionLine } from '@remixicon/react'
+import type {FC} from 'react'
+import {memo, useMemo} from 'react'
+import {useTranslation} from 'react-i18next'
+import {RiAlertFill, RiQuestionLine} from '@remixicon/react'
 import WeightedScore from './weighted-score'
 import TopKItem from '@/app/components/base/param-item/top-k-item'
 import ScoreThresholdItem from '@/app/components/base/param-item/score-threshold-item'
 import RadioCard from '@/app/components/base/radio-card/simple'
-import { RETRIEVE_TYPE } from '@/types/app'
-import { MultiPathRetrieval, NTo1Retrieval } from '@/app/components/base/icons/src/public/common'
-import type { DatasetConfigs } from '@/models/debug'
+import {RETRIEVE_TYPE} from '@/types/app'
+import {MultiPathRetrieval, NTo1Retrieval} from '@/app/components/base/icons/src/public/common'
+import type {DatasetConfigs} from '@/models/debug'
 import ModelSelector from '@/app/components/header/account-setting/model-provider-page/model-selector'
 import {
   useModelListAndDefaultModelAndCurrentProviderAndModel,
 } from '@/app/components/header/account-setting/model-provider-page/hooks'
-import type { ModelConfig } from '@/app/components/workflow/types'
+import type {ModelConfig} from '@/app/components/workflow/types'
 import ModelParameterModal from '@/app/components/header/account-setting/model-provider-page/model-parameter-modal'
 import TooltipPlus from '@/app/components/base/tooltip-plus'
-import { ModelTypeEnum } from '@/app/components/header/account-setting/model-provider-page/declarations'
-import type { DataSet } from '@/models/datasets'
-import { RerankingModeEnum } from '@/models/datasets'
+import {ModelTypeEnum} from '@/app/components/header/account-setting/model-provider-page/declarations'
+import type {DataSet} from '@/models/datasets'
+import {RerankingModeEnum} from '@/models/datasets'
 import cn from '@/utils/classnames'
-import { useSelectedDatasetsMode } from '@/app/components/workflow/nodes/knowledge-retrieval/hooks'
+import {useSelectedDatasetsMode} from '@/app/components/workflow/nodes/knowledge-retrieval/hooks'
 import Switch from '@/app/components/base/switch'
-import { useGetLanguage } from '@/context/i18n'
+import {useGetLanguage} from '@/context/i18n'
 
 type Props = {
   datasetConfigs: DatasetConfigs
@@ -37,7 +37,7 @@ type Props = {
 }
 
 const LEGACY_LINK_MAP = {
-  en_US: 'https://docs.dify.ai/guides/knowledge-base/integrate-knowledge-within-application',
+  en_US: 'https://daosmos.agent.ai/guides/knowledge-base/integrate-knowledge-within-application',
   zh_Hans: 'https://docs.daosmos.ai/v/zh-hans/guides/knowledge-base/integrate_knowledge_within_application',
 } as Record<string, string>
 

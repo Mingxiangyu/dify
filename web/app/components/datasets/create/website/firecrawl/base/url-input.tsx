@@ -1,7 +1,7 @@
 'use client'
-import type { FC } from 'react'
-import React, { useCallback, useState } from 'react'
-import { useTranslation } from 'react-i18next'
+import type {FC} from 'react'
+import React, {useCallback, useState} from 'react'
+import {useTranslation} from 'react-i18next'
 import Input from './input'
 import Button from '@/app/components/base/button'
 
@@ -32,7 +32,7 @@ const UrlInput: FC<Props> = ({
       <Input
         value={url}
         onChange={handleUrlChange}
-        placeholder='https://docs.dify.ai'
+        placeholder='https://daosmos.agent.ai'
       />
       <Button
         variant='primary'

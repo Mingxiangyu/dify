@@ -1,10 +1,10 @@
 'use client'
-import type { FC, SVGProps } from 'react'
-import React, { useEffect } from 'react'
-import { usePathname } from 'next/navigation'
+import type {FC, SVGProps} from 'react'
+import React, {useEffect} from 'react'
+import {usePathname} from 'next/navigation'
 import useSWR from 'swr'
-import { useTranslation } from 'react-i18next'
-import { useBoolean } from 'ahooks'
+import {useTranslation} from 'react-i18next'
+import {useBoolean} from 'ahooks'
 import {
   Cog8ToothIcon,
   DocumentTextIcon,
@@ -20,22 +20,22 @@ import {
 import Link from 'next/link'
 import s from './style.module.css'
 import classNames from '@/utils/classnames'
-import { fetchDatasetDetail, fetchDatasetRelatedApps } from '@/service/datasets'
-import type { RelatedApp, RelatedAppResponse } from '@/models/datasets'
-import { DataSourceType } from '@/models/datasets'
+import {fetchDatasetDetail, fetchDatasetRelatedApps} from '@/service/datasets'
+import type {RelatedApp, RelatedAppResponse} from '@/models/datasets'
+import {DataSourceType} from '@/models/datasets'
 import AppSideBar from '@/app/components/app-sidebar'
 import Divider from '@/app/components/base/divider'
 import AppIcon from '@/app/components/base/app-icon'
 import Loading from '@/app/components/base/loading'
 import FloatPopoverContainer from '@/app/components/base/float-popover-container'
 import DatasetDetailContext from '@/context/dataset-detail'
-import useBreakpoints, { MediaType } from '@/hooks/use-breakpoints'
-import { LanguagesSupported } from '@/i18n/language'
-import { useStore } from '@/app/components/app/store'
-import { AiText, ChatBot, CuteRobote } from '@/app/components/base/icons/src/vender/solid/communication'
-import { Route } from '@/app/components/base/icons/src/vender/solid/mapsAndTravel'
-import { getLocaleOnClient } from '@/i18n'
-import { useAppContext } from '@/context/app-context'
+import useBreakpoints, {MediaType} from '@/hooks/use-breakpoints'
+import {LanguagesSupported} from '@/i18n/language'
+import {useStore} from '@/app/components/app/store'
+import {AiText, ChatBot, CuteRobote} from '@/app/components/base/icons/src/vender/solid/communication'
+import {Route} from '@/app/components/base/icons/src/vender/solid/mapsAndTravel'
+import {getLocaleOnClient} from '@/i18n'
+import {useAppContext} from '@/context/app-context'
 
 export type IAppDetailLayoutProps = {
   children: React.ReactNode
@@ -164,7 +164,7 @@ const ExtraInfo = ({ isMobile, relatedApps }: IExtraInfoProps) => {
             href={
               locale === LanguagesSupported[1]
                 ? 'https://docs.daosmos.ai/v/zh-hans/guides/knowledge-base/integrate_knowledge_within_application'
-                : 'https://docs.dify.ai/guides/knowledge-base/integrate-knowledge-within-application'
+                : 'https://daosmos.agent.ai/guides/knowledge-base/integrate-knowledge-within-application'
             }
             target='_blank' rel='noopener noreferrer'
           >

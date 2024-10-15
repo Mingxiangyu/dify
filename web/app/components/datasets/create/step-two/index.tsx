@@ -1,53 +1,65 @@
 'use client'
-import React, { useEffect, useLayoutEffect, useRef, useState } from 'react'
-import { useTranslation } from 'react-i18next'
-import { useContext } from 'use-context-selector'
-import { useBoolean } from 'ahooks'
-import { XMarkIcon } from '@heroicons/react/20/solid'
-import { RocketLaunchIcon } from '@heroicons/react/24/outline'
-import {
-  RiCloseLine,
-  RiQuestionLine,
-} from '@remixicon/react'
+import React, {useEffect, useLayoutEffect, useRef, useState} from 'react'
+import {useTranslation} from 'react-i18next'
+import {useContext} from 'use-context-selector'
+import {useBoolean} from 'ahooks'
+import {XMarkIcon} from '@heroicons/react/20/solid'
+import {RocketLaunchIcon} from '@heroicons/react/24/outline'
+import {RiCloseLine, RiQuestionLine,} from '@remixicon/react'
 import Link from 'next/link'
-import { groupBy } from 'lodash-es'
+import {groupBy} from 'lodash-es'
 import RetrievalMethodInfo from '../../common/retrieval-method-info'
-import PreviewItem, { PreviewType } from './preview-item'
+import PreviewItem, {PreviewType} from './preview-item'
 import LanguageSelect from './language-select'
 import s from './index.module.css'
 import cn from '@/utils/classnames'
-import type { CrawlOptions, CrawlResultItem, CreateDocumentReq, CustomFile, FileIndexingEstimateResponse, FullDocumentDetail, IndexingEstimateParams, IndexingEstimateResponse, NotionInfo, PreProcessingRule, ProcessRule, Rules, createDocumentResponse } from '@/models/datasets'
+import type {
+  CrawlOptions,
+  CrawlResultItem,
+  CreateDocumentReq,
+  createDocumentResponse,
+  CustomFile,
+  FileIndexingEstimateResponse,
+  FullDocumentDetail,
+  IndexingEstimateParams,
+  IndexingEstimateResponse,
+  NotionInfo,
+  PreProcessingRule,
+  ProcessRule,
+  Rules
+} from '@/models/datasets'
+import {DataSourceType, DocForm} from '@/models/datasets'
 import {
   createDocument,
   createFirstDocument,
-  fetchFileIndexingEstimate as didFetchFileIndexingEstimate,
   fetchDefaultProcessRule,
+  fetchFileIndexingEstimate as didFetchFileIndexingEstimate,
 } from '@/service/datasets'
 import Button from '@/app/components/base/button'
 import Loading from '@/app/components/base/loading'
 import FloatRightContainer from '@/app/components/base/float-right-container'
 import RetrievalMethodConfig from '@/app/components/datasets/common/retrieval-method-config'
 import EconomicalRetrievalMethodConfig from '@/app/components/datasets/common/economical-retrieval-method-config'
-import { type RetrievalConfig } from '@/types/app'
-import { ensureRerankModelSelected, isReRankModelSelected } from '@/app/components/datasets/common/check-rerank-model'
+import {type RetrievalConfig, RETRIEVE_METHOD} from '@/types/app'
+import {ensureRerankModelSelected, isReRankModelSelected} from '@/app/components/datasets/common/check-rerank-model'
 import Toast from '@/app/components/base/toast'
-import { formatNumber } from '@/utils/format'
-import type { NotionPage } from '@/models/common'
-import { DataSourceType, DocForm } from '@/models/datasets'
+import {formatNumber} from '@/utils/format'
+import type {NotionPage} from '@/models/common'
 import NotionIcon from '@/app/components/base/notion-icon'
 import Switch from '@/app/components/base/switch'
-import { MessageChatSquare } from '@/app/components/base/icons/src/public/common'
-import { useDatasetDetailContext } from '@/context/dataset-detail'
+import {MessageChatSquare} from '@/app/components/base/icons/src/public/common'
+import {useDatasetDetailContext} from '@/context/dataset-detail'
 import I18n from '@/context/i18n'
-import { IS_CE_EDITION } from '@/config'
-import { RETRIEVE_METHOD } from '@/types/app'
-import useBreakpoints, { MediaType } from '@/hooks/use-breakpoints'
+import {IS_CE_EDITION} from '@/config'
+import useBreakpoints, {MediaType} from '@/hooks/use-breakpoints'
 import Tooltip from '@/app/components/base/tooltip'
 import TooltipPlus from '@/app/components/base/tooltip-plus'
-import { useModelListAndDefaultModelAndCurrentProviderAndModel } from '@/app/components/header/account-setting/model-provider-page/hooks'
-import { LanguagesSupported } from '@/i18n/language'
-import { ModelTypeEnum } from '@/app/components/header/account-setting/model-provider-page/declarations'
-import { Globe01 } from '@/app/components/base/icons/src/vender/line/mapsAndTravel'
+import {
+  useModelListAndDefaultModelAndCurrentProviderAndModel
+} from '@/app/components/header/account-setting/model-provider-page/hooks'
+import {LanguagesSupported} from '@/i18n/language'
+import {ModelTypeEnum} from '@/app/components/header/account-setting/model-provider-page/declarations'
+import {Globe01} from '@/app/components/base/icons/src/vender/line/mapsAndTravel'
 
 type ValueOf<T> = T[keyof T]
 type StepTwoProps = {
@@ -775,7 +787,7 @@ const StepTwo = ({
                   <div className={s.label}>
                     {t('datasetSettings.form.retrievalSetting.title')}
                     <div className='leading-[18px] text-xs font-normal text-gray-500'>
-                      <a target='_blank' rel='noopener noreferrer' href='https://docs.dify.ai/guides/knowledge-base/create-knowledge-and-upload-documents#id-6-retrieval-settings' className='text-[#155eef]'>{t('datasetSettings.form.retrievalSetting.learnMore')}</a>
+                      <a target='_blank' rel='noopener noreferrer' href='https://daosmos.agent.ai/guides/knowledge-base/create-knowledge-and-upload-documents#id-6-retrieval-settings' className='text-[#155eef]'>{t('datasetSettings.form.retrievalSetting.learnMore')}</a>
                       {t('datasetSettings.form.retrievalSetting.longDescription')}
                     </div>
                   </div>
