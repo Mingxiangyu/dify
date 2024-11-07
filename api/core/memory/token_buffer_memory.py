@@ -1,6 +1,7 @@
 from typing import Optional
 
-from core.app.app_config.features.file_upload.manager import FileUploadConfigManager
+from core.app.app_config.features.file_upload.manager import \
+    FileUploadConfigManager
 from core.file.message_file_parser import MessageFileParser
 from core.model_manager import ModelInstance
 from core.model_runtime.entities.message_entities import (
@@ -97,6 +98,7 @@ class TokenBufferMemory:
             return []
 
         # prune the chat message if it exceeds the max token limit
+        # 如果聊天消息超过最大令牌限制，则对其进行修剪
         curr_message_tokens = self.model_instance.get_llm_num_tokens(
             prompt_messages
         )
