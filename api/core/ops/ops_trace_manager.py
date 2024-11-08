@@ -12,25 +12,26 @@ from flask import current_app
 
 from core.helper.encrypter import decrypt_token, encrypt_token, obfuscated_token
 from core.ops.entities.config_entity import (
-    LangfuseConfig,
-    LangSmithConfig,
-    TracingProviderEnum,
+  LangfuseConfig,
+  LangSmithConfig,
+  TracingProviderEnum,
 )
 from core.ops.entities.trace_entity import (
-    DatasetRetrievalTraceInfo,
-    GenerateNameTraceInfo,
-    MessageTraceInfo,
-    ModerationTraceInfo,
-    SuggestedQuestionTraceInfo,
-    ToolTraceInfo,
-    TraceTaskName,
-    WorkflowTraceInfo,
+  DatasetRetrievalTraceInfo,
+  GenerateNameTraceInfo,
+  MessageTraceInfo,
+  ModerationTraceInfo,
+  SuggestedQuestionTraceInfo,
+  ToolTraceInfo,
+  TraceTaskName,
+  WorkflowTraceInfo,
 )
 from core.ops.langfuse_trace.langfuse_trace import LangFuseDataTrace
 from core.ops.langsmith_trace.langsmith_trace import LangSmithDataTrace
 from core.ops.utils import get_message_data
 from extensions.ext_database import db
-from models.model import App, AppModelConfig, Conversation, Message, MessageAgentThought, MessageFile, TraceAppConfig
+from models.model import App, AppModelConfig, Conversation, Message, \
+  MessageAgentThought, MessageFile, TraceAppConfig
 from models.workflow import WorkflowAppLog, WorkflowRun
 from tasks.ops_trace_task import process_trace_tasks
 
@@ -666,7 +667,11 @@ class TraceQueueManager:
                 trace_task.app_id = self.app_id
                 trace_manager_queue.put(trace_task)
         except Exception as e:
+<<<<<<< HEAD
             logging.debug(f"Error adding trace task: {e}")
+=======
+            logging.exception(f"Error adding trace task: {e}")
+>>>>>>> 033ab5490bf9b23516edbf1db0aaf7cf61721606
         finally:
             self.start_timer()
 
@@ -685,7 +690,11 @@ class TraceQueueManager:
             if tasks:
                 self.send_to_celery(tasks)
         except Exception as e:
+<<<<<<< HEAD
             logging.debug(f"Error processing trace tasks: {e}")
+=======
+            logging.exception(f"Error processing trace tasks: {e}")
+>>>>>>> 033ab5490bf9b23516edbf1db0aaf7cf61721606
 
     def start_timer(self):
         global trace_manager_timer

@@ -3,43 +3,46 @@ import time
 from collections.abc import Generator
 from typing import Any, Optional, Union
 
-from constants.tts_auto_play_timeout import TTS_AUTO_PLAY_TIMEOUT, TTS_AUTO_PLAY_YIELD_CPU_TIME
-from core.app.apps.advanced_chat.app_generator_tts_publisher import AppGeneratorTTSPublisher, AudioTrunk
+from constants.tts_auto_play_timeout import TTS_AUTO_PLAY_TIMEOUT, \
+  TTS_AUTO_PLAY_YIELD_CPU_TIME
+from core.app.apps.advanced_chat.app_generator_tts_publisher import \
+  AppGeneratorTTSPublisher, AudioTrunk
 from core.app.apps.base_app_queue_manager import AppQueueManager
 from core.app.entities.app_invoke_entities import (
-    InvokeFrom,
-    WorkflowAppGenerateEntity,
+  InvokeFrom,
+  WorkflowAppGenerateEntity,
 )
 from core.app.entities.queue_entities import (
-    QueueErrorEvent,
-    QueueIterationCompletedEvent,
-    QueueIterationNextEvent,
-    QueueIterationStartEvent,
-    QueueMessageReplaceEvent,
-    QueueNodeFailedEvent,
-    QueueNodeStartedEvent,
-    QueueNodeSucceededEvent,
-    QueuePingEvent,
-    QueueStopEvent,
-    QueueTextChunkEvent,
-    QueueWorkflowFailedEvent,
-    QueueWorkflowStartedEvent,
-    QueueWorkflowSucceededEvent,
+  QueueErrorEvent,
+  QueueIterationCompletedEvent,
+  QueueIterationNextEvent,
+  QueueIterationStartEvent,
+  QueueMessageReplaceEvent,
+  QueueNodeFailedEvent,
+  QueueNodeStartedEvent,
+  QueueNodeSucceededEvent,
+  QueuePingEvent,
+  QueueStopEvent,
+  QueueTextChunkEvent,
+  QueueWorkflowFailedEvent,
+  QueueWorkflowStartedEvent,
+  QueueWorkflowSucceededEvent,
 )
 from core.app.entities.task_entities import (
-    ErrorStreamResponse,
-    MessageAudioEndStreamResponse,
-    MessageAudioStreamResponse,
-    StreamResponse,
-    TextChunkStreamResponse,
-    TextReplaceStreamResponse,
-    WorkflowAppBlockingResponse,
-    WorkflowAppStreamResponse,
-    WorkflowFinishStreamResponse,
-    WorkflowStreamGenerateNodes,
-    WorkflowTaskState,
+  ErrorStreamResponse,
+  MessageAudioEndStreamResponse,
+  MessageAudioStreamResponse,
+  StreamResponse,
+  TextChunkStreamResponse,
+  TextReplaceStreamResponse,
+  WorkflowAppBlockingResponse,
+  WorkflowAppStreamResponse,
+  WorkflowFinishStreamResponse,
+  WorkflowStreamGenerateNodes,
+  WorkflowTaskState,
 )
-from core.app.task_pipeline.based_generate_task_pipeline import BasedGenerateTaskPipeline
+from core.app.task_pipeline.based_generate_task_pipeline import \
+  BasedGenerateTaskPipeline
 from core.app.task_pipeline.workflow_cycle_manage import WorkflowCycleManage
 from core.ops.ops_trace_manager import TraceQueueManager
 from core.workflow.entities.node_entities import NodeType
@@ -49,11 +52,11 @@ from extensions.ext_database import db
 from models.account import Account
 from models.model import EndUser
 from models.workflow import (
-    Workflow,
-    WorkflowAppLog,
-    WorkflowAppLogCreatedFrom,
-    WorkflowNodeExecution,
-    WorkflowRun,
+  Workflow,
+  WorkflowAppLog,
+  WorkflowAppLogCreatedFrom,
+  WorkflowNodeExecution,
+  WorkflowRun,
 )
 
 logger = logging.getLogger(__name__)
@@ -211,7 +214,7 @@ class WorkflowAppGenerateTaskPipeline(BasedGenerateTaskPipeline, WorkflowCycleMa
                 else:
                     yield MessageAudioStreamResponse(audio=audio_trunk.audio, task_id=task_id)
             except Exception as e:
-                logger.error(e)
+                logger.exception(e)
                 break
         yield MessageAudioEndStreamResponse(audio='', task_id=task_id)
 

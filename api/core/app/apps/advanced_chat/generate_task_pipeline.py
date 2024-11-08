@@ -5,43 +5,46 @@ from collections.abc import Generator
 from typing import Any, Optional, Union, cast
 
 import contexts
-from constants.tts_auto_play_timeout import TTS_AUTO_PLAY_TIMEOUT, TTS_AUTO_PLAY_YIELD_CPU_TIME
-from core.app.apps.advanced_chat.app_generator_tts_publisher import AppGeneratorTTSPublisher, AudioTrunk
+from constants.tts_auto_play_timeout import TTS_AUTO_PLAY_TIMEOUT, \
+  TTS_AUTO_PLAY_YIELD_CPU_TIME
+from core.app.apps.advanced_chat.app_generator_tts_publisher import \
+  AppGeneratorTTSPublisher, AudioTrunk
 from core.app.apps.base_app_queue_manager import AppQueueManager, PublishFrom
 from core.app.entities.app_invoke_entities import (
-    AdvancedChatAppGenerateEntity,
+  AdvancedChatAppGenerateEntity,
 )
 from core.app.entities.queue_entities import (
-    QueueAdvancedChatMessageEndEvent,
-    QueueAnnotationReplyEvent,
-    QueueErrorEvent,
-    QueueIterationCompletedEvent,
-    QueueIterationNextEvent,
-    QueueIterationStartEvent,
-    QueueMessageReplaceEvent,
-    QueueNodeFailedEvent,
-    QueueNodeStartedEvent,
-    QueueNodeSucceededEvent,
-    QueuePingEvent,
-    QueueRetrieverResourcesEvent,
-    QueueStopEvent,
-    QueueTextChunkEvent,
-    QueueWorkflowFailedEvent,
-    QueueWorkflowStartedEvent,
-    QueueWorkflowSucceededEvent,
+  QueueAdvancedChatMessageEndEvent,
+  QueueAnnotationReplyEvent,
+  QueueErrorEvent,
+  QueueIterationCompletedEvent,
+  QueueIterationNextEvent,
+  QueueIterationStartEvent,
+  QueueMessageReplaceEvent,
+  QueueNodeFailedEvent,
+  QueueNodeStartedEvent,
+  QueueNodeSucceededEvent,
+  QueuePingEvent,
+  QueueRetrieverResourcesEvent,
+  QueueStopEvent,
+  QueueTextChunkEvent,
+  QueueWorkflowFailedEvent,
+  QueueWorkflowStartedEvent,
+  QueueWorkflowSucceededEvent,
 )
 from core.app.entities.task_entities import (
-    AdvancedChatTaskState,
-    ChatbotAppBlockingResponse,
-    ChatbotAppStreamResponse,
-    ChatflowStreamGenerateRoute,
-    ErrorStreamResponse,
-    MessageAudioEndStreamResponse,
-    MessageAudioStreamResponse,
-    MessageEndStreamResponse,
-    StreamResponse,
+  AdvancedChatTaskState,
+  ChatbotAppBlockingResponse,
+  ChatbotAppStreamResponse,
+  ChatflowStreamGenerateRoute,
+  ErrorStreamResponse,
+  MessageAudioEndStreamResponse,
+  MessageAudioStreamResponse,
+  MessageEndStreamResponse,
+  StreamResponse,
 )
-from core.app.task_pipeline.based_generate_task_pipeline import BasedGenerateTaskPipeline
+from core.app.task_pipeline.based_generate_task_pipeline import \
+  BasedGenerateTaskPipeline
 from core.app.task_pipeline.message_cycle_manage import MessageCycleManage
 from core.app.task_pipeline.workflow_cycle_manage import WorkflowCycleManage
 from core.file.file_obj import FileVar
@@ -51,15 +54,16 @@ from core.ops.ops_trace_manager import TraceQueueManager
 from core.workflow.entities.node_entities import NodeType
 from core.workflow.enums import SystemVariable
 from core.workflow.nodes.answer.answer_node import AnswerNode
-from core.workflow.nodes.answer.entities import TextGenerateRouteChunk, VarGenerateRouteChunk
+from core.workflow.nodes.answer.entities import TextGenerateRouteChunk, \
+  VarGenerateRouteChunk
 from events.message_event import message_was_created
 from extensions.ext_database import db
 from models.account import Account
 from models.model import Conversation, EndUser, Message
 from models.workflow import (
-    Workflow,
-    WorkflowNodeExecution,
-    WorkflowRunStatus,
+  Workflow,
+  WorkflowNodeExecution,
+  WorkflowRunStatus,
 )
 
 logger = logging.getLogger(__name__)
@@ -234,7 +238,7 @@ class AdvancedChatAppGenerateTaskPipeline(BasedGenerateTaskPipeline, WorkflowCyc
                     start_listener_time = time.time()
                     yield MessageAudioStreamResponse(audio=audio_trunk.audio, task_id=task_id)
             except Exception as e:
-                logger.error(e)
+                logger.exception(e)
                 break
         yield MessageAudioEndStreamResponse(audio='', task_id=task_id)
 

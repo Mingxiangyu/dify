@@ -1,25 +1,22 @@
 'use client'
-import type { FC } from 'react'
-import React, { useEffect, useMemo, useRef, useState } from 'react'
-import { useTranslation } from 'react-i18next'
-import { useContext } from 'use-context-selector'
-import { usePathname } from 'next/navigation'
+import type {FC} from 'react'
+import React, {useEffect, useMemo, useRef, useState} from 'react'
+import {useTranslation} from 'react-i18next'
+import {useContext} from 'use-context-selector'
+import {usePathname} from 'next/navigation'
 import produce from 'immer'
-import { useBoolean, useGetState } from 'ahooks'
-import { clone, isEqual } from 'lodash-es'
-import { CodeBracketIcon } from '@heroicons/react/20/solid'
-import { useShallow } from 'zustand/react/shallow'
+import {useBoolean, useGetState} from 'ahooks'
+import {clone, isEqual} from 'lodash-es'
+import {CodeBracketIcon} from '@heroicons/react/20/solid'
+import {useShallow} from 'zustand/react/shallow'
 import Button from '../../base/button'
 import Loading from '../../base/loading'
 import AppPublisher from '../app-publisher'
 import AgentSettingButton from './config/agent-setting-button'
 import useAdvancedPromptConfig from './hooks/use-advanced-prompt-config'
 import EditHistoryModal from './config-prompt/conversation-histroy/edit-modal'
-import {
-  useDebugWithSingleOrMultipleModel,
-  useFormattingChangedDispatcher,
-} from './debug/hooks'
-import type { ModelAndParameter } from './debug/types'
+import {useDebugWithSingleOrMultipleModel, useFormattingChangedDispatcher,} from './debug/hooks'
+import type {ModelAndParameter} from './debug/types'
 import type {
   AnnotationReplyConfig,
   DatasetConfigs,
@@ -31,32 +28,40 @@ import type {
   PromptVariable,
   TextToSpeechConfig,
 } from '@/models/debug'
-import type { ExternalDataTool } from '@/models/common'
-import type { DataSet } from '@/models/datasets'
-import type { ModelConfig as BackendModelConfig, VisionSettings } from '@/types/app'
+import {PromptMode} from '@/models/debug'
+import type {ExternalDataTool} from '@/models/common'
+import type {DataSet} from '@/models/datasets'
+import type {ModelConfig as BackendModelConfig, VisionSettings} from '@/types/app'
+import {AgentStrategy, AppType, ModelModeType, Resolution, RETRIEVE_TYPE, TransferMethod} from '@/types/app'
 import ConfigContext from '@/context/debug-configuration'
 import Config from '@/app/components/app/configuration/config'
 import Debug from '@/app/components/app/configuration/debug'
 import Confirm from '@/app/components/base/confirm'
-import { ModelFeatureEnum } from '@/app/components/header/account-setting/model-provider-page/declarations'
-import { ToastContext } from '@/app/components/base/toast'
-import { fetchAppDetail, updateAppModelConfig } from '@/service/apps'
-import { promptVariablesToUserInputsForm, userInputsFormToPromptVariables } from '@/utils/model-config'
-import { fetchDatasets } from '@/service/datasets'
-import { useProviderContext } from '@/context/provider-context'
-import { AgentStrategy, AppType, ModelModeType, RETRIEVE_TYPE, Resolution, TransferMethod } from '@/types/app'
-import { PromptMode } from '@/models/debug'
-import { ANNOTATION_DEFAULT, DATASET_DEFAULT, DEFAULT_AGENT_SETTING, DEFAULT_CHAT_PROMPT_CONFIG, DEFAULT_COMPLETION_PROMPT_CONFIG } from '@/config'
+import type {FormValue} from '@/app/components/header/account-setting/model-provider-page/declarations'
+import {ModelFeatureEnum} from '@/app/components/header/account-setting/model-provider-page/declarations'
+import {ToastContext} from '@/app/components/base/toast'
+import {fetchAppDetail, updateAppModelConfig} from '@/service/apps'
+import {promptVariablesToUserInputsForm, userInputsFormToPromptVariables} from '@/utils/model-config'
+import {fetchDatasets} from '@/service/datasets'
+import {useProviderContext} from '@/context/provider-context'
+import {
+  ANNOTATION_DEFAULT,
+  DATASET_DEFAULT,
+  DEFAULT_AGENT_SETTING,
+  DEFAULT_CHAT_PROMPT_CONFIG,
+  DEFAULT_COMPLETION_PROMPT_CONFIG
+} from '@/config'
 import SelectDataSet from '@/app/components/app/configuration/dataset-config/select-dataset'
-import { useModalContext } from '@/context/modal-context'
-import useBreakpoints, { MediaType } from '@/hooks/use-breakpoints'
+import {useModalContext} from '@/context/modal-context'
+import useBreakpoints, {MediaType} from '@/hooks/use-breakpoints'
 import Drawer from '@/app/components/base/drawer'
 import ModelParameterModal from '@/app/components/header/account-setting/model-provider-page/model-parameter-modal'
-import type { FormValue } from '@/app/components/header/account-setting/model-provider-page/declarations'
-import { useTextGenerationCurrentProviderAndModelAndModelList } from '@/app/components/header/account-setting/model-provider-page/hooks'
-import { fetchCollectionList } from '@/service/tools'
-import { type Collection } from '@/app/components/tools/types'
-import { useStore as useAppStore } from '@/app/components/app/store'
+import {
+  useTextGenerationCurrentProviderAndModelAndModelList
+} from '@/app/components/header/account-setting/model-provider-page/hooks'
+import {fetchCollectionList} from '@/service/tools'
+import {type Collection} from '@/app/components/tools/types'
+import {useStore as useAppStore} from '@/app/components/app/store'
 import {
   getMultipleRetrievalConfig,
   getSelectedDatasetsMode,
@@ -422,6 +427,52 @@ const Configuration: FC = () => {
 
   const isShowVisionConfig = !!currModel?.features?.includes(ModelFeatureEnum.vision)
 
+<<<<<<< HEAD
+=======
+  // *** web app features ***
+  const featuresData: FeaturesData = useMemo(() => {
+    return {
+      moreLikeThis: modelConfig.more_like_this || { enabled: false },
+      opening: {
+        enabled: !!modelConfig.opening_statement,
+        opening_statement: modelConfig.opening_statement || '',
+        suggested_questions: modelConfig.suggested_questions || [],
+      },
+      moderation: modelConfig.sensitive_word_avoidance || { enabled: false },
+      speech2text: modelConfig.speech_to_text || { enabled: false },
+      text2speech: modelConfig.text_to_speech || { enabled: false },
+      file: {
+        image: {
+          detail: modelConfig.file_upload?.image?.detail || Resolution.high,
+          enabled: !!modelConfig.file_upload?.image?.enabled,
+          number_limits: modelConfig.file_upload?.image?.number_limits || 3,
+          transfer_methods: modelConfig.file_upload?.image?.transfer_methods || ['local_file', 'remote_url'],
+        },
+        enabled: !!(modelConfig.file_upload?.enabled || modelConfig.file_upload?.image?.enabled),
+        allowed_file_types: modelConfig.file_upload?.allowed_file_types || [SupportUploadFileTypes.image, SupportUploadFileTypes.video],
+        allowed_file_extensions: modelConfig.file_upload?.allowed_file_extensions || [...FILE_EXTS[SupportUploadFileTypes.image], ...FILE_EXTS[SupportUploadFileTypes.video]].map(ext => `.${ext}`),
+        allowed_file_upload_methods: modelConfig.file_upload?.allowed_file_upload_methods || modelConfig.file_upload?.image?.transfer_methods || ['local_file', 'remote_url'],
+        number_limits: modelConfig.file_upload?.number_limits || modelConfig.file_upload?.image?.number_limits || 3,
+        fileUploadConfig: fileUploadConfigResponse,
+      } as FileUpload,
+      suggested: modelConfig.suggested_questions_after_answer || { enabled: false },
+      citation: modelConfig.retriever_resource || { enabled: false },
+      annotationReply: modelConfig.annotation_reply || { enabled: false },
+    }
+  }, [fileUploadConfigResponse, modelConfig])
+  const handleFeaturesChange = useCallback((flag: any) => {
+    setShowAppConfigureFeaturesModal(true)
+    if (flag)
+      formattingChangedDispatcher()
+  }, [formattingChangedDispatcher, setShowAppConfigureFeaturesModal])
+  const handleAddPromptVariable = useCallback((variable: PromptVariable[]) => {
+    const newModelConfig = produce(modelConfig, (draft: ModelConfig) => {
+      draft.configs.prompt_variables = variable
+    })
+    setModelConfig(newModelConfig)
+  }, [modelConfig])
+
+>>>>>>> 033ab5490bf9b23516edbf1db0aaf7cf61721606
   useEffect(() => {
     (async () => {
       const collectionList = await fetchCollectionList()

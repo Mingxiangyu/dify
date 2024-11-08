@@ -30,9 +30,15 @@ select = [
     "RUF100", # unused-noqa
     "RUF101", # redirected-noqa
     "S506", # unsafe-yaml-load
+<<<<<<< HEAD
     "SIM116", # if-else-block-instead-of-dict-lookup
     "SIM401", # if-else-block-instead-of-dict-get
     "SIM910", # dict-get-with-none-default
+=======
+    "SIM", # flake8-simplify rules
+    "TRY400", # error-instead-of-exception
+    "UP", # pyupgrade rules
+>>>>>>> 033ab5490bf9b23516edbf1db0aaf7cf61721606
     "W191", # tab-indentation
     "W605", # invalid-escape-sequence
     "F601", # multi-value-repeated-key-literal

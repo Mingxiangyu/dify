@@ -7,18 +7,20 @@ from core.tools.entities.api_entities import UserTool, UserToolProvider
 from core.tools.entities.common_entities import I18nObject
 from core.tools.entities.tool_bundle import ApiToolBundle
 from core.tools.entities.tool_entities import (
-    ApiProviderAuthType,
-    ToolParameter,
-    ToolProviderCredentials,
-    ToolProviderType,
+  ApiProviderAuthType,
+  ToolParameter,
+  ToolProviderCredentials,
+  ToolProviderType,
 )
 from core.tools.provider.api_tool_provider import ApiToolProviderController
-from core.tools.provider.builtin_tool_provider import BuiltinToolProviderController
-from core.tools.provider.workflow_tool_provider import WorkflowToolProviderController
+from core.tools.provider.builtin_tool_provider import \
+  BuiltinToolProviderController
+from core.tools.provider.workflow_tool_provider import \
+  WorkflowToolProviderController
 from core.tools.tool.tool import Tool
-from core.tools.tool.workflow_tool import WorkflowTool
 from core.tools.utils.configuration import ToolConfigurationManager
-from models.tools import ApiToolProvider, BuiltinToolProvider, WorkflowToolProvider
+from models.tools import ApiToolProvider, BuiltinToolProvider, \
+  WorkflowToolProvider
 
 logger = logging.getLogger(__name__)
 
@@ -192,7 +194,11 @@ class ToolTransformService:
         try:
             username = db_provider.user.name
         except Exception as e:
+<<<<<<< HEAD
             logger.error(f'failed to get user name for api provider {db_provider.id}: {str(e)}')
+=======
+            logger.exception(f"failed to get user name for api provider {db_provider.id}: {str(e)}")
+>>>>>>> 033ab5490bf9b23516edbf1db0aaf7cf61721606
         # add provider into providers
         credentials = db_provider.credentials
         result = UserToolProvider(

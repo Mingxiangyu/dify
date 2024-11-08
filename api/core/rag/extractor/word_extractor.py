@@ -24,7 +24,6 @@ logger = logging.getLogger(__name__)
 class WordExtractor(BaseExtractor):
     """Load docx files.
 
-
     Args:
         file_path: Path to the file to load.
     """
@@ -48,9 +47,16 @@ class WordExtractor(BaseExtractor):
                 )
 
             self.web_path = self.file_path
+<<<<<<< HEAD
             self.temp_file = tempfile.NamedTemporaryFile()
             self.temp_file.write(r.content)
             self.file_path = self.temp_file.name
+=======
+            # TODO: use a better way to handle the file
+            with tempfile.NamedTemporaryFile(delete=False) as self.temp_file:
+                self.temp_file.write(r.content)
+                self.file_path = self.temp_file.name
+>>>>>>> 033ab5490bf9b23516edbf1db0aaf7cf61721606
         elif not os.path.isfile(self.file_path):
             raise ValueError(f"File path {self.file_path} is not a valid file or url")
 
@@ -220,7 +226,7 @@ class WordExtractor(BaseExtractor):
                                 for i in url_pattern.findall(x.text):
                                     hyperlinks_url = str(i)
                     except Exception as e:
-                        logger.error(e)
+                        logger.exception(e)
 
 
 

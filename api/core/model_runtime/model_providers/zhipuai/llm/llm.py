@@ -1,24 +1,29 @@
 from collections.abc import Generator
 from typing import Optional, Union
 
-from core.model_runtime.entities.llm_entities import LLMResult, LLMResultChunk, LLMResultChunkDelta
+from core.model_runtime.entities.llm_entities import LLMResult, LLMResultChunk, \
+  LLMResultChunkDelta
 from core.model_runtime.entities.message_entities import (
-    AssistantPromptMessage,
-    PromptMessage,
-    PromptMessageContent,
-    PromptMessageContentType,
-    PromptMessageRole,
-    PromptMessageTool,
-    SystemPromptMessage,
-    ToolPromptMessage,
-    UserPromptMessage,
+  AssistantPromptMessage,
+  PromptMessage,
+  PromptMessageContent,
+  PromptMessageContentType,
+  PromptMessageRole,
+  PromptMessageTool,
+  SystemPromptMessage,
+  ToolPromptMessage,
+  UserPromptMessage,
 )
 from core.model_runtime.errors.validate import CredentialsValidateFailedError
-from core.model_runtime.model_providers.__base.large_language_model import LargeLanguageModel
+from core.model_runtime.model_providers.__base.large_language_model import \
+  LargeLanguageModel
 from core.model_runtime.model_providers.zhipuai._common import _CommonZhipuaiAI
-from core.model_runtime.model_providers.zhipuai.zhipuai_sdk._client import ZhipuAI
-from core.model_runtime.model_providers.zhipuai.zhipuai_sdk.types.chat.chat_completion import Completion
-from core.model_runtime.model_providers.zhipuai.zhipuai_sdk.types.chat.chat_completion_chunk import ChatCompletionChunk
+from core.model_runtime.model_providers.zhipuai.zhipuai_sdk._client import \
+  ZhipuAI
+from core.model_runtime.model_providers.zhipuai.zhipuai_sdk.types.chat.chat_completion import \
+  Completion
+from core.model_runtime.model_providers.zhipuai.zhipuai_sdk.types.chat.chat_completion_chunk import \
+  ChatCompletionChunk
 from core.model_runtime.utils import helper
 
 GLM_JSON_MODE_PROMPT = """You should always follow the instructions and output a valid JSON object.
@@ -304,6 +309,7 @@ class ZhipuAILargeLanguageModel(_CommonZhipuaiAI, LargeLanguageModel):
 
         return params
 
+<<<<<<< HEAD
     def _construct_glm_4v_messages(self, prompt_message: Union[str | list[PromptMessageContent]]) -> list[dict]:
         if isinstance(prompt_message, str):
             return [{'type': 'text', 'text': prompt_message}]
@@ -321,6 +327,38 @@ class ZhipuAILargeLanguageModel(_CommonZhipuaiAI, LargeLanguageModel):
             return image.split(',')[1]
 
         return image
+=======
+    def _construct_glm_4v_messages(self, prompt_message: Union[str, list[PromptMessageContent]]) -> list[dict]:
+        if isinstance(prompt_message, list):
+            sub_messages = []
+            for item in prompt_message:
+                if item.type == PromptMessageContentType.IMAGE:
+                    sub_messages.append(
+                        {
+                            "type": "image_url",
+                            "image_url": {"url": self._remove_base64_header(item.data)},
+                        }
+                    )
+                elif item.type == PromptMessageContentType.VIDEO:
+                    sub_messages.append(
+                        {
+                            "type": "video_url",
+                            "video_url": {"url": self._remove_base64_header(item.data)},
+                        }
+                    )
+                else:
+                    sub_messages.append({"type": "text", "text": item.data})
+            return sub_messages
+        else:
+            return [{"type": "text", "text": prompt_message}]
+
+    def _remove_base64_header(self, file_content: str) -> str:
+        if file_content.startswith("data:"):
+            data_split = file_content.split(";base64,")
+            return data_split[1]
+
+        return file_content
+>>>>>>> 033ab5490bf9b23516edbf1db0aaf7cf61721606
 
     def _handle_generate_response(self, model: str,
                                   credentials: dict,

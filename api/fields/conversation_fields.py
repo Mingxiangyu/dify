@@ -189,6 +189,10 @@ simple_conversation_fields = {
     "created_at": TimestampField,
 }
 
+conversation_delete_fields = {
+    "result": fields.String,
+}
+
 conversation_infinite_scroll_pagination_fields = {
     "limit": fields.Integer,
     "has_more": fields.Boolean,

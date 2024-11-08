@@ -9,38 +9,41 @@ from typing import Optional, Union, cast
 from dashscope import Generation, MultiModalConversation, get_tokenizer
 from dashscope.api_entities.dashscope_response import GenerationResponse
 from dashscope.common.error import (
-    AuthenticationError,
-    InvalidParameter,
-    RequestFailure,
-    ServiceUnavailableError,
-    UnsupportedHTTPMethod,
-    UnsupportedModel,
+  AuthenticationError,
+  InvalidParameter,
+  RequestFailure,
+  ServiceUnavailableError,
+  UnsupportedHTTPMethod,
+  UnsupportedModel,
 )
 
 from core.model_runtime.callbacks.base_callback import Callback
-from core.model_runtime.entities.llm_entities import LLMResult, LLMResultChunk, LLMResultChunkDelta
+from core.model_runtime.entities.llm_entities import LLMResult, LLMResultChunk, \
+  LLMResultChunkDelta
 from core.model_runtime.entities.message_entities import (
-    AssistantPromptMessage,
-    ImagePromptMessageContent,
-    PromptMessage,
-    PromptMessageContentType,
-    PromptMessageTool,
-    SystemPromptMessage,
-    TextPromptMessageContent,
-    ToolPromptMessage,
-    UserPromptMessage,
+  AssistantPromptMessage,
+  ImagePromptMessageContent,
+  PromptMessage,
+  PromptMessageContentType,
+  PromptMessageTool,
+  SystemPromptMessage,
+  TextPromptMessageContent,
+  ToolPromptMessage,
+  UserPromptMessage,
+  VideoPromptMessageContent,
 )
 from core.model_runtime.entities.model_entities import ModelFeature
 from core.model_runtime.errors.invoke import (
-    InvokeAuthorizationError,
-    InvokeBadRequestError,
-    InvokeConnectionError,
-    InvokeError,
-    InvokeRateLimitError,
-    InvokeServerUnavailableError,
+  InvokeAuthorizationError,
+  InvokeBadRequestError,
+  InvokeConnectionError,
+  InvokeError,
+  InvokeRateLimitError,
+  InvokeServerUnavailableError,
 )
 from core.model_runtime.errors.validate import CredentialsValidateFailedError
-from core.model_runtime.model_providers.__base.large_language_model import LargeLanguageModel
+from core.model_runtime.model_providers.__base.large_language_model import \
+  LargeLanguageModel
 
 
 class TongyiLargeLanguageModel(LargeLanguageModel):
@@ -486,6 +489,14 @@ You should also complete the text started with ``` but not tell ``` directly.
                             sub_message_dict = {
                                 "image": image_url
                             }
+                            sub_messages.append(sub_message_dict)
+                        elif message_content.type == PromptMessageContentType.VIDEO:
+                            message_content = cast(VideoPromptMessageContent, message_content)
+                            video_url = message_content.data
+                            if message_content.data.startswith("data:"):
+                                raise InvokeError("not support base64, please set MULTIMODAL_SEND_VIDEO_FORMAT to url")
+
+                            sub_message_dict = {"video": video_url}
                             sub_messages.append(sub_message_dict)
 
                     # resort sub_messages to ensure text is always at last

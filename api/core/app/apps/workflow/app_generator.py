@@ -1,6 +1,5 @@
 import contextvars
 import logging
-import os
 import threading
 import uuid
 from collections.abc import Generator
@@ -10,18 +9,26 @@ from flask import Flask, current_app
 from pydantic import ValidationError
 
 import contexts
-from core.app.app_config.features.file_upload.manager import FileUploadConfigManager
+from configs import dify_config
+from core.app.app_config.features.file_upload.manager import \
+  FileUploadConfigManager
 from core.app.apps.base_app_generator import BaseAppGenerator
-from core.app.apps.base_app_queue_manager import AppQueueManager, GenerateTaskStoppedException, PublishFrom
+from core.app.apps.base_app_queue_manager import AppQueueManager, \
+  GenerateTaskStoppedException, PublishFrom
 from core.app.apps.workflow.app_config_manager import WorkflowAppConfigManager
 from core.app.apps.workflow.app_queue_manager import WorkflowAppQueueManager
 from core.app.apps.workflow.app_runner import WorkflowAppRunner
-from core.app.apps.workflow.generate_response_converter import WorkflowAppGenerateResponseConverter
-from core.app.apps.workflow.generate_task_pipeline import WorkflowAppGenerateTaskPipeline
-from core.app.entities.app_invoke_entities import InvokeFrom, WorkflowAppGenerateEntity
-from core.app.entities.task_entities import WorkflowAppBlockingResponse, WorkflowAppStreamResponse
+from core.app.apps.workflow.generate_response_converter import \
+  WorkflowAppGenerateResponseConverter
+from core.app.apps.workflow.generate_task_pipeline import \
+  WorkflowAppGenerateTaskPipeline
+from core.app.entities.app_invoke_entities import InvokeFrom, \
+  WorkflowAppGenerateEntity
+from core.app.entities.task_entities import WorkflowAppBlockingResponse, \
+  WorkflowAppStreamResponse
 from core.file.message_file_parser import MessageFileParser
-from core.model_runtime.errors.invoke import InvokeAuthorizationError, InvokeError
+from core.model_runtime.errors.invoke import InvokeAuthorizationError, \
+  InvokeError
 from core.ops.ops_trace_manager import TraceQueueManager
 from extensions.ext_database import db
 from models.account import Account
@@ -251,7 +258,11 @@ class WorkflowAppGenerator(BaseAppGenerator):
                 logger.exception("Validation Error when generating")
                 queue_manager.publish_error(e, PublishFrom.APPLICATION_MANAGER)
             except (ValueError, InvokeError) as e:
+<<<<<<< HEAD
                 if os.environ.get("DEBUG") and os.environ.get("DEBUG").lower() == 'true':
+=======
+                if dify_config.DEBUG:
+>>>>>>> 033ab5490bf9b23516edbf1db0aaf7cf61721606
                     logger.exception("Error when generating")
                 queue_manager.publish_error(e, PublishFrom.APPLICATION_MANAGER)
             except Exception as e:

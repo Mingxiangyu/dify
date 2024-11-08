@@ -20,19 +20,19 @@ from libs.rsa import generate_key_pair
 from models.account import *
 from models.model import DifySetup
 from services.errors.account import (
-    AccountAlreadyInTenantError,
-    AccountLoginError,
-    AccountNotLinkTenantError,
-    AccountRegisterError,
-    CannotOperateSelfError,
-    CurrentPasswordIncorrectError,
-    InvalidActionError,
-    LinkAccountIntegrateError,
-    MemberNotInTenantError,
-    NoPermissionError,
-    RateLimitExceededError,
-    RoleAlreadyAssignedError,
-    TenantNotFound,
+  AccountAlreadyInTenantError,
+  AccountLoginError,
+  AccountNotLinkTenantError,
+  AccountRegisterError,
+  CannotOperateSelfError,
+  CurrentPasswordIncorrectError,
+  InvalidActionError,
+  LinkAccountIntegrateError,
+  MemberNotInTenantError,
+  NoPermissionError,
+  RateLimitExceededError,
+  RoleAlreadyAssignedError,
+  TenantNotFound,
 )
 from tasks.mail_invite_member_task import send_invite_member_mail_task
 from tasks.mail_reset_password_task import send_reset_password_mail_task
@@ -570,8 +570,13 @@ class RegisterService:
             db.session.commit()
         except Exception as e:
             db.session.rollback()
+<<<<<<< HEAD
             logging.error(f'Register failed: {e}')
             raise AccountRegisterError(f'Registration failed: {e}') from e
+=======
+            logging.exception(f"Register failed: {e}")
+            raise AccountRegisterError(f"Registration failed: {e}") from e
+>>>>>>> 033ab5490bf9b23516edbf1db0aaf7cf61721606
 
         return account
 

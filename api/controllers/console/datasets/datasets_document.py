@@ -12,26 +12,26 @@ from werkzeug.exceptions import Forbidden, NotFound
 import services
 from controllers.console import api
 from controllers.console.app.error import (
-  ProviderModelCurrentlyNotSupportError,
-  ProviderNotInitializeError,
-  ProviderQuotaExceededError,
+    ProviderModelCurrentlyNotSupportError,
+    ProviderNotInitializeError,
+    ProviderQuotaExceededError,
 )
 from controllers.console.datasets.error import (
-  ArchivedDocumentImmutableError,
-  DocumentAlreadyFinishedError,
-  DocumentIndexingError,
-  IndexingEstimateError,
-  InvalidActionError,
-  InvalidMetadataError,
+    ArchivedDocumentImmutableError,
+    DocumentAlreadyFinishedError,
+    DocumentIndexingError,
+    IndexingEstimateError,
+    InvalidActionError,
+    InvalidMetadataError,
 )
 from controllers.console.setup import setup_required
 from controllers.console.wraps import account_initialization_required, \
-  cloud_edition_billing_resource_check
+    cloud_edition_billing_resource_check
 from core.errors.error import (
-  LLMBadRequestError,
-  ModelCurrentlyNotSupportError,
-  ProviderTokenNotInitError,
-  QuotaExceededError,
+    LLMBadRequestError,
+    ModelCurrentlyNotSupportError,
+    ProviderTokenNotInitError,
+    QuotaExceededError,
 )
 from core.indexing_runner import IndexingRunner
 from core.model_manager import ModelManager
@@ -41,19 +41,19 @@ from core.rag.extractor.entity.extract_setting import ExtractSetting
 from extensions.ext_database import db
 from extensions.ext_redis import redis_client
 from fields.document_fields import (
-  dataset_and_document_fields,
-  document_fields,
-  document_status_fields,
-  document_with_segments_fields,
+    dataset_and_document_fields,
+    document_fields,
+    document_status_fields,
+    document_with_segments_fields,
 )
 from libs.login import login_required
 from models.dataset import Dataset, DatasetProcessRule, Document, \
-  DocumentSegment
+    DocumentSegment
 from models.model import UploadFile
 from services.dataset_service import DatasetService, DocumentService
 from tasks.add_document_to_index_task import add_document_to_index_task
 from tasks.remove_document_from_index_task import \
-  remove_document_from_index_task
+    remove_document_from_index_task
 
 
 class DocumentResource(Resource):
@@ -970,7 +970,7 @@ class DocumentRetryApi(DocumentResource):
                     raise DocumentAlreadyFinishedError()
                 retry_documents.append(document)
             except Exception as e:
-                logging.error(f"Document {document_id} retry failed: {str(e)}")
+                logging.exception(f"Document {document_id} retry failed: {str(e)}")
                 continue
         # retry document
         DocumentService.retry_document(dataset_id, retry_documents)

@@ -1,6 +1,5 @@
 import json
 import logging
-from typing import Any, Optional
 from uuid import uuid4
 
 from pydantic import BaseModel, model_validator
@@ -8,10 +7,8 @@ from pymilvus import MilvusClient, MilvusException, connections
 from pymilvus.milvus_client import IndexParams
 
 from configs import dify_config
-from core.rag.datasource.entity.embedding import Embeddings
 from core.rag.datasource.vdb.field import Field
 from core.rag.datasource.vdb.vector_base import BaseVector
-from core.rag.datasource.vdb.vector_factory import AbstractVectorFactory
 from core.rag.datasource.vdb.vector_type import VectorType
 from core.rag.models.document import Document
 from extensions.ext_redis import redis_client
@@ -102,9 +99,13 @@ class MilvusVector(BaseVector):
                 ids = self._client.insert(collection_name=self._collection_name, data=batch_insert_list)
                 pks.extend(ids)
             except MilvusException as e:
+<<<<<<< HEAD
                 logger.error(
                     "Failed to insert batch starting at entity: %s/%s", i, total_count
                 )
+=======
+                logger.exception("Failed to insert batch starting at entity: %s/%s", i, total_count)
+>>>>>>> 033ab5490bf9b23516edbf1db0aaf7cf61721606
                 raise e
         return pks
 

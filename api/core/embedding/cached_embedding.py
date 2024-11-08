@@ -79,7 +79,11 @@ class CacheEmbedding(Embeddings):
                     db.session.rollback()
             except Exception as ex:
                 db.session.rollback()
+<<<<<<< HEAD:api/core/embedding/cached_embedding.py
                 logger.error('Failed to embed documents: ', ex)
+=======
+                logger.exception("Failed to embed documents: %s", ex)
+>>>>>>> 033ab5490bf9b23516edbf1db0aaf7cf61721606:api/core/rag/embedding/cached_embedding.py
                 raise ex
 
         return text_embeddings

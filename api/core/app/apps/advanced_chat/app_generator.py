@@ -1,6 +1,5 @@
 import contextvars
 import logging
-import os
 import threading
 import uuid
 from collections.abc import Generator
@@ -12,6 +11,10 @@ from sqlalchemy import select
 from sqlalchemy.orm import Session
 
 import contexts
+<<<<<<< HEAD
+=======
+from configs import dify_config
+>>>>>>> 033ab5490bf9b23516edbf1db0aaf7cf61721606
 from core.app.app_config.features.file_upload.manager import FileUploadConfigManager
 from core.app.apps.advanced_chat.app_config_manager import AdvancedChatAppConfigManager
 from core.app.apps.advanced_chat.app_runner import AdvancedChatAppRunner
@@ -362,7 +365,11 @@ class AdvancedChatAppGenerator(MessageBasedAppGenerator):
                 logger.exception("Validation Error when generating")
                 queue_manager.publish_error(e, PublishFrom.APPLICATION_MANAGER)
             except (ValueError, InvokeError) as e:
+<<<<<<< HEAD
                 if os.environ.get("DEBUG") and os.environ.get("DEBUG").lower() == 'true':
+=======
+                if dify_config.DEBUG:
+>>>>>>> 033ab5490bf9b23516edbf1db0aaf7cf61721606
                     logger.exception("Error when generating")
                 queue_manager.publish_error(e, PublishFrom.APPLICATION_MANAGER)
             except Exception as e:

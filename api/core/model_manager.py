@@ -1,8 +1,13 @@
 import logging
+<<<<<<< HEAD
 import os
+
+=======
 from collections.abc import Callable, Generator
 from typing import IO, Optional, Union, cast
 
+from configs import dify_config
+>>>>>>> 033ab5490bf9b23516edbf1db0aaf7cf61721606
 from core.entities.provider_configuration import ProviderConfiguration, ProviderModelBundle
 from core.entities.provider_entities import ModelLoadBalancingConfiguration
 from core.errors.error import ProviderTokenNotInitError
@@ -462,10 +467,19 @@ class LBModelManager:
 
                 continue
 
+<<<<<<< HEAD
             if bool(os.environ.get("DEBUG", 'False').lower() == 'true'):
                 logger.info(f"Model LB\nid: {config.id}\nname:{config.name}\n"
                             f"tenant_id: {self._tenant_id}\nprovider: {self._provider}\n"
                             f"model_type: {self._model_type.value}\nmodel: {self._model}")
+=======
+            if dify_config.DEBUG:
+                logger.info(
+                    f"Model LB\nid: {config.id}\nname:{config.name}\n"
+                    f"tenant_id: {self._tenant_id}\nprovider: {self._provider}\n"
+                    f"model_type: {self._model_type.value}\nmodel: {self._model}"
+                )
+>>>>>>> 033ab5490bf9b23516edbf1db0aaf7cf61721606
 
             return config
 
