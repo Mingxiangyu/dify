@@ -1,7 +1,7 @@
-from typing import Optional
+from typing import Optional, Annotated, Literal
 
 from pydantic import AliasChoices, Field, NonNegativeInt, PositiveInt, \
-  computed_field
+    computed_field, PositiveFloat
 from pydantic_settings import BaseSettings
 
 from configs.feature.hosted_service import HostedServiceConfig
@@ -156,9 +156,6 @@ class HttpConfig(BaseSettings):
     @computed_field
     @property
     def WEB_API_CORS_ALLOW_ORIGINS(self) -> list[str]:
-<<<<<<< HEAD
-        return self.inner_WEB_API_CORS_ALLOW_ORIGINS.split(',')
-=======
         return self.inner_WEB_API_CORS_ALLOW_ORIGINS.split(",")
 
     HTTP_REQUEST_MAX_CONNECT_TIMEOUT: Annotated[
@@ -228,7 +225,6 @@ class HttpConfig(BaseSettings):
         " to respect X-* headers to redirect clients",
         default=False,
     )
->>>>>>> 033ab5490bf9b23516edbf1db0aaf7cf61721606
 
 
 class InnerAPIConfig(BaseSettings):
@@ -502,17 +498,11 @@ class IndexingConfig(BaseSettings):
     )
 
 
-<<<<<<< HEAD
-class ImageFormatConfig(BaseSettings):
-    MULTIMODAL_SEND_IMAGE_FORMAT: str = Field(
-        description='multi model send image format, support base64, url, default is base64',
-        default='base64',
-=======
+
 class VisionFormatConfig(BaseSettings):
     MULTIMODAL_SEND_IMAGE_FORMAT: Literal["base64", "url"] = Field(
         description="Format for sending images in multimodal contexts ('base64' or 'url'), default is base64",
         default="base64",
->>>>>>> 033ab5490bf9b23516edbf1db0aaf7cf61721606
     )
 
     MULTIMODAL_SEND_VIDEO_FORMAT: Literal["base64", "url"] = Field(

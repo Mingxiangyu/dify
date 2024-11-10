@@ -4,7 +4,7 @@ import logging
 from httpx import get
 
 from core.model_runtime.utils.encoders import jsonable_encoder
-from core.tools.entities.api_entities import UserToolProvider
+from core.tools.entities.api_entities import UserToolProvider, UserTool
 from core.tools.entities.common_entities import I18nObject
 from core.tools.entities.tool_bundle import ApiToolBundle
 from core.tools.entities.tool_entities import (
@@ -195,19 +195,10 @@ class ApiToolManageService:
             # try to parse schema, avoid SSRF attack
             ApiToolManageService.parser_api_schema(schema)
         except Exception as e:
-<<<<<<< HEAD
-            logger.error(f"parse api schema error: {str(e)}")
-            raise ValueError('invalid schema, please check the url you provided')
-        
-        return {
-            'schema': schema
-        }
-=======
             logger.exception(f"parse api schema error: {str(e)}")
             raise ValueError("invalid schema, please check the url you provided")
 
         return {"schema": schema}
->>>>>>> 033ab5490bf9b23516edbf1db0aaf7cf61721606
 
     @staticmethod
     def list_api_tool_provider_tools(

@@ -1,31 +1,36 @@
 import json
 import logging
-from typing import cast
+from typing import cast, Optional, Union
 
+from core.app.entities.app_invoke_entities import \
+    ModelConfigWithCredentialsEntity
+from core.memory.token_buffer_memory import TokenBufferMemory
 from core.model_manager import ModelInstance
-from core.model_runtime.entities.message_entities import PromptMessageRole
+from core.model_runtime.entities.message_entities import PromptMessageRole, \
+    PromptMessage
 from core.model_runtime.entities.model_entities import ModelPropertyKey
 from core.model_runtime.utils.encoders import jsonable_encoder
 from core.prompt.advanced_prompt_transform import AdvancedPromptTransform
 from core.prompt.entities.advanced_prompt_entities import ChatModelMessage, \
-  CompletionModelPromptTemplate
+    CompletionModelPromptTemplate
 from core.prompt.simple_prompt_transform import ModelMode
 from core.prompt.utils.prompt_message_util import PromptMessageUtil
 from core.prompt.utils.prompt_template_parser import PromptTemplateParser
+from core.workflow.entities.base_node_data_entities import BaseNodeData
 from core.workflow.entities.node_entities import NodeRunMetadataKey, \
-  NodeRunResult, NodeType
+    NodeRunResult, NodeType
 from core.workflow.entities.variable_pool import VariablePool
 from core.workflow.nodes.llm.llm_node import LLMNode
 from core.workflow.nodes.question_classifier.entities import \
-  QuestionClassifierNodeData
+    QuestionClassifierNodeData
 from core.workflow.nodes.question_classifier.template_prompts import (
-  QUESTION_CLASSIFIER_ASSISTANT_PROMPT_1,
-  QUESTION_CLASSIFIER_ASSISTANT_PROMPT_2,
-  QUESTION_CLASSIFIER_COMPLETION_PROMPT,
-  QUESTION_CLASSIFIER_SYSTEM_PROMPT,
-  QUESTION_CLASSIFIER_USER_PROMPT_1,
-  QUESTION_CLASSIFIER_USER_PROMPT_2,
-  QUESTION_CLASSIFIER_USER_PROMPT_3,
+    QUESTION_CLASSIFIER_ASSISTANT_PROMPT_1,
+    QUESTION_CLASSIFIER_ASSISTANT_PROMPT_2,
+    QUESTION_CLASSIFIER_COMPLETION_PROMPT,
+    QUESTION_CLASSIFIER_SYSTEM_PROMPT,
+    QUESTION_CLASSIFIER_USER_PROMPT_1,
+    QUESTION_CLASSIFIER_USER_PROMPT_2,
+    QUESTION_CLASSIFIER_USER_PROMPT_3,
 )
 from core.workflow.utils.variable_template_parser import VariableTemplateParser
 from libs.json_in_md_parser import parse_and_check_json_markdown
@@ -83,13 +88,8 @@ class QuestionClassifierNode(LLMNode):
                     category_name = classes_map[category_id_result]
                     category_id = category_id_result
 
-<<<<<<< HEAD
         except Exception:
-            logging.error(f"Failed to parse result text: {result_text}")
-=======
-        except OutputParserError:
             logging.exception(f"Failed to parse result text: {result_text}")
->>>>>>> 033ab5490bf9b23516edbf1db0aaf7cf61721606
         try:
             process_data = {
                 'model_mode': model_config.mode,

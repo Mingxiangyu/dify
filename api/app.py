@@ -1,12 +1,9 @@
 import os
 
-<<<<<<< HEAD
-if os.environ.get("DEBUG", "false").lower() != "true":
-=======
 from configs import dify_config
 
 if not dify_config.DEBUG:
->>>>>>> 033ab5490bf9b23516edbf1db0aaf7cf61721606
+
     from gevent import monkey
 
     monkey.patch_all()

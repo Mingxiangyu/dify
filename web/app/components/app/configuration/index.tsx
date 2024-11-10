@@ -427,8 +427,6 @@ const Configuration: FC = () => {
 
   const isShowVisionConfig = !!currModel?.features?.includes(ModelFeatureEnum.vision)
 
-<<<<<<< HEAD
-=======
   // *** web app features ***
   const featuresData: FeaturesData = useMemo(() => {
     return {
@@ -472,7 +470,6 @@ const Configuration: FC = () => {
     setModelConfig(newModelConfig)
   }, [modelConfig])
 
->>>>>>> 033ab5490bf9b23516edbf1db0aaf7cf61721606
   useEffect(() => {
     (async () => {
       const collectionList = await fetchCollectionList()

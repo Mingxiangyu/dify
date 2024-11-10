@@ -11,25 +11,30 @@ from sqlalchemy import select
 from sqlalchemy.orm import Session
 
 import contexts
-<<<<<<< HEAD
-=======
 from configs import dify_config
->>>>>>> 033ab5490bf9b23516edbf1db0aaf7cf61721606
-from core.app.app_config.features.file_upload.manager import FileUploadConfigManager
-from core.app.apps.advanced_chat.app_config_manager import AdvancedChatAppConfigManager
+from core.app.app_config.features.file_upload.manager import \
+  FileUploadConfigManager
+from core.app.apps.advanced_chat.app_config_manager import \
+  AdvancedChatAppConfigManager
 from core.app.apps.advanced_chat.app_runner import AdvancedChatAppRunner
-from core.app.apps.advanced_chat.generate_response_converter import AdvancedChatAppGenerateResponseConverter
-from core.app.apps.advanced_chat.generate_task_pipeline import AdvancedChatAppGenerateTaskPipeline
-from core.app.apps.base_app_queue_manager import AppQueueManager, GenerateTaskStoppedException, PublishFrom
+from core.app.apps.advanced_chat.generate_response_converter import \
+  AdvancedChatAppGenerateResponseConverter
+from core.app.apps.advanced_chat.generate_task_pipeline import \
+  AdvancedChatAppGenerateTaskPipeline
+from core.app.apps.base_app_queue_manager import AppQueueManager, \
+  GenerateTaskStoppedException, PublishFrom
 from core.app.apps.message_based_app_generator import MessageBasedAppGenerator
-from core.app.apps.message_based_app_queue_manager import MessageBasedAppQueueManager
+from core.app.apps.message_based_app_queue_manager import \
+  MessageBasedAppQueueManager
 from core.app.entities.app_invoke_entities import (
-    AdvancedChatAppGenerateEntity,
-    InvokeFrom,
+  AdvancedChatAppGenerateEntity,
+  InvokeFrom,
 )
-from core.app.entities.task_entities import ChatbotAppBlockingResponse, ChatbotAppStreamResponse
+from core.app.entities.task_entities import ChatbotAppBlockingResponse, \
+  ChatbotAppStreamResponse
 from core.file.message_file_parser import MessageFileParser
-from core.model_runtime.errors.invoke import InvokeAuthorizationError, InvokeError
+from core.model_runtime.errors.invoke import InvokeAuthorizationError, \
+  InvokeError
 from core.ops.ops_trace_manager import TraceQueueManager
 from core.workflow.entities.variable_pool import VariablePool
 from core.workflow.enums import SystemVariable
@@ -365,11 +370,7 @@ class AdvancedChatAppGenerator(MessageBasedAppGenerator):
                 logger.exception("Validation Error when generating")
                 queue_manager.publish_error(e, PublishFrom.APPLICATION_MANAGER)
             except (ValueError, InvokeError) as e:
-<<<<<<< HEAD
-                if os.environ.get("DEBUG") and os.environ.get("DEBUG").lower() == 'true':
-=======
                 if dify_config.DEBUG:
->>>>>>> 033ab5490bf9b23516edbf1db0aaf7cf61721606
                     logger.exception("Error when generating")
                 queue_manager.publish_error(e, PublishFrom.APPLICATION_MANAGER)
             except Exception as e:

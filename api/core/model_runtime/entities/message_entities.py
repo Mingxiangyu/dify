@@ -2,7 +2,7 @@ from abc import ABC
 from enum import Enum
 from typing import Optional
 
-from pydantic import BaseModel, field_validator
+from pydantic import BaseModel, field_validator, Field
 
 
 class PromptMessageRole(Enum):
@@ -49,16 +49,11 @@ class PromptMessageContentType(Enum):
     """
     Enum class for prompt message content type.
     """
-<<<<<<< HEAD
-    TEXT = 'text'
-    IMAGE = 'image'
-=======
-
     TEXT = "text"
     IMAGE = "image"
     AUDIO = "audio"
     VIDEO = "video"
->>>>>>> 033ab5490bf9b23516edbf1db0aaf7cf61721606
+
 
 
 class PromptMessageContent(BaseModel):
@@ -76,8 +71,7 @@ class TextPromptMessageContent(PromptMessageContent):
     type: PromptMessageContentType = PromptMessageContentType.TEXT
 
 
-<<<<<<< HEAD
-=======
+
 class VideoPromptMessageContent(PromptMessageContent):
     type: PromptMessageContentType = PromptMessageContentType.VIDEO
     data: str = Field(..., description="Base64 encoded video data")
@@ -90,7 +84,7 @@ class AudioPromptMessageContent(PromptMessageContent):
     format: str = Field(..., description="Audio format")
 
 
->>>>>>> 033ab5490bf9b23516edbf1db0aaf7cf61721606
+
 class ImagePromptMessageContent(PromptMessageContent):
     """
     Model class for image prompt message content.

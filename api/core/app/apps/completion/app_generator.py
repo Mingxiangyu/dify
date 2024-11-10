@@ -197,11 +197,7 @@ class CompletionAppGenerator(MessageBasedAppGenerator):
                 logger.exception("Validation Error when generating")
                 queue_manager.publish_error(e, PublishFrom.APPLICATION_MANAGER)
             except (ValueError, InvokeError) as e:
-<<<<<<< HEAD
-                if os.environ.get("DEBUG") and os.environ.get("DEBUG").lower() == 'true':
-=======
                 if dify_config.DEBUG:
->>>>>>> 033ab5490bf9b23516edbf1db0aaf7cf61721606
                     logger.exception("Error when generating")
                 queue_manager.publish_error(e, PublishFrom.APPLICATION_MANAGER)
             except Exception as e:

@@ -6,17 +6,6 @@ import time
 
 import httpx
 
-<<<<<<< HEAD
-SSRF_PROXY_ALL_URL = os.getenv('SSRF_PROXY_ALL_URL', '')
-SSRF_PROXY_HTTP_URL = os.getenv('SSRF_PROXY_HTTP_URL', '')
-SSRF_PROXY_HTTPS_URL = os.getenv('SSRF_PROXY_HTTPS_URL', '')
-SSRF_DEFAULT_MAX_RETRIES = int(os.getenv('SSRF_DEFAULT_MAX_RETRIES', '3'))
-
-proxies = {
-    'http://': SSRF_PROXY_HTTP_URL,
-    'https://': SSRF_PROXY_HTTPS_URL
-} if SSRF_PROXY_HTTP_URL and SSRF_PROXY_HTTPS_URL else None
-=======
 from configs import dify_config
 
 SSRF_DEFAULT_MAX_RETRIES = dify_config.SSRF_DEFAULT_MAX_RETRIES
@@ -29,7 +18,6 @@ proxy_mounts = (
     if dify_config.SSRF_PROXY_HTTP_URL and dify_config.SSRF_PROXY_HTTPS_URL
     else None
 )
->>>>>>> 033ab5490bf9b23516edbf1db0aaf7cf61721606
 
 BACKOFF_FACTOR = 0.5
 STATUS_FORCELIST = [429, 500, 502, 503, 504]
@@ -39,16 +27,6 @@ def make_request(method, url, max_retries=SSRF_DEFAULT_MAX_RETRIES, **kwargs):
         allow_redirects = kwargs.pop("allow_redirects")
         if "follow_redirects" not in kwargs:
             kwargs["follow_redirects"] = allow_redirects
-<<<<<<< HEAD
-    
-    retries = 0
-    while retries <= max_retries:
-        try:
-            if SSRF_PROXY_ALL_URL:
-                response = httpx.request(method=method, url=url, proxy=SSRF_PROXY_ALL_URL, **kwargs)
-            elif proxies:
-                response = httpx.request(method=method, url=url, proxies=proxies, **kwargs)
-=======
 
     if "timeout" not in kwargs:
         kwargs["timeout"] = httpx.Timeout(
@@ -67,7 +45,6 @@ def make_request(method, url, max_retries=SSRF_DEFAULT_MAX_RETRIES, **kwargs):
             elif proxy_mounts:
                 with httpx.Client(mounts=proxy_mounts) as client:
                     response = client.request(method=method, url=url, **kwargs)
->>>>>>> 033ab5490bf9b23516edbf1db0aaf7cf61721606
             else:
                 response = httpx.request(method=method, url=url, **kwargs)
 

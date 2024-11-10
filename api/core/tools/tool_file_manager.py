@@ -5,7 +5,7 @@ import logging
 import os
 import time
 from mimetypes import guess_extension, guess_type
-from typing import Optional
+from typing import Optional, Union, Generator
 from uuid import uuid4
 
 from httpx import get
@@ -86,13 +86,6 @@ class ToolFileManager:
         create file
         """
         # try to download image
-<<<<<<< HEAD
-        response = get(file_url)
-        response.raise_for_status()
-        blob = response.content
-        mimetype = guess_type(file_url)[0] or 'octet/stream'
-        extension = guess_extension(mimetype) or '.bin'
-=======
         try:
             response = get(file_url)
             response.raise_for_status()
@@ -103,7 +96,6 @@ class ToolFileManager:
 
         mimetype = guess_type(file_url)[0] or "octet/stream"
         extension = guess_extension(mimetype) or ".bin"
->>>>>>> 033ab5490bf9b23516edbf1db0aaf7cf61721606
         unique_name = uuid4().hex
         filename = f'tools/{tenant_id}/{unique_name}{extension}'
         storage.save(filename, blob)

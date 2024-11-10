@@ -309,25 +309,6 @@ class ZhipuAILargeLanguageModel(_CommonZhipuaiAI, LargeLanguageModel):
 
         return params
 
-<<<<<<< HEAD
-    def _construct_glm_4v_messages(self, prompt_message: Union[str | list[PromptMessageContent]]) -> list[dict]:
-        if isinstance(prompt_message, str):
-            return [{'type': 'text', 'text': prompt_message}]
-
-        return [
-            {'type': 'image_url', 'image_url': {'url': self._remove_image_header(item.data)}}
-            if item.type == PromptMessageContentType.IMAGE else
-            {'type': 'text', 'text': item.data}
-
-            for item in prompt_message
-        ]
-
-    def _remove_image_header(self, image: str) -> str:
-        if image.startswith('data:image'):
-            return image.split(',')[1]
-
-        return image
-=======
     def _construct_glm_4v_messages(self, prompt_message: Union[str, list[PromptMessageContent]]) -> list[dict]:
         if isinstance(prompt_message, list):
             sub_messages = []
@@ -358,7 +339,6 @@ class ZhipuAILargeLanguageModel(_CommonZhipuaiAI, LargeLanguageModel):
             return data_split[1]
 
         return file_content
->>>>>>> 033ab5490bf9b23516edbf1db0aaf7cf61721606
 
     def _handle_generate_response(self, model: str,
                                   credentials: dict,
